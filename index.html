@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>THUG SZN | Exclusive Drop</title>
+  <title>THUG SZN | Streetwear & Heavyweight Apparel</title>
   <style>
     :root {
-      --bg-color: #0d0d0d;
-      --card-bg: #161616;
+      --bg-color: #0a0a0a;
+      --card-bg: #141414;
       --accent: #00ff66;
       --text: #ffffff;
       --muted: #888888;
-      --border: #262626;
+      --border: #222222;
     }
 
     * {
@@ -24,16 +24,27 @@
     body {
       background-color: var(--bg-color);
       color: var(--text);
-      padding-top: 80px;
     }
 
+    /* 1. Announcement Bar */
+    .banner {
+      background: var(--accent);
+      color: #000;
+      text-align: center;
+      padding: 8px;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      font-family: sans-serif;
+      font-weight: bold;
+    }
+
+    /* 2. Navigation */
     .navbar {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
       width: 100%;
       height: 70px;
-      background: rgba(13, 13, 13, 0.95);
+      background: rgba(10, 10, 10, 0.95);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -43,11 +54,19 @@
       z-index: 100;
     }
 
-    .nav-logo {
-      font-size: 1.8rem;
+    .nav-links a {
       color: var(--text);
       text-decoration: none;
-      letter-spacing: 2px;
+      font-family: sans-serif;
+      margin: 0 15px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
     }
 
     .cart-btn {
@@ -60,33 +79,78 @@
       border-radius: 4px;
     }
 
-    .cart-btn:hover {
-      background: var(--accent);
-      color: #000;
+    /* 3. Hero Showcase Section */
+    .hero {
+      height: 75vh;
+      background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(10,10,10,1) 100%), 
+                  url('images/1.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
     }
 
-    .header {
+    .hero h1 {
+      font-size: 5rem;
+      letter-spacing: 4px;
+      text-shadow: 0 5px 20px rgba(0,0,0,0.8);
+    }
+
+    .hero p {
+      font-family: sans-serif;
+      color: var(--accent);
+      letter-spacing: 3px;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .hero-btn {
+      margin-top: 2rem;
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: transform 0.2s;
+    }
+
+    .hero-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* 4. Value Props Bar */
+    .features-bar {
+      display: flex;
+      justify-content: space-around;
+      padding: 2rem;
+      background: #111;
+      border-y: 1px solid var(--border);
+      font-family: sans-serif;
       text-align: center;
-      margin: 2rem 0 3rem;
-      text-transform: uppercase;
+    }
+
+    .feature-item h4 {
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+
+    .feature-item p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* Section Headers */
+    .section-title {
+      text-align: center;
+      margin: 4rem 0 2rem;
+      font-size: 2.5rem;
       letter-spacing: 2px;
     }
 
-    .header h1 {
-      font-size: 3.5rem;
-      background: linear-gradient(180deg, #fff 0%, #555 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .header p {
-      font-family: sans-serif;
-      color: var(--accent);
-      font-weight: 600;
-      margin-top: 0.5rem;
-      letter-spacing: 4px;
-    }
-
+    /* Product Grid */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -195,7 +259,6 @@
       font-weight: bold;
       cursor: pointer;
       border-radius: 6px;
-      transition: 0.2s;
     }
 
     .btn-add:hover {
@@ -203,8 +266,35 @@
       color: #000;
     }
 
+    /* 5. Reviews Section */
+    .reviews {
+      background: #0f0f0f;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 2rem auto 0;
+      font-family: sans-serif;
+    }
+
+    .review-card {
+      background: #161616;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .stars { color: var(--accent); margin-bottom: 10px; }
+
+    /* Footer */
     footer {
-      background: #080808;
+      background: #050505;
       border-top: 1px solid var(--border);
       padding: 3rem 2rem 2rem;
       font-family: sans-serif;
@@ -222,60 +312,11 @@
       font-family: 'Impact', sans-serif;
       font-size: 1.2rem;
       margin-bottom: 1rem;
-      letter-spacing: 1px;
     }
 
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-col ul li a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .footer-col ul li a:hover {
-      color: var(--accent);
-    }
-
-    .newsletter-input {
-      display: flex;
-      gap: 8px;
-      margin-top: 0.5rem;
-    }
-
-    .newsletter-input input {
-      background: #161616;
-      border: 1px solid var(--border);
-      color: #fff;
-      padding: 0.6rem;
-      border-radius: 4px;
-      flex: 1;
-    }
-
-    .newsletter-input button {
-      background: var(--accent);
-      border: none;
-      padding: 0.6rem 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid #1a1a1a;
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
 
     .cart-drawer {
       position: fixed;
@@ -293,98 +334,54 @@
       font-family: sans-serif;
     }
 
-    .cart-drawer.open {
-      right: 0;
-    }
-
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1rem;
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .cart-items {
-      flex: 1;
-      overflow-y: auto;
-      margin: 1rem 0;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 0;
-      border-bottom: 1px solid #222;
-      font-size: 0.85rem;
-    }
-
-    .qty-controls {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .qty-btn {
-      background: #222;
-      border: 1px solid var(--border);
-      color: #fff;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      border-radius: 3px;
-    }
-
-    .cart-footer {
-      border-top: 1px solid var(--border);
-      padding-top: 1rem;
-    }
-
-    .checkout-btn {
-      width: 100%;
-      background: var(--accent);
-      color: #000;
-      border: none;
-      padding: 0.8rem;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 6px;
-      margin-top: 1rem;
-    }
+    .cart-drawer.open { right: 0; }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    .close-btn { background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+    .cart-items { flex: 1; overflow-y: auto; margin: 1rem 0; }
+    .checkout-btn { width: 100%; background: var(--accent); color: #000; border: none; padding: 0.8rem; font-weight: bold; font-size: 1rem; cursor: pointer; border-radius: 6px; margin-top: 1rem; }
   </style>
 </head>
 <body>
 
+  <div class="banner">FREE EXPRESS SHIPPING ON ORDERS OVER $150 // WORLDWIDE DROP</div>
+
   <nav class="navbar">
-    <a href="#" class="nav-logo">THUG SZN</a>
-    <button class="cart-btn" onclick="toggleCart()">
-      CART (<span id="cart-count">0</span>)
-    </button>
+    <a href="#" style="font-size:1.8rem; color:#fff; text-decoration:none;">THUG SZN</a>
+    <div class="nav-links">
+      <a href="#shop">Shop All</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+    <button class="cart-btn" onclick="toggleCart()">CART (<span id="cart-count">0</span>)</button>
   </nav>
 
-  <div class="header">
+  <section class="hero">
     <h1>THUG SZN</h1>
-    <p>LIMITED DROP // SEASON 01</p>
+    <p>SEASON 01 // HEAVYWEIGHT STREETWEAR</p>
+    <a href="#shop" class="hero-btn">SHOP THE DROP</a>
+  </section>
+
+  <div class="features-bar">
+    <div class="feature-item">
+      <h4>PREMIUM QUALITY</h4>
+      <p>Custom heavyweight fleece & cotton</p>
+    </div>
+    <div class="feature-item">
+      <h4>LIMITED QUANTITIES</h4>
+      <p>No restocks once sold out</p>
+    </div>
+    <div class="feature-item">
+      <h4>FAST SHIPPING</h4>
+      <p>Dispatched within 24 hours</p>
+    </div>
   </div>
 
+  <h2 class="section-title" id="shop">THE COLLECTION</h2>
+
   <div class="grid">
-    <!-- Item 1 -->
     <div class="card">
       <span class="badge">NEW</span>
-      <div class="img-container">
-        <img src="images/1.jpg" alt="Cyber Oversized Hoodie" />
-      </div>
+      <div class="img-container"><img src="images/1.jpg" alt="Cyber Oversized Hoodie" /></div>
       <div class="details">
         <h3>Cyber Oversized Hoodie</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Heavyweight Cotton | Black</p>
@@ -401,12 +398,9 @@
       </div>
     </div>
 
-    <!-- Item 2 -->
     <div class="card">
-      <span class="badge" style="background: #ff0055; color: #fff;">HOT</span>
-      <div class="img-container">
-        <img src="images/2.jpg" alt="Acid Wash Graphic Tee" />
-      </div>
+      <span class="badge" style="background:#ff0055; color:#fff;">HOT</span>
+      <div class="img-container"><img src="images/2.jpg" alt="Acid Wash Graphic Tee" /></div>
       <div class="details">
         <h3>Acid Wash Graphic Tee</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">100% Vintage Cut</p>
@@ -422,12 +416,9 @@
       </div>
     </div>
 
-    <!-- Item 3 -->
     <div class="card">
       <span class="badge">EXCLUSIVE</span>
-      <div class="img-container">
-        <img src="images/3.jpg" alt="Tactical Cargo Pants" />
-      </div>
+      <div class="img-container"><img src="images/3.jpg" alt="Tactical Cargo Pants" /></div>
       <div class="details">
         <h3>Tactical Cargo Pants</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Multi-pocket | Strapped</p>
@@ -443,12 +434,9 @@
       </div>
     </div>
 
-    <!-- Item 4 -->
     <div class="card">
       <span class="badge">NEW</span>
-      <div class="img-container">
-        <img src="images/4.jpg" alt="Heavyweight Sweatshirt" />
-      </div>
+      <div class="img-container"><img src="images/4.jpg" alt="Heavyweight Sweatshirt" /></div>
       <div class="details">
         <h3>Heavyweight Sweatshirt</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Fleece Interior | Dark Grey</p>
@@ -456,7 +444,6 @@
           <button class="size-btn active" onclick="selectSize(this)">S</button>
           <button class="size-btn" onclick="selectSize(this)">M</button>
           <button class="size-btn" onclick="selectSize(this)">L</button>
-          <button class="size-btn" onclick="selectSize(this)">XL</button>
         </div>
         <div class="price-row">
           <span class="price">$110</span>
@@ -465,12 +452,9 @@
       </div>
     </div>
 
-    <!-- Item 5 -->
     <div class="card">
-      <span class="badge" style="background: #ff0055; color: #fff;">LIMITED</span>
-      <div class="img-container">
-        <img src="images/5.jpg" alt="Utility Overshirt" />
-      </div>
+      <span class="badge" style="background:#ff0055; color:#fff;">LIMITED</span>
+      <div class="img-container"><img src="images/5.jpg" alt="Utility Overshirt" /></div>
       <div class="details">
         <h3>Utility Overshirt</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Boxy Fit | Dual Chest Pockets</p>
@@ -486,12 +470,9 @@
       </div>
     </div>
 
-    <!-- Item 6 -->
     <div class="card">
       <span class="badge">RESTOCK</span>
-      <div class="img-container">
-        <img src="images/6.jpg" alt="Distressed Denim Jacket" />
-      </div>
+      <div class="img-container"><img src="images/6.jpg" alt="Distressed Denim Jacket" /></div>
       <div class="details">
         <h3>Distressed Denim Jacket</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Custom Wash | Silver Hardware</p>
@@ -507,12 +488,9 @@
       </div>
     </div>
 
-    <!-- Item 7 -->
     <div class="card">
       <span class="badge">EXCLUSIVE</span>
-      <div class="img-container">
-        <img src="images/7.jpg" alt="Signature SZN Beanie" />
-      </div>
+      <div class="img-container"><img src="images/7.jpg" alt="Signature SZN Beanie" /></div>
       <div class="details">
         <h3>Signature SZN Beanie</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Ribbed Knit | High Density Patch</p>
@@ -526,6 +504,27 @@
       </div>
     </div>
   </div>
+
+  <section class="reviews" id="reviews">
+    <h2 class="section-title">WHAT PEOPLE ARE SAYING</h2>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"The heavyweight hoodie is insane quality. Heavy cotton and fits perfectly boxy."</p>
+        <small style="color:var(--muted); margin-top:10px; display:block;">— Marcus K.</small>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Shipping was super fast. The graphic tee feels like real high-end streetwear."</p>
+        <small style="color:var(--muted); margin-top:10px; display:block;">— Alex R.</small>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Best brand out right now. Packaging was clean and quality is 10/10."</p>
+        <small style="color:var(--muted); margin-top:10px; display:block;">— Jordan T.</small>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="footer-container">
@@ -543,15 +542,11 @@
       </div>
       <div class="footer-col">
         <h4>JOIN THE CLUB</h4>
-        <p style="color: var(--muted); font-size: 0.85rem;">Subscribe to get early access to future drops.</p>
-        <div class="newsletter-input">
-          <input type="email" placeholder="Enter your email" />
-          <button onclick="alert('Subscribed to THUG SZN drops!')">JOIN</button>
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <input type="email" placeholder="Enter your email" style="background:#161616; border:1px solid #222; color:#fff; padding:0.6rem; border-radius:4px; flex:1;" />
+          <button style="background:var(--accent); border:none; padding:0.6rem 1rem; font-weight:bold; cursor:pointer; border-radius:4px;">JOIN</button>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2026 THUG SZN. All rights reserved.
     </div>
   </footer>
 
@@ -568,83 +563,53 @@
         <span>TOTAL:</span>
         <span id="cart-total">$0</span>
       </div>
-      <button class="checkout-btn" onclick="alert('Redirecting to checkout...')">CHECKOUT</button>
+      <button class="checkout-btn" onclick="alert('Proceeding to checkout...')">CHECKOUT</button>
     </div>
   </div>
 
   <script>
     let cart = [];
-
     function selectSize(btn) {
-      const parent = btn.parentElement;
-      parent.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.parentElement.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
-
     function toggleCart() {
       document.getElementById('cart-drawer').classList.toggle('open');
     }
-
     function addToCart(name, price, sizeContainerId) {
       const container = document.getElementById(sizeContainerId);
       const activeSizeBtn = container.querySelector('.size-btn.active');
       const size = activeSizeBtn ? activeSizeBtn.innerText : 'M';
-
       const existingItem = cart.find(item => item.name === name && item.size === size);
-      
-      if (existingItem) {
-        existingItem.qty += 1;
-      } else {
-        cart.push({ name, price, size, qty: 1 });
-      }
-
+      if (existingItem) { existingItem.qty += 1; } 
+      else { cart.push({ name, price, size, qty: 1 }); }
       updateCartUI();
       document.getElementById('cart-drawer').classList.add('open');
     }
-
-    function changeQty(index, delta) {
-      cart[index].qty += delta;
-      if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
-      }
-      updateCartUI();
-    }
-
     function updateCartUI() {
       const cartCount = document.getElementById('cart-count');
       const cartItems = document.getElementById('cart-items');
       const cartTotal = document.getElementById('cart-total');
-
       const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
       cartCount.innerText = totalItems;
-
       if (cart.length === 0) {
         cartItems.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Your cart is empty.</p>';
         cartTotal.innerText = '$0';
         return;
       }
-
       let itemsHTML = '';
       let total = 0;
-
-      cart.forEach((item, index) => {
+      cart.forEach((item) => {
         total += item.price * item.qty;
         itemsHTML += `
-          <div class="cart-item">
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #222; padding-bottom:8px;">
             <div>
               <strong>${item.name}</strong>
-              <div style="color: var(--muted); font-size: 0.75rem;">Size: ${item.size}</div>
-              <div class="qty-controls">
-                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                <span>${item.qty}</span>
-                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-              </div>
+              <div style="color:#888; font-size:0.8rem;">Size: ${item.size} x ${item.qty}</div>
             </div>
             <div>$${item.price * item.qty}</div>
-          </div>
-        `;
+          </div>`;
       });
-
       cartItems.innerHTML = itemsHTML;
       cartTotal.innerText = `$${total}`;
     }
