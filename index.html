@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>THUG SZN | High-Definition Streetwear</title>
+  <!-- Favicon for Browser Tab (Like YouTube/TradingView logo) -->
+  <link rel="icon" type="image/png" href="images/1.jpg" />
+  
   <style>
     :root {
       --bg: #050505;
@@ -31,64 +34,64 @@
     .cart-trigger:hover { background: var(--accent); color: #000; }
 
     /* HD Hero Section */
-    .hero { height: 70vh; background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(5,5,5,1) 100%), url('images/1.jpg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 1rem; }
-    .hero h1 { font-family: 'Impact', sans-serif; font-size: 5.5rem; letter-spacing: 4px; color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,0.8); margin-bottom: 5px; }
-    .hero p { color: var(--accent); letter-spacing: 3px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; }
-    .hero-cta { margin-top: 2rem; background: var(--accent); color: #000; padding: 0.9rem 2.5rem; font-size: 0.95rem; font-weight: 900; text-decoration: none; border-radius: 4px; letter-spacing: 1px; text-transform: uppercase; transition: transform 0.2s; }
+    .hero { height: 60vh; background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(5,5,5,1) 100%), url('images/1.jpg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 1rem; }
+    .hero h1 { font-family: 'Impact', sans-serif; font-size: 4.5rem; letter-spacing: 4px; color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,0.8); margin-bottom: 5px; }
+    .hero p { color: var(--accent); letter-spacing: 3px; font-size: 1rem; font-weight: 800; text-transform: uppercase; }
+    .hero-cta { margin-top: 1.8rem; background: var(--accent); color: #000; padding: 0.8rem 2.2rem; font-size: 0.9rem; font-weight: 900; text-decoration: none; border-radius: 4px; letter-spacing: 1px; text-transform: uppercase; transition: transform 0.2s; }
     .hero-cta:hover { transform: scale(1.03); }
 
     /* Filter & Search Panel */
-    .shop-controls { max-width: 1350px; margin: 3rem auto 1.5rem; padding: 0 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
-    .search-input { flex: 1; min-width: 260px; background: var(--card); border: 1px solid var(--border); padding: 0.85rem 1.2rem; color: #fff; font-size: 0.9rem; font-weight: 600; border-radius: 6px; outline: none; transition: border-color 0.2s; }
+    .shop-controls { max-width: 1300px; margin: 2.5rem auto 1rem; padding: 0 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .search-input { flex: 1; min-width: 260px; background: var(--card); border: 1px solid var(--border); padding: 0.8rem 1.2rem; color: #fff; font-size: 0.9rem; font-weight: 600; border-radius: 6px; outline: none; transition: border-color 0.2s; }
     .search-input:focus { border-color: var(--accent); }
     
     .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; }
-    .pill { background: var(--card); border: 1px solid var(--border); color: #ccc; padding: 0.7rem 1.2rem; font-size: 0.8rem; font-weight: 800; cursor: pointer; border-radius: 6px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s; }
+    .pill { background: var(--card); border: 1px solid var(--border); color: #ccc; padding: 0.6rem 1.1rem; font-size: 0.8rem; font-weight: 800; cursor: pointer; border-radius: 6px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s; }
     .pill:hover, .pill.active { background: var(--accent); color: #000; border-color: var(--accent); }
 
-    .section-heading { text-align: center; margin: 3rem 0 1.5rem; font-family: 'Impact', sans-serif; font-size: 3rem; letter-spacing: 2px; color: #fff; }
+    .section-heading { text-align: center; margin: 2.5rem 0 1.5rem; font-family: 'Impact', sans-serif; font-size: 2.6rem; letter-spacing: 2px; color: #fff; }
 
-    /* HD Product Grid */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1350px; margin: 0 auto; padding: 0 2rem 5rem; }
+    /* Fixed Proportional HD Product Grid (Not Too Huge) */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.8rem; max-width: 1300px; margin: 0 auto; padding: 0 2rem 4rem; }
     .product-card { background-color: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; position: relative; transition: transform 0.3s ease, border-color 0.3s ease; }
-    .product-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+    .product-card:hover { transform: translateY(-4px); border-color: var(--accent); }
     
-    .badge { position: absolute; top: 12px; left: 12px; background: var(--accent); color: #000; font-size: 0.7rem; padding: 4px 8px; border-radius: 3px; font-weight: 900; letter-spacing: 1px; z-index: 2; text-transform: uppercase; }
+    .badge { position: absolute; top: 10px; left: 10px; background: var(--accent); color: #000; font-size: 0.65rem; padding: 3px 7px; border-radius: 3px; font-weight: 900; letter-spacing: 1px; z-index: 2; text-transform: uppercase; }
     
-    .img-box { width: 100%; height: 380px; background: #0c0c0c; overflow: hidden; cursor: pointer; }
+    /* Perfect balanced image height so cards look neat and professional */
+    .img-box { width: 100%; height: 280px; background: #0c0c0c; overflow: hidden; cursor: pointer; }
     .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
     .product-card:hover .img-box img { transform: scale(1.05); }
 
-    .product-details { padding: 1.5rem; }
-    .product-details h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 0.3rem; font-family: 'Impact', sans-serif; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; color: #fff; }
+    .product-details { padding: 1.2rem; }
+    .product-details h3 { font-size: 1.1rem; font-weight: 900; margin-bottom: 0.2rem; font-family: 'Impact', sans-serif; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; color: #fff; }
     .product-details h3:hover { color: var(--accent); }
-    .sub-text { color: var(--muted); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+    .sub-text { color: var(--muted); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.8rem; }
     
-    .sizes { display: flex; gap: 6px; margin: 1rem 0; }
-    .size-pill { background: #181818; border: 1px solid var(--border); color: #fff; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+    .sizes { display: flex; gap: 5px; margin: 0.8rem 0; }
+    .size-pill { background: #181818; border: 1px solid var(--border); color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
     .size-pill.active { border-color: var(--accent); color: var(--accent); background: #000; }
-    .size-pill-wide { width: auto; padding: 0 10px; }
 
-    .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
-    .price { font-size: 1.4rem; font-weight: 900; color: #fff; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 0.8rem; }
+    .price { font-size: 1.25rem; font-weight: 900; color: #fff; }
     
-    .add-btn { background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 0.5rem 1rem; font-weight: 900; font-size: 0.75rem; cursor: pointer; border-radius: 4px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
+    .add-btn { background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 0.4rem 0.9rem; font-weight: 900; font-size: 0.7rem; cursor: pointer; border-radius: 4px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
     .add-btn:hover { background: var(--accent); color: #000; }
 
     /* Modals */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 300; display: none; justify-content: center; align-items: center; padding: 1rem; }
     .modal-overlay.open { display: flex; }
-    .modal-card { background: #111; border: 1px solid var(--border); border-radius: 8px; max-width: 800px; width: 100%; display: flex; flex-wrap: wrap; overflow: hidden; position: relative; }
+    .modal-card { background: #111; border: 1px solid var(--border); border-radius: 8px; max-width: 750px; width: 100%; display: flex; flex-wrap: wrap; overflow: hidden; position: relative; }
     .close-modal { position: absolute; top: 12px; right: 18px; font-size: 1.8rem; color: #fff; background: none; border: none; cursor: pointer; }
     .close-modal:hover { color: var(--accent); }
-    .modal-img-wrap { flex: 1; min-width: 300px; height: 420px; background: #000; }
+    .modal-img-wrap { flex: 1; min-width: 280px; height: 350px; background: #000; }
     .modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-    .modal-text { flex: 1; min-width: 300px; padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
-    .modal-text h2 { font-family: 'Impact', sans-serif; font-size: 2rem; margin-bottom: 0.4rem; letter-spacing: 1px; color: #fff; text-transform: uppercase; }
-    .modal-text p { color: var(--muted); margin: 1rem 0; font-size: 0.95rem; font-weight: 600; line-height: 1.5; }
+    .modal-text { flex: 1; min-width: 280px; padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+    .modal-text h2 { font-family: 'Impact', sans-serif; font-size: 1.8rem; margin-bottom: 0.4rem; letter-spacing: 1px; color: #fff; text-transform: uppercase; }
+    .modal-text p { color: var(--muted); margin: 0.8rem 0; font-size: 0.9rem; font-weight: 600; line-height: 1.4; }
 
-    .size-guide-table { width: 100%; border-collapse: collapse; margin-top: 1rem; color: #fff; font-size: 0.9rem; }
-    .size-guide-table th, .size-guide-table td { border: 1px solid var(--border); padding: 10px; text-align: center; font-weight: 700; }
+    .size-guide-table { width: 100%; border-collapse: collapse; margin-top: 1rem; color: #fff; font-size: 0.85rem; }
+    .size-guide-table th, .size-guide-table td { border: 1px solid var(--border); padding: 8px; text-align: center; font-weight: 700; }
     .size-guide-table th { background: #181818; color: var(--accent); }
 
     /* Slide-out Cart Drawer */
@@ -114,7 +117,7 @@
     .checkout-action-btn:hover { opacity: 0.9; }
 
     /* Footer */
-    footer { background: #020202; border-top: 1px solid var(--border); padding: 3rem 2rem 2rem; text-align: center; color: var(--muted); font-size: 0.85rem; font-weight: 600; }
+    footer { background: #020202; border-top: 1px solid var(--border); padding: 2.5rem 2rem 2rem; text-align: center; color: var(--muted); font-size: 0.85rem; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -274,19 +277,19 @@
       <div class="modal-img-wrap"><img id="modalImg" src="" alt="" /></div>
       <div class="modal-text">
         <h2 id="modalName"></h2>
-        <span id="modalPrice" style="font-size:1.5rem; color:var(--accent); font-weight:900;"></span>
+        <span id="modalPrice" style="font-size:1.4rem; color:var(--accent); font-weight:900;"></span>
         <p id="modalDescription"></p>
-        <button class="checkout-action-btn" id="modalAddBtn" style="margin-top:1rem;">ADD TO CART</button>
+        <button class="checkout-action-btn" id="modalAddBtn" style="margin-top:0.8rem;">ADD TO CART</button>
       </div>
     </div>
   </div>
 
   <!-- Size Chart Modal -->
   <div class="modal-overlay" id="sizeModal">
-    <div class="modal-card" style="padding: 2rem; max-width:550px; display:block;">
+    <div class="modal-card" style="padding: 2rem; max-width:500px; display:block;">
       <button class="close-modal" onclick="closeSizeChart()" style="top:15px; right:15px;">&times;</button>
-      <h2 style="font-family:'Impact'; font-size:2rem; margin-bottom:0.5rem; text-align:center; color:#fff; letter-spacing:1px;">SIZE GUIDE</h2>
-      <p style="color:var(--muted); font-size:0.85rem; text-align:center; margin-bottom:1rem; font-weight:600;">Oversized streetwear boxy fit specifications.</p>
+      <h2 style="font-family:'Impact'; font-size:1.8rem; margin-bottom:0.5rem; text-align:center; color:#fff; letter-spacing:1px;">SIZE GUIDE</h2>
+      <p style="color:var(--muted); font-size:0.8rem; text-align:center; margin-bottom:1rem; font-weight:600;">Oversized streetwear boxy fit specifications.</p>
       <table class="size-guide-table">
         <tr><th>SIZE</th><th>CHEST (IN)</th><th>LENGTH (IN)</th></tr>
         <tr><td>S</td><td>44"</td><td>27"</td></tr>
@@ -320,7 +323,9 @@
   </footer>
 
   <script>
-    let cartCollection = [];
+    // Load cart from browser localStorage so it never disappears on refresh
+    let cartCollection = JSON.parse(localStorage.getItem('thug_szn_cart')) || [];
+    refreshCartDisplay();
 
     function pickSize(el) {
       el.parentElement.querySelectorAll('.size-pill').forEach(p => p.classList.remove('active'));
@@ -348,6 +353,10 @@
       });
     }
 
+    function saveCartToStorage() {
+      localStorage.setItem('thug_szn_cart', JSON.stringify(cartCollection));
+    }
+
     function addItemToCart(name, price, sizeWrapperId) {
       const wrapper = document.getElementById(sizeWrapperId);
       const activeSize = wrapper ? wrapper.querySelector('.size-pill.active') : null;
@@ -360,13 +369,14 @@
         cartCollection.push({ name, price, size, qty: 1 });
       }
 
+      saveCartToStorage();
       refreshCartDisplay();
       document.getElementById('cartDrawer').classList.add('open');
     }
 
-    // Cart Quantity Controls (+ / - / delete)
     function increaseQuantity(index) {
       cartCollection[index].qty += 1;
+      saveCartToStorage();
       refreshCartDisplay();
     }
 
@@ -376,11 +386,13 @@
       } else {
         cartCollection.splice(index, 1);
       }
+      saveCartToStorage();
       refreshCartDisplay();
     }
 
     function deleteCartItem(index) {
       cartCollection.splice(index, 1);
+      saveCartToStorage();
       refreshCartDisplay();
     }
 
