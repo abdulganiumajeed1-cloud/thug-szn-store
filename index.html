@@ -6,94 +6,116 @@
   <title>THUG SZN | Streetwear & Heavyweight Apparel</title>
   <style>
     :root {
-      --bg-color: #0a0a0a;
+      --bg-color: #0b0b0b;
       --card-bg: #141414;
       --accent: #00ff66;
       --text: #ffffff;
-      --muted: #888888;
-      --border: #222222;
+      --muted: #a0a0a0;
+      --border: #2a2a2a;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Impact', 'Arial Black', sans-serif; }
-    body { background-color: var(--bg-color); color: var(--text); }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text); -webkit-font-smoothing: antialiased; }
 
-    .banner { background: var(--accent); color: #000; text-align: center; padding: 8px; font-size: 0.85rem; letter-spacing: 2px; font-family: sans-serif; font-weight: bold; }
+    /* Announcement Bar */
+    .banner { background: var(--accent); color: #000; text-align: center; padding: 10px; font-size: 0.85rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; }
 
-    .navbar { position: sticky; top: 0; width: 100%; height: 70px; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; z-index: 100; }
-    .nav-links a { color: var(--text); text-decoration: none; font-family: sans-serif; margin: 0 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
+    /* Navigation */
+    .navbar { position: sticky; top: 0; width: 100%; height: 75px; background: rgba(11, 11, 11, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; z-index: 100; }
+    .brand-logo { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 2rem; color: #fff; text-decoration: none; letter-spacing: 2px; }
+    .nav-links a { color: #e0e0e0; text-decoration: none; margin: 0 18px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
 
-    .cart-btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer; border-radius: 4px; }
+    .cart-btn { background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 0.6rem 1.2rem; font-size: 0.9rem; font-weight: bold; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: all 0.2s; }
+    .cart-btn:hover { background: var(--accent); color: #000; }
 
-    .hero { height: 70vh; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(10,10,10,1) 100%), url('images/1.jpg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 1rem; }
-    .hero h1 { font-size: 5rem; letter-spacing: 4px; text-shadow: 0 5px 20px rgba(0,0,0,0.8); }
-    .hero p { font-family: sans-serif; color: var(--accent); letter-spacing: 3px; font-size: 1.2rem; margin-top: 10px; }
-    .hero-btn { margin-top: 2rem; background: var(--accent); color: #000; padding: 1rem 2.5rem; font-size: 1.1rem; text-decoration: none; border-radius: 4px; transition: transform 0.2s; }
-    .hero-btn:hover { transform: scale(1.05); }
+    /* Hero Section */
+    .hero { height: 75vh; background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(11,11,11,1) 100%), url('images/1.jpg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 1rem; }
+    .hero h1 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 5.5rem; letter-spacing: 5px; text-shadow: 0 4px 25px rgba(0,0,0,0.9); margin-bottom: 5px; }
+    .hero p { color: var(--accent); letter-spacing: 4px; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; }
+    .hero-btn { margin-top: 2.5rem; background: var(--accent); color: #000; padding: 1rem 2.8rem; font-size: 1rem; font-weight: 800; text-decoration: none; border-radius: 4px; letter-spacing: 1.5px; text-transform: uppercase; transition: transform 0.2s, box-shadow 0.2s; }
+    .hero-btn:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(0,255,102,0.4); }
 
-    .features-bar { display: flex; justify-content: space-around; padding: 2rem; background: #111; border-y: 1px solid var(--border); font-family: sans-serif; text-align: center; }
-    .feature-item h4 { color: var(--accent); margin-bottom: 5px; }
-    .feature-item p { color: var(--muted); font-size: 0.85rem; }
+    /* Features Bar */
+    .features-bar { display: flex; justify-content: space-around; padding: 2.5rem 1rem; background: #121212; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
+    .feature-item h4 { color: var(--accent); font-size: 0.95rem; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 6px; text-transform: uppercase; }
+    .feature-item p { color: var(--muted); font-size: 0.85rem; font-weight: 500; }
 
-    .section-title { text-align: center; margin: 4rem 0 2rem; font-size: 2.5rem; letter-spacing: 2px; }
+    .section-title { text-align: center; margin: 4.5rem 0 2.5rem; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 3rem; letter-spacing: 3px; }
 
     /* Product Grid */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 1rem 4rem; }
-    .card { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; position: relative; transition: transform 0.3s ease, border-color 0.3s ease; }
-    .card:hover { transform: translateY(-8px); border-color: var(--accent); }
-    .badge { position: absolute; top: 12px; left: 12px; background: var(--accent); color: #000; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold; z-index: 2; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2.5rem; max-width: 1250px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; position: relative; transition: transform 0.3s ease, border-color 0.3s ease; }
+    .card:hover { transform: translateY(-6px); border-color: var(--accent); }
     
-    .img-container { width: 100%; height: 320px; background: #1f1f1f; overflow: hidden; cursor: pointer; }
+    .badge { position: absolute; top: 14px; left: 14px; background: var(--accent); color: #000; font-size: 0.75rem; padding: 5px 10px; border-radius: 4px; font-weight: 900; letter-spacing: 1px; z-index: 2; text-transform: uppercase; }
+    
+    .img-container { width: 100%; height: 350px; background: #1a1a1a; overflow: hidden; cursor: pointer; }
     .img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .card:hover .img-container img { transform: scale(1.08); }
+    .card:hover .img-container img { transform: scale(1.06); }
 
-    .details { padding: 1.5rem; font-family: sans-serif; }
-    .details h3 { font-size: 1.25rem; margin-bottom: 0.5rem; font-family: 'Impact', sans-serif; text-transform: uppercase; cursor: pointer; }
+    .details { padding: 1.8rem; }
+    .details h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.4rem; font-family: 'Impact', 'Arial Black', sans-serif; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; color: #fff; }
+    .details h3:hover { color: var(--accent); }
+    .product-desc-sub { color: var(--muted); font-size: 0.9rem; font-weight: 500; margin-bottom: 1.2rem; }
     
-    .size-selector { display: flex; gap: 8px; margin: 1rem 0; }
-    .size-btn { background: #222; border: 1px solid var(--border); color: #fff; padding: 4px 8px; font-size: 0.8rem; cursor: pointer; border-radius: 4px; }
+    .size-selector { display: flex; gap: 8px; margin: 1.2rem 0; }
+    .size-btn { background: #1c1c1c; border: 1px solid var(--border); color: #fff; padding: 6px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+    .size-btn:hover { border-color: #666; }
     .size-btn.active { border-color: var(--accent); color: var(--accent); background: #111; }
 
-    .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
-    .price { font-size: 1.4rem; font-weight: bold; }
-    .btn-add { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.6rem 1.2rem; font-weight: bold; cursor: pointer; border-radius: 6px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+    .price { font-size: 1.5rem; font-weight: 900; color: #fff; letter-spacing: 0.5px; }
+    
+    .btn-add { background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 0.6rem 1.2rem; font-weight: 800; font-size: 0.85rem; cursor: pointer; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
     .btn-add:hover { background: var(--accent); color: #000; }
 
     /* Modals */
-    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 300; display: none; justify-content: center; align-items: center; padding: 1rem; }
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 300; display: none; justify-content: center; align-items: center; padding: 1.5rem; }
     .modal-overlay.open { display: flex; }
-    .modal-content { background: #141414; border: 1px solid var(--border); border-radius: 12px; max-width: 800px; width: 100%; display: flex; flex-wrap: wrap; overflow: hidden; position: relative; font-family: sans-serif; }
-    .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; color: #fff; background: none; border: none; cursor: pointer; z-index: 10; }
-    .modal-img { flex: 1; min-width: 300px; height: 400px; }
+    .modal-content { background: #141414; border: 1px solid var(--border); border-radius: 12px; max-width: 850px; width: 100%; display: flex; flex-wrap: wrap; overflow: hidden; position: relative; }
+    .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #fff; background: none; border: none; cursor: pointer; z-index: 10; font-weight: 300; }
+    .modal-close:hover { color: var(--accent); }
+    .modal-img { flex: 1; min-width: 320px; height: 450px; background: #1a1a1a; }
     .modal-img img { width: 100%; height: 100%; object-fit: cover; }
-    .modal-info { flex: 1; min-width: 300px; padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
-    .modal-info h2 { font-family: 'Impact', sans-serif; font-size: 2rem; margin-bottom: 0.5rem; }
-    .modal-info p { color: var(--muted); margin: 1rem 0; line-height: 1.5; font-size: 0.95rem; }
+    .modal-info { flex: 1; min-width: 320px; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .modal-info h2 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 2.2rem; margin-bottom: 0.5rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .modal-info p { color: var(--muted); margin: 1.2rem 0; line-height: 1.6; font-size: 1rem; font-weight: 400; }
 
     /* Size Chart Table */
-    .size-table { width: 100%; border-collapse: collapse; margin-top: 1rem; color: #fff; font-size: 0.85rem; }
-    .size-table th, .size-table td { border: 1px solid var(--border); padding: 8px; text-align: center; }
-    .size-table th { background: #222; color: var(--accent); }
+    .size-table { width: 100%; border-collapse: collapse; margin-top: 1.2rem; color: #fff; font-size: 0.9rem; }
+    .size-table th, .size-table td { border: 1px solid var(--border); padding: 10px; text-align: center; font-weight: 600; }
+    .size-table th { background: #1c1c1c; color: var(--accent); letter-spacing: 1px; }
 
     /* Reviews Section */
-    .reviews { background: #0f0f0f; padding: 4rem 1rem; text-align: center; }
-    .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 2rem auto 0; font-family: sans-serif; }
-    .review-card { background: #161616; padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); text-align: left; }
-    .stars { color: var(--accent); margin-bottom: 10px; }
+    .reviews { background: #0e0e0e; padding: 5rem 1.5rem; text-align: center; border-top: 1px solid var(--border); }
+    .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1100px; margin: 2.5rem auto 0; }
+    .review-card { background: #151515; padding: 2rem; border-radius: 10px; border: 1px solid var(--border); text-align: left; }
+    .stars { color: var(--accent); margin-bottom: 12px; font-size: 1.1rem; letter-spacing: 2px; }
+    .review-card p { color: #d0d0d0; font-size: 0.95rem; line-height: 1.5; font-weight: 400; }
+    .review-author { color: var(--muted); font-size: 0.85rem; font-weight: 700; margin-top: 15px; display: block; letter-spacing: 1px; text-transform: uppercase; }
 
-    footer { background: #050505; border-top: 1px solid var(--border); padding: 3rem 2rem 2rem; font-family: sans-serif; }
-    .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
-    .footer-col h4 { font-family: 'Impact', sans-serif; font-size: 1.2rem; margin-bottom: 1rem; }
+    /* Footer */
+    footer { background: #050505; border-top: 1px solid var(--border); padding: 4rem 2.5rem 2.5rem; }
+    .footer-container { max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; }
+    .footer-col h4 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 1.3rem; margin-bottom: 1.2rem; letter-spacing: 1.5px; color: #fff; }
+    .footer-col p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
     .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 0.5rem; }
-    .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul li { margin-bottom: 0.7rem; }
+    .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--accent); }
 
-    .cart-drawer { position: fixed; top: 0; right: -400px; width: 380px; height: 100%; background: #111; border-left: 1px solid var(--border); z-index: 200; transition: right 0.3s ease; display: flex; flex-direction: column; padding: 1.5rem; font-family: sans-serif; }
+    /* Cart Drawer */
+    .cart-drawer { position: fixed; top: 0; right: -420px; width: 400px; height: 100%; background: #121212; border-left: 1px solid var(--border); z-index: 200; transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; padding: 2rem; }
     .cart-drawer.open { right: 0; }
-    .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
-    .close-btn { background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
-    .cart-items { flex: 1; overflow-y: auto; margin: 1rem 0; }
-    .checkout-btn { width: 100%; background: var(--accent); color: #000; border: none; padding: 0.8rem; font-weight: bold; font-size: 1rem; cursor: pointer; border-radius: 6px; margin-top: 1rem; }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1.2rem; }
+    .cart-header h2 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 1.5rem; letter-spacing: 1.5px; }
+    .close-btn { background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; font-weight: 300; }
+    .close-btn:hover { color: var(--accent); }
+    
+    .cart-items { flex: 1; overflow-y: auto; margin: 1.5rem 0; }
+    .checkout-btn { width: 100%; background: var(--accent); color: #000; border: none; padding: 1rem; font-weight: 900; font-size: 1rem; cursor: pointer; border-radius: 6px; letter-spacing: 1.5px; text-transform: uppercase; transition: opacity 0.2s; }
+    .checkout-btn:hover { opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -101,7 +123,7 @@
   <div class="banner">FREE EXPRESS SHIPPING ON ORDERS OVER $150 // WORLDWIDE DROP</div>
 
   <nav class="navbar">
-    <a href="#" style="font-size:1.8rem; color:#fff; text-decoration:none;">THUG SZN</a>
+    <a href="#" class="brand-logo">THUG SZN</a>
     <div class="nav-links">
       <a href="#shop">Shop All</a>
       <a href="javascript:void(0)" onclick="openSizeChart()">Size Guide</a>
@@ -140,7 +162,7 @@
       <div class="img-container" onclick="openProductModal('Cyber Oversized Hoodie', 120, 'images/1.jpg', '450 GSM custom heavyweight fleece hoodie with dropped shoulders and boxy fit silhouette.', 'sizes-1')"><img src="images/1.jpg" alt="Cyber Oversized Hoodie" /></div>
       <div class="details">
         <h3 onclick="openProductModal('Cyber Oversized Hoodie', 120, 'images/1.jpg', '450 GSM custom heavyweight fleece hoodie with dropped shoulders and boxy fit silhouette.', 'sizes-1')">Cyber Oversized Hoodie</h3>
-        <p style="color: var(--muted); font-size: 0.85rem;">Heavyweight Cotton | Black</p>
+        <p class="product-desc-sub">Heavyweight Cotton | Black</p>
         <div class="size-selector" id="sizes-1">
           <button class="size-btn active" onclick="selectSize(this)">S</button>
           <button class="size-btn" onclick="selectSize(this)">M</button>
@@ -160,7 +182,7 @@
       <div class="img-container" onclick="openProductModal('Acid Wash Graphic Tee', 65, 'images/2.jpg', '280 GSM heavyweight cotton vintage wash graphic tee with reinforced collar.', 'sizes-2')"><img src="images/2.jpg" alt="Acid Wash Graphic Tee" /></div>
       <div class="details">
         <h3 onclick="openProductModal('Acid Wash Graphic Tee', 65, 'images/2.jpg', '280 GSM heavyweight cotton vintage wash graphic tee with reinforced collar.', 'sizes-2')">Acid Wash Graphic Tee</h3>
-        <p style="color: var(--muted); font-size: 0.85rem;">100% Vintage Cut</p>
+        <p class="product-desc-sub">100% Vintage Cut</p>
         <div class="size-selector" id="sizes-2">
           <button class="size-btn active" onclick="selectSize(this)">S</button>
           <button class="size-btn" onclick="selectSize(this)">M</button>
@@ -179,7 +201,7 @@
       <div class="img-container" onclick="openProductModal('Tactical Cargo Pants', 140, 'images/3.jpg', 'Heavy duty ripstop tactical pants featuring multiple cargo pockets and custom ankle straps.', 'sizes-3')"><img src="images/3.jpg" alt="Tactical Cargo Pants" /></div>
       <div class="details">
         <h3 onclick="openProductModal('Tactical Cargo Pants', 140, 'images/3.jpg', 'Heavy duty ripstop tactical pants featuring multiple cargo pockets and custom ankle straps.', 'sizes-3')">Tactical Cargo Pants</h3>
-        <p style="color: var(--muted); font-size: 0.85rem;">Multi-pocket | Strapped</p>
+        <p class="product-desc-sub">Multi-pocket | Strapped</p>
         <div class="size-selector" id="sizes-3">
           <button class="size-btn active" onclick="selectSize(this)">30</button>
           <button class="size-btn" onclick="selectSize(this)">32</button>
@@ -198,7 +220,7 @@
       <div class="img-container" onclick="openProductModal('Heavyweight Sweatshirt', 110, 'images/4.jpg', 'Minimalist street sweatshirt crafted with brushed fleece interior and ribbed trim.', 'sizes-4')"><img src="images/4.jpg" alt="Heavyweight Sweatshirt" /></div>
       <div class="details">
         <h3 onclick="openProductModal('Heavyweight Sweatshirt', 110, 'images/4.jpg', 'Minimalist street sweatshirt crafted with brushed fleece interior and ribbed trim.', 'sizes-4')">Heavyweight Sweatshirt</h3>
-        <p style="color: var(--muted); font-size: 0.85rem;">Fleece Interior | Dark Grey</p>
+        <p class="product-desc-sub">Fleece Interior | Dark Grey</p>
         <div class="size-selector" id="sizes-4">
           <button class="size-btn active" onclick="selectSize(this)">S</button>
           <button class="size-btn" onclick="selectSize(this)">M</button>
@@ -217,7 +239,7 @@
       <div class="img-container" onclick="openProductModal('Utility Overshirt', 95, 'images/5.jpg', 'Structured outer layer with dual magnetic chest pockets and boxy fit.', 'sizes-5')"><img src="images/5.jpg" alt="Utility Overshirt" /></div>
       <div class="details">
         <h3 onclick="openProductModal('Utility Overshirt', 95, 'images/5.jpg', 'Structured outer layer with dual magnetic chest pockets and boxy fit.', 'sizes-5')">Utility Overshirt</h3>
-        <p style="color: var(--muted); font-size: 0.85rem;">Boxy Fit | Dual Chest Pockets</p>
+        <p class="product-desc-sub">Boxy Fit | Dual Chest Pockets</p>
         <div class="size-selector" id="sizes-5">
           <button class="size-btn active" onclick="selectSize(this)">M</button>
           <button class="size-btn" onclick="selectSize(this)">L</button>
@@ -236,7 +258,7 @@
       <div class="img-container" onclick="openProductModal('Distressed Denim Jacket', 160, 'images/6.jpg', 'Custom stone washed denim with hand-distressed detailing and custom hardware.', 'sizes-6')"><img src="images/6.jpg" alt="Distressed Denim Jacket" /></div>
       <div class="details">
         <h3 onclick="openProductModal('Distressed Denim Jacket', 160, 'images/6.jpg', 'Custom stone washed denim with hand-distressed detailing and custom hardware.', 'sizes-6')">Distressed Denim Jacket</h3>
-        <p style="color: var(--muted); font-size: 0.85rem;">Custom Wash | Silver Hardware</p>
+        <p class="product-desc-sub">Custom Wash | Silver Hardware</p>
         <div class="size-selector" id="sizes-6">
           <button class="size-btn active" onclick="selectSize(this)">S</button>
           <button class="size-btn" onclick="selectSize(this)">M</button>
@@ -255,7 +277,7 @@
       <div class="img-container" onclick="openProductModal('Signature SZN Beanie', 40, 'images/7.jpg', 'Heavyweight double-layer ribbed knit beanie with silicone rubber logo patch.', 'sizes-7')"><img src="images/7.jpg" alt="Signature SZN Beanie" /></div>
       <div class="details">
         <h3 onclick="openProductModal('Signature SZN Beanie', 40, 'images/7.jpg', 'Heavyweight double-layer ribbed knit beanie with silicone rubber logo patch.', 'sizes-7')">Signature SZN Beanie</h3>
-        <p style="color: var(--muted); font-size: 0.85rem;">Ribbed Knit | High Density Patch</p>
+        <p class="product-desc-sub">Ribbed Knit | High Density Patch</p>
         <div class="size-selector" id="sizes-7">
           <button class="size-btn active" onclick="selectSize(this)">ONE SIZE</button>
         </div>
@@ -274,19 +296,19 @@
       <div class="modal-img"><img id="modal-img-src" src="" alt="" /></div>
       <div class="modal-info">
         <h2 id="modal-title"></h2>
-        <span id="modal-price" style="font-size:1.5rem; color:var(--accent); font-weight:bold;"></span>
+        <span id="modal-price" style="font-size:1.6rem; color:var(--accent); font-weight:900;"></span>
         <p id="modal-desc"></p>
-        <button class="checkout-btn" id="modal-add-btn">ADD TO CART</button>
+        <button class="checkout-btn" id="modal-add-btn" style="margin-top:1rem;">ADD TO CART</button>
       </div>
     </div>
   </div>
 
   <!-- Size Chart Modal Popup -->
   <div class="modal-overlay" id="size-chart-modal">
-    <div class="modal-content" style="padding: 2rem; max-width:600px;">
-      <button class="modal-close" onclick="closeSizeChart()">&times;</button>
-      <h2 style="font-family:'Impact'; font-size:2rem; margin-bottom:1rem; text-align:center;">OFFICIAL SIZE GUIDE</h2>
-      <p style="color:var(--muted); font-size:0.85rem; text-align:center;">All streetwear fits are designed boxy and oversized.</p>
+    <div class="modal-content" style="padding: 2.5rem; max-width:600px; display:block; position:relative;">
+      <button class="modal-close" onclick="closeSizeChart()" style="top:20px; right:20px;">&times;</button>
+      <h2 style="font-family:'Impact'; font-size:2.2rem; margin-bottom:0.5rem; text-align:center; letter-spacing:1.5px;">OFFICIAL SIZE GUIDE</h2>
+      <p style="color:var(--muted); font-size:0.9rem; text-align:center; margin-bottom:1.5rem;">All streetwear fits are designed boxy and oversized.</p>
       <table class="size-table">
         <thead>
           <tr>
@@ -307,22 +329,22 @@
   </div>
 
   <section class="reviews" id="reviews">
-    <h2 class="section-title">WHAT PEOPLE ARE SAYING</h2>
+    <h2 class="section-title" style="margin-top:0;">WHAT PEOPLE ARE SAYING</h2>
     <div class="review-grid">
       <div class="review-card">
         <div class="stars">★★★★★</div>
         <p>"The heavyweight hoodie is insane quality. Heavy cotton and fits perfectly boxy."</p>
-        <small style="color:var(--muted); margin-top:10px; display:block;">— Marcus K.</small>
+        <span class="review-author">— Marcus K.</span>
       </div>
       <div class="review-card">
         <div class="stars">★★★★★</div>
         <p>"Shipping was super fast. The graphic tee feels like real high-end streetwear."</p>
-        <small style="color:var(--muted); margin-top:10px; display:block;">— Alex R.</small>
+        <span class="review-author">— Alex R.</span>
       </div>
       <div class="review-card">
         <div class="stars">★★★★★</div>
         <p>"Best brand out right now. Packaging was clean and quality is 10/10."</p>
-        <small style="color:var(--muted); margin-top:10px; display:block;">— Jordan T.</small>
+        <span class="review-author">— Jordan T.</span>
       </div>
     </div>
   </section>
@@ -331,7 +353,7 @@
     <div class="footer-container">
       <div class="footer-col">
         <h4>THUG SZN</h4>
-        <p style="color: var(--muted); font-size: 0.85rem;">High-contrast modern apparel. Crafted for the street.</p>
+        <p>High-contrast modern apparel. Crafted for the street.</p>
       </div>
       <div class="footer-col">
         <h4>INFO</h4>
@@ -342,9 +364,10 @@
       </div>
       <div class="footer-col">
         <h4>JOIN THE CLUB</h4>
-        <div style="display:flex; gap:8px; margin-top:10px;">
-          <input type="email" placeholder="Enter your email" style="background:#161616; border:1px solid #222; color:#fff; padding:0.6rem; border-radius:4px; flex:1;" />
-          <button style="background:var(--accent); border:none; padding:0.6rem 1rem; font-weight:bold; cursor:pointer; border-radius:4px;">JOIN</button>
+        <p style="margin-bottom:10px;">Subscribe to get early access to future drops.</p>
+        <div style="display:flex; gap:8px;">
+          <input type="email" placeholder="Enter your email" style="background:#151515; border:1px solid var(--border); color:#fff; padding:0.7rem; border-radius:4px; flex:1; outline:none;" />
+          <button style="background:var(--accent); border:none; padding:0.7rem 1.2rem; font-weight:900; cursor:pointer; border-radius:4px; color:#000;">JOIN</button>
         </div>
       </div>
     </div>
@@ -359,9 +382,9 @@
       <p style="color: var(--muted); font-size: 0.9rem;">Your cart is empty.</p>
     </div>
     <div class="cart-footer">
-      <div style="display: flex; justify-content: space-between; font-weight: bold;">
+      <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 1.1rem; margin-bottom: 1rem;">
         <span>TOTAL:</span>
-        <span id="cart-total">$0</span>
+        <span id="cart-total" style="color: var(--accent);">$0</span>
       </div>
       <button class="checkout-btn" onclick="processCheckout()">PROCEED TO CHECKOUT</button>
     </div>
@@ -411,12 +434,12 @@
       cart.forEach((item) => {
         total += item.price * item.qty;
         itemsHTML += `
-          <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #222; padding-bottom:8px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:10px;">
             <div>
-              <strong>${item.name}</strong>
-              <div style="color:#888; font-size:0.8rem;">Size: ${item.size} x ${item.qty}</div>
+              <strong style="font-size:0.95rem; color:#fff;">${item.name}</strong>
+              <div style="color:var(--muted); font-size:0.8rem; margin-top:3px;">Size: ${item.size} x ${item.qty}</div>
             </div>
-            <div>$${item.price * item.qty}</div>
+            <div style="font-weight:bold; color:#fff;">$${item.price * item.qty}</div>
           </div>`;
       });
 
@@ -424,7 +447,6 @@
       cartTotal.innerText = `$${total}`;
     }
 
-    // Modal handlers
     function openProductModal(name, price, imgSrc, desc, sizeContainerId) {
       document.getElementById('modal-title').innerText = name;
       document.getElementById('modal-price').innerText = `$${price}`;
@@ -452,7 +474,7 @@
       document.getElementById('size-chart-modal').classList.remove('open');
     }
 
-    // Direct WhatsApp / DM Order Handler
+    // Direct WhatsApp Order Handler
     function processCheckout() {
       if (cart.length === 0) {
         alert("Your cart is empty! Add items before checking out.");
@@ -467,10 +489,10 @@
       });
       orderSummary += `Total: $${total}`;
 
-      // Open WhatsApp or direct order message prompt
-      const whatsappPhone = "1234567890"; // Optional: Add your WhatsApp phone number here
-      const encodedMessage = encodeURIComponent(orderSummary);
+      // WhatsApp Number configured: 0570349304
+      const whatsappPhone = "0570349304"; 
       
+      const encodedMessage = encodeURIComponent(orderSummary);
       window.open(`https://wa.me/${whatsappPhone}?text=${encodedMessage}`, '_blank');
     }
   </script>
