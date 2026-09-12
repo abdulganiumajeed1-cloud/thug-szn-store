@@ -1,14 +1,653 @@
-<!-- First Product -->
-<div class="img-container">
-  <img src="images/1.jpg" alt="Cyber Oversized Hoodie" />
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THUG SZN | Exclusive Drop</title>
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --card-bg: #161616;
+      --accent: #00ff66;
+      --text: #ffffff;
+      --muted: #888888;
+      --border: #262626;
+    }
 
-<!-- Second Product -->
-<div class="img-container">
-  <img src="images/2.jpg" alt="Acid Wash Graphic Tee" />
-</div>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Impact', 'Arial Black', sans-serif;
+    }
 
-<!-- Third Product -->
-<div class="img-container">
-  <img src="images/3.jpg" alt="Tactical Cargo Pants" />
-</div>
+    body {
+      background-color: var(--bg-color);
+      color: var(--text);
+      padding-top: 80px;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background: rgba(13, 13, 13, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 1.8rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+
+    .cart-btn {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .cart-btn:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .header {
+      text-align: center;
+      margin: 2rem 0 3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .header h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(180deg, #fff 0%, #555 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header p {
+      font-family: sans-serif;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 0.5rem;
+      letter-spacing: 4px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem 4rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--accent);
+      color: #000;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    .img-container {
+      width: 100%;
+      height: 320px;
+      background: #1f1f1f;
+      overflow: hidden;
+    }
+
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .img-container img {
+      transform: scale(1.08);
+    }
+
+    .details {
+      padding: 1.5rem;
+      font-family: sans-serif;
+    }
+
+    .details h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Impact', sans-serif;
+      text-transform: uppercase;
+    }
+
+    .size-selector {
+      display: flex;
+      gap: 8px;
+      margin: 1rem 0;
+    }
+
+    .size-btn {
+      background: #222;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .size-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #111;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .price {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .btn-add {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+
+    .btn-add:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem 2rem;
+      font-family: sans-serif;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-col h4 {
+      font-family: 'Impact', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col ul li a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--accent);
+    }
+
+    .newsletter-input {
+      display: flex;
+      gap: 8px;
+      margin-top: 0.5rem;
+    }
+
+    .newsletter-input input {
+      background: #161616;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 0.6rem;
+      border-radius: 4px;
+      flex: 1;
+    }
+
+    .newsletter-input button {
+      background: var(--accent);
+      border: none;
+      padding: 0.6rem 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1a1a1a;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 380px;
+      height: 100%;
+      background: #111;
+      border-left: 1px solid var(--border);
+      z-index: 200;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      font-family: sans-serif;
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      margin: 1rem 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #222;
+      font-size: 0.85rem;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .qty-btn {
+      background: #222;
+      border: 1px solid var(--border);
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .cart-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 0.8rem;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="#" class="nav-logo">THUG SZN</a>
+    <button class="cart-btn" onclick="toggleCart()">
+      CART (<span id="cart-count">0</span>)
+    </button>
+  </nav>
+
+  <div class="header">
+    <h1>THUG SZN</h1>
+    <p>LIMITED DROP // SEASON 01</p>
+  </div>
+
+  <div class="grid">
+    <!-- Item 1 -->
+    <div class="card">
+      <span class="badge">NEW</span>
+      <div class="img-container">
+        <img src="images/1.jpg" alt="Cyber Oversized Hoodie" />
+      </div>
+      <div class="details">
+        <h3>Cyber Oversized Hoodie</h3>
+        <p style="color: var(--muted); font-size: 0.85rem;">Heavyweight Cotton | Black</p>
+        <div class="size-selector" id="sizes-1">
+          <button class="size-btn active" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <div class="price-row">
+          <span class="price">$120</span>
+          <button class="btn-add" onclick="addToCart('Cyber Oversized Hoodie', 120, 'sizes-1')">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="card">
+      <span class="badge" style="background: #ff0055; color: #fff;">HOT</span>
+      <div class="img-container">
+        <img src="images/2.jpg" alt="Acid Wash Graphic Tee" />
+      </div>
+      <div class="details">
+        <h3>Acid Wash Graphic Tee</h3>
+        <p style="color: var(--muted); font-size: 0.85rem;">100% Vintage Cut</p>
+        <div class="size-selector" id="sizes-2">
+          <button class="size-btn active" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+        </div>
+        <div class="price-row">
+          <span class="price">$65</span>
+          <button class="btn-add" onclick="addToCart('Acid Wash Graphic Tee', 65, 'sizes-2')">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="card">
+      <span class="badge">EXCLUSIVE</span>
+      <div class="img-container">
+        <img src="images/3.jpg" alt="Tactical Cargo Pants" />
+      </div>
+      <div class="details">
+        <h3>Tactical Cargo Pants</h3>
+        <p style="color: var(--muted); font-size: 0.85rem;">Multi-pocket | Strapped</p>
+        <div class="size-selector" id="sizes-3">
+          <button class="size-btn active" onclick="selectSize(this)">30</button>
+          <button class="size-btn" onclick="selectSize(this)">32</button>
+          <button class="size-btn" onclick="selectSize(this)">34</button>
+        </div>
+        <div class="price-row">
+          <span class="price">$140</span>
+          <button class="btn-add" onclick="addToCart('Tactical Cargo Pants', 140, 'sizes-3')">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="card">
+      <span class="badge">NEW</span>
+      <div class="img-container">
+        <img src="images/4.jpg" alt="Heavyweight Sweatshirt" />
+      </div>
+      <div class="details">
+        <h3>Heavyweight Sweatshirt</h3>
+        <p style="color: var(--muted); font-size: 0.85rem;">Fleece Interior | Dark Grey</p>
+        <div class="size-selector" id="sizes-4">
+          <button class="size-btn active" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <div class="price-row">
+          <span class="price">$110</span>
+          <button class="btn-add" onclick="addToCart('Heavyweight Sweatshirt', 110, 'sizes-4')">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="card">
+      <span class="badge" style="background: #ff0055; color: #fff;">LIMITED</span>
+      <div class="img-container">
+        <img src="images/5.jpg" alt="Utility Overshirt" />
+      </div>
+      <div class="details">
+        <h3>Utility Overshirt</h3>
+        <p style="color: var(--muted); font-size: 0.85rem;">Boxy Fit | Dual Chest Pockets</p>
+        <div class="size-selector" id="sizes-5">
+          <button class="size-btn active" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <div class="price-row">
+          <span class="price">$95</span>
+          <button class="btn-add" onclick="addToCart('Utility Overshirt', 95, 'sizes-5')">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="card">
+      <span class="badge">RESTOCK</span>
+      <div class="img-container">
+        <img src="images/6.jpg" alt="Distressed Denim Jacket" />
+      </div>
+      <div class="details">
+        <h3>Distressed Denim Jacket</h3>
+        <p style="color: var(--muted); font-size: 0.85rem;">Custom Wash | Silver Hardware</p>
+        <div class="size-selector" id="sizes-6">
+          <button class="size-btn active" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+        </div>
+        <div class="price-row">
+          <span class="price">$160</span>
+          <button class="btn-add" onclick="addToCart('Distressed Denim Jacket', 160, 'sizes-6')">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 7 -->
+    <div class="card">
+      <span class="badge">EXCLUSIVE</span>
+      <div class="img-container">
+        <img src="images/7.jpg" alt="Signature SZN Beanie" />
+      </div>
+      <div class="details">
+        <h3>Signature SZN Beanie</h3>
+        <p style="color: var(--muted); font-size: 0.85rem;">Ribbed Knit | High Density Patch</p>
+        <div class="size-selector" id="sizes-7">
+          <button class="size-btn active" onclick="selectSize(this)">ONE SIZE</button>
+        </div>
+        <div class="price-row">
+          <span class="price">$40</span>
+          <button class="btn-add" onclick="addToCart('Signature SZN Beanie', 40, 'sizes-7')">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>THUG SZN</h4>
+        <p style="color: var(--muted); font-size: 0.85rem;">High-contrast modern apparel. Crafted for the street.</p>
+      </div>
+      <div class="footer-col">
+        <h4>INFO</h4>
+        <ul>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>JOIN THE CLUB</h4>
+        <p style="color: var(--muted); font-size: 0.85rem;">Subscribe to get early access to future drops.</p>
+        <div class="newsletter-input">
+          <input type="email" placeholder="Enter your email" />
+          <button onclick="alert('Subscribed to THUG SZN drops!')">JOIN</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 THUG SZN. All rights reserved.
+    </div>
+  </footer>
+
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h2>YOUR CART</h2>
+      <button class="close-btn" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <p style="color: var(--muted); font-size: 0.9rem;">Your cart is empty.</p>
+    </div>
+    <div class="cart-footer">
+      <div style="display: flex; justify-content: space-between; font-weight: bold;">
+        <span>TOTAL:</span>
+        <span id="cart-total">$0</span>
+      </div>
+      <button class="checkout-btn" onclick="alert('Redirecting to checkout...')">CHECKOUT</button>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function selectSize(btn) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function toggleCart() {
+      document.getElementById('cart-drawer').classList.toggle('open');
+    }
+
+    function addToCart(name, price, sizeContainerId) {
+      const container = document.getElementById(sizeContainerId);
+      const activeSizeBtn = container.querySelector('.size-btn.active');
+      const size = activeSizeBtn ? activeSizeBtn.innerText : 'M';
+
+      const existingItem = cart.find(item => item.name === name && item.size === size);
+      
+      if (existingItem) {
+        existingItem.qty += 1;
+      } else {
+        cart.push({ name, price, size, qty: 1 });
+      }
+
+      updateCartUI();
+      document.getElementById('cart-drawer').classList.add('open');
+    }
+
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const cartCount = document.getElementById('cart-count');
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCount.innerText = totalItems;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Your cart is empty.</p>';
+        cartTotal.innerText = '$0';
+        return;
+      }
+
+      let itemsHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price * item.qty;
+        itemsHTML += `
+          <div class="cart-item">
+            <div>
+              <strong>${item.name}</strong>
+              <div style="color: var(--muted); font-size: 0.75rem;">Size: ${item.size}</div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                <span>${item.qty}</span>
+                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+              </div>
+            </div>
+            <div>$${item.price * item.qty}</div>
+          </div>
+        `;
+      });
+
+      cartItems.innerHTML = itemsHTML;
+      cartTotal.innerText = `$${total}`;
+    }
+  </script>
+</body>
+</html>
