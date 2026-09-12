@@ -6,42 +6,47 @@
   <title>THUG SZN | Streetwear & Heavyweight Apparel</title>
   <style>
     :root {
-      --bg-color: #0b0b0b;
-      --card-bg: #141414;
+      --bg-color: #080808;
+      --card-bg: #121212;
       --accent: #00ff66;
       --text: #ffffff;
-      --muted: #a0a0a0;
-      --border: #2a2a2a;
+      --muted: #b5b5b5;
+      --border: #262626;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-    body { background-color: var(--bg-color); color: var(--text); -webkit-font-smoothing: antialiased; }
+    body { background-color: var(--bg-color); color: var(--text); -webkit-font-smoothing: antialiased; line-height: 1.5; }
 
     /* Announcement Bar */
-    .banner { background: var(--accent); color: #000; text-align: center; padding: 10px; font-size: 0.85rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; }
+    .banner { background: var(--accent); color: #000; text-align: center; padding: 10px; font-size: 0.85rem; letter-spacing: 2px; font-weight: 900; text-transform: uppercase; }
 
     /* Navigation */
-    .navbar { position: sticky; top: 0; width: 100%; height: 75px; background: rgba(11, 11, 11, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; z-index: 100; }
-    .brand-logo { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 2rem; color: #fff; text-decoration: none; letter-spacing: 2px; }
-    .nav-links a { color: #e0e0e0; text-decoration: none; margin: 0 18px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.2s; }
+    .navbar { position: sticky; top: 0; width: 100%; height: 75px; background: rgba(8, 8, 8, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; z-index: 100; }
+    .brand-logo { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 2.2rem; color: #fff; text-decoration: none; letter-spacing: 2px; }
+    .nav-links a { color: #f0f0f0; text-decoration: none; margin: 0 18px; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
 
-    .cart-btn { background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 0.6rem 1.2rem; font-size: 0.9rem; font-weight: bold; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: all 0.2s; }
+    .cart-btn { background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 0.6rem 1.2rem; font-size: 0.9rem; font-weight: 900; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: all 0.2s; }
     .cart-btn:hover { background: var(--accent); color: #000; }
 
     /* Hero Section */
-    .hero { height: 75vh; background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(11,11,11,1) 100%), url('images/1.jpg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 1rem; }
-    .hero h1 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 5.5rem; letter-spacing: 5px; text-shadow: 0 4px 25px rgba(0,0,0,0.9); margin-bottom: 5px; }
-    .hero p { color: var(--accent); letter-spacing: 4px; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; }
-    .hero-btn { margin-top: 2.5rem; background: var(--accent); color: #000; padding: 1rem 2.8rem; font-size: 1rem; font-weight: 800; text-decoration: none; border-radius: 4px; letter-spacing: 1.5px; text-transform: uppercase; transition: transform 0.2s, box-shadow 0.2s; }
-    .hero-btn:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(0,255,102,0.4); }
+    .hero { height: 75vh; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(8,8,8,1) 100%), url('images/1.jpg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 1rem; }
+    .hero h1 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 5.8rem; letter-spacing: 5px; text-shadow: 0 4px 30px rgba(0,0,0,0.95); margin-bottom: 5px; color: #ffffff; }
+    .hero p { color: var(--accent); letter-spacing: 4px; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+    .hero-btn { margin-top: 2.5rem; background: var(--accent); color: #000; padding: 1rem 2.8rem; font-size: 1rem; font-weight: 900; text-decoration: none; border-radius: 4px; letter-spacing: 1.5px; text-transform: uppercase; transition: transform 0.2s, box-shadow 0.2s; }
+    .hero-btn:hover { transform: scale(1.03); box-shadow: 0 0 25px rgba(0,255,102,0.5); }
 
-    /* Features Bar */
-    .features-bar { display: flex; justify-content: space-around; padding: 2.5rem 1rem; background: #121212; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
-    .feature-item h4 { color: var(--accent); font-size: 0.95rem; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 6px; text-transform: uppercase; }
-    .feature-item p { color: var(--muted); font-size: 0.85rem; font-weight: 500; }
+    /* Professional Toolbar: Search & Filter Categories */
+    .store-toolbar { max-width: 1250px; margin: 3rem auto 1.5rem; padding: 0 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; }
+    .search-box { flex: 1; min-width: 280px; position: relative; }
+    .search-box input { width: 100%; background: var(--card-bg); border: 1px solid var(--border); padding: 0.9rem 1.2rem; color: #ffffff; font-size: 0.95rem; font-weight: 600; border-radius: 6px; outline: none; transition: border-color 0.2s; }
+    .search-box input:focus { border-color: var(--accent); }
+    
+    .filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+    .filter-btn { background: var(--card-bg); border: 1px solid var(--border); color: #e0e0e0; padding: 0.8rem 1.2rem; font-size: 0.85rem; font-weight: 800; cursor: pointer; border-radius: 6px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
 
-    .section-title { text-align: center; margin: 4.5rem 0 2.5rem; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 3rem; letter-spacing: 3px; }
+    .section-title { text-align: center; margin: 3.5rem 0 1.5rem; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 3.2rem; letter-spacing: 3px; color: #ffffff; }
 
     /* Product Grid */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2.5rem; max-width: 1250px; margin: 0 auto; padding: 0 1.5rem 5rem; }
@@ -50,25 +55,30 @@
     
     .badge { position: absolute; top: 14px; left: 14px; background: var(--accent); color: #000; font-size: 0.75rem; padding: 5px 10px; border-radius: 4px; font-weight: 900; letter-spacing: 1px; z-index: 2; text-transform: uppercase; }
     
-    .img-container { width: 100%; height: 350px; background: #1a1a1a; overflow: hidden; cursor: pointer; }
+    .img-container { width: 100%; height: 360px; background: #161616; overflow: hidden; cursor: pointer; }
     .img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
     .card:hover .img-container img { transform: scale(1.06); }
 
     .details { padding: 1.8rem; }
-    .details h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.4rem; font-family: 'Impact', 'Arial Black', sans-serif; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; color: #fff; }
+    .details h3 { font-size: 1.4rem; font-weight: 900; margin-bottom: 0.4rem; font-family: 'Impact', 'Arial Black', sans-serif; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; color: #ffffff; }
     .details h3:hover { color: var(--accent); }
-    .product-desc-sub { color: var(--muted); font-size: 0.9rem; font-weight: 500; margin-bottom: 1.2rem; }
+    .product-desc-sub { color: var(--muted); font-size: 0.95rem; font-weight: 600; margin-bottom: 1.2rem; }
     
     .size-selector { display: flex; gap: 8px; margin: 1.2rem 0; }
-    .size-btn { background: #1c1c1c; border: 1px solid var(--border); color: #fff; padding: 6px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+    .size-btn { background: #1a1a1a; border: 1px solid var(--border); color: #ffffff; padding: 6px 12px; font-size: 0.85rem; font-weight: 800; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
     .size-btn:hover { border-color: #666; }
-    .size-btn.active { border-color: var(--accent); color: var(--accent); background: #111; }
+    .size-btn.active { border-color: var(--accent); color: var(--accent); background: #0c0c0c; }
 
-    .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
-    .price { font-size: 1.5rem; font-weight: 900; color: #fff; letter-spacing: 0.5px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1.2rem; }
+    .price { font-size: 1.6rem; font-weight: 900; color: #ffffff; letter-spacing: 0.5px; }
     
-    .btn-add { background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 0.6rem 1.2rem; font-weight: 800; font-size: 0.85rem; cursor: pointer; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
+    .btn-add { background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 0.6rem 1.2rem; font-weight: 900; font-size: 0.85rem; cursor: pointer; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
     .btn-add:hover { background: var(--accent); color: #000; }
+
+    /* Trust & Features Highlights */
+    .trust-section { background: #111111; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3rem 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 1250px; margin: 0 auto 4rem; text-align: center; border-radius: 8px; }
+    .trust-box h4 { color: var(--accent); font-size: 1.05rem; font-weight: 900; letter-spacing: 1.5px; margin-bottom: 8px; text-transform: uppercase; }
+    .trust-box p { color: var(--muted); font-size: 0.9rem; font-weight: 600; }
 
     /* Modals */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 300; display: none; justify-content: center; align-items: center; padding: 1.5rem; }
@@ -79,43 +89,53 @@
     .modal-img { flex: 1; min-width: 320px; height: 450px; background: #1a1a1a; }
     .modal-img img { width: 100%; height: 100%; object-fit: cover; }
     .modal-info { flex: 1; min-width: 320px; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
-    .modal-info h2 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 2.2rem; margin-bottom: 0.5rem; letter-spacing: 1.5px; text-transform: uppercase; }
-    .modal-info p { color: var(--muted); margin: 1.2rem 0; line-height: 1.6; font-size: 1rem; font-weight: 400; }
+    .modal-info h2 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 2.3rem; margin-bottom: 0.5rem; letter-spacing: 1.5px; text-transform: uppercase; color: #ffffff; }
+    .modal-info p { color: var(--muted); margin: 1.2rem 0; line-height: 1.6; font-size: 1.05rem; font-weight: 600; }
 
     /* Size Chart Table */
-    .size-table { width: 100%; border-collapse: collapse; margin-top: 1.2rem; color: #fff; font-size: 0.9rem; }
-    .size-table th, .size-table td { border: 1px solid var(--border); padding: 10px; text-align: center; font-weight: 600; }
+    .size-table { width: 100%; border-collapse: collapse; margin-top: 1.2rem; color: #fff; font-size: 0.95rem; }
+    .size-table th, .size-table td { border: 1px solid var(--border); padding: 12px; text-align: center; font-weight: 700; }
     .size-table th { background: #1c1c1c; color: var(--accent); letter-spacing: 1px; }
 
     /* Reviews Section */
-    .reviews { background: #0e0e0e; padding: 5rem 1.5rem; text-align: center; border-top: 1px solid var(--border); }
+    .reviews { background: #0c0c0c; padding: 5rem 1.5rem; text-align: center; border-top: 1px solid var(--border); }
     .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1100px; margin: 2.5rem auto 0; }
-    .review-card { background: #151515; padding: 2rem; border-radius: 10px; border: 1px solid var(--border); text-align: left; }
-    .stars { color: var(--accent); margin-bottom: 12px; font-size: 1.1rem; letter-spacing: 2px; }
-    .review-card p { color: #d0d0d0; font-size: 0.95rem; line-height: 1.5; font-weight: 400; }
-    .review-author { color: var(--muted); font-size: 0.85rem; font-weight: 700; margin-top: 15px; display: block; letter-spacing: 1px; text-transform: uppercase; }
+    .review-card { background: #141414; padding: 2.2rem; border-radius: 10px; border: 1px solid var(--border); text-align: left; }
+    .stars { color: var(--accent); margin-bottom: 12px; font-size: 1.2rem; letter-spacing: 2px; }
+    .review-card p { color: #e0e0e0; font-size: 1rem; line-height: 1.6; font-weight: 600; }
+    .review-author { color: var(--muted); font-size: 0.9rem; font-weight: 800; margin-top: 15px; display: block; letter-spacing: 1px; text-transform: uppercase; }
 
     /* Footer */
     footer { background: #050505; border-top: 1px solid var(--border); padding: 4rem 2.5rem 2.5rem; }
     .footer-container { max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; }
-    .footer-col h4 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 1.3rem; margin-bottom: 1.2rem; letter-spacing: 1.5px; color: #fff; }
-    .footer-col p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+    .footer-col h4 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 1.4rem; margin-bottom: 1.2rem; letter-spacing: 1.5px; color: #fff; }
+    .footer-col p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; font-weight: 600; }
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 0.7rem; }
-    .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+    .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 700; transition: color 0.2s; }
     .footer-col ul li a:hover { color: var(--accent); }
 
-    /* Cart Drawer */
-    .cart-drawer { position: fixed; top: 0; right: -420px; width: 400px; height: 100%; background: #121212; border-left: 1px solid var(--border); z-index: 200; transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; padding: 2rem; }
+    /* Cart Drawer with Quantity Controllers (+ / -) */
+    .cart-drawer { position: fixed; top: 0; right: -420px; width: 420px; height: 100%; background: #121212; border-left: 1px solid var(--border); z-index: 200; transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; padding: 2rem; }
     .cart-drawer.open { right: 0; }
     .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1.2rem; }
-    .cart-header h2 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 1.5rem; letter-spacing: 1.5px; }
+    .cart-header h2 { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 1.6rem; letter-spacing: 1.5px; color: #fff; }
     .close-btn { background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; font-weight: 300; }
     .close-btn:hover { color: var(--accent); }
     
-    .cart-items { flex: 1; overflow-y: auto; margin: 1.5rem 0; }
-    .checkout-btn { width: 100%; background: var(--accent); color: #000; border: none; padding: 1rem; font-weight: 900; font-size: 1rem; cursor: pointer; border-radius: 6px; letter-spacing: 1.5px; text-transform: uppercase; transition: opacity 0.2s; }
-    .checkout-btn:hover { opacity: 0.9; }
+    .cart-items { flex: 1; overflow-y: auto; margin: 1.5rem 0; padding-right: 5px; }
+    
+    .cart-item-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+    .qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+    .qty-btn { background: #1e1e1e; border: 1px solid var(--border); color: #fff; width: 26px; height: 26px; font-weight: 900; font-size: 0.9rem; cursor: pointer; border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .qty-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+    .item-qty-num { font-size: 0.9rem; font-weight: 800; color: #fff; min-width: 18px; text-align: center; }
+    
+    .remove-item-btn { background: none; border: none; color: #ff4d4d; font-size: 0.8rem; font-weight: 800; cursor: pointer; margin-top: 4px; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px; }
+    .remove-item-btn:hover { text-decoration: underline; }
+
+    .checkout-btn { width: 100%; background: var(--accent); color: #000; border: none; padding: 1.1rem; font-weight: 900; font-size: 1.05rem; cursor: pointer; border-radius: 6px; letter-spacing: 1.5px; text-transform: uppercase; transition: opacity 0.2s; }
+    .checkout-btn:hover { opacity: 0.95; }
   </style>
 </head>
 <body>
@@ -138,26 +158,25 @@
     <a href="#shop" class="hero-btn">SHOP THE DROP</a>
   </section>
 
-  <div class="features-bar">
-    <div class="feature-item">
-      <h4>PREMIUM QUALITY</h4>
-      <p>Custom heavyweight fleece & cotton</p>
+  <!-- Store Toolbar: Search & Category Filter Pills -->
+  <div class="store-toolbar">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search collection (e.g., hoodie, cargo, tee)..." onkeyup="filterProducts()" />
     </div>
-    <div class="feature-item">
-      <h4>LIMITED QUANTITIES</h4>
-      <p>No restocks once sold out</p>
-    </div>
-    <div class="feature-item">
-      <h4>FAST SHIPPING</h4>
-      <p>Dispatched within 24 hours</p>
+    <div class="filter-tabs">
+      <button class="filter-btn active" onclick="filterCategory('all', this)">All Items</button>
+      <button class="filter-btn" onclick="filterCategory('hoodie', this)">Hoodies</button>
+      <button class="filter-btn" onclick="filterCategory('tee', this)">Tees</button>
+      <button class="filter-btn" onclick="filterCategory('pants', this)">Pants & Outerwear</button>
     </div>
   </div>
 
   <h2 class="section-title" id="shop">THE COLLECTION</h2>
 
-  <div class="grid">
+  <!-- Product Grid -->
+  <div class="grid" id="productGrid">
     <!-- Item 1 -->
-    <div class="card">
+    <div class="card" data-category="hoodie" data-name="cyber oversized hoodie">
       <span class="badge">NEW</span>
       <div class="img-container" onclick="openProductModal('Cyber Oversized Hoodie', 120, 'images/1.jpg', '450 GSM custom heavyweight fleece hoodie with dropped shoulders and boxy fit silhouette.', 'sizes-1')"><img src="images/1.jpg" alt="Cyber Oversized Hoodie" /></div>
       <div class="details">
@@ -177,7 +196,7 @@
     </div>
 
     <!-- Item 2 -->
-    <div class="card">
+    <div class="card" data-category="tee" data-name="acid wash graphic tee">
       <span class="badge" style="background:#ff0055; color:#fff;">HOT</span>
       <div class="img-container" onclick="openProductModal('Acid Wash Graphic Tee', 65, 'images/2.jpg', '280 GSM heavyweight cotton vintage wash graphic tee with reinforced collar.', 'sizes-2')"><img src="images/2.jpg" alt="Acid Wash Graphic Tee" /></div>
       <div class="details">
@@ -196,7 +215,7 @@
     </div>
 
     <!-- Item 3 -->
-    <div class="card">
+    <div class="card" data-category="pants" data-name="tactical cargo pants">
       <span class="badge">EXCLUSIVE</span>
       <div class="img-container" onclick="openProductModal('Tactical Cargo Pants', 140, 'images/3.jpg', 'Heavy duty ripstop tactical pants featuring multiple cargo pockets and custom ankle straps.', 'sizes-3')"><img src="images/3.jpg" alt="Tactical Cargo Pants" /></div>
       <div class="details">
@@ -215,7 +234,7 @@
     </div>
 
     <!-- Item 4 -->
-    <div class="card">
+    <div class="card" data-category="hoodie" data-name="heavyweight sweatshirt">
       <span class="badge">NEW</span>
       <div class="img-container" onclick="openProductModal('Heavyweight Sweatshirt', 110, 'images/4.jpg', 'Minimalist street sweatshirt crafted with brushed fleece interior and ribbed trim.', 'sizes-4')"><img src="images/4.jpg" alt="Heavyweight Sweatshirt" /></div>
       <div class="details">
@@ -234,7 +253,7 @@
     </div>
 
     <!-- Item 5 -->
-    <div class="card">
+    <div class="card" data-category="pants" data-name="utility overshirt">
       <span class="badge" style="background:#ff0055; color:#fff;">LIMITED</span>
       <div class="img-container" onclick="openProductModal('Utility Overshirt', 95, 'images/5.jpg', 'Structured outer layer with dual magnetic chest pockets and boxy fit.', 'sizes-5')"><img src="images/5.jpg" alt="Utility Overshirt" /></div>
       <div class="details">
@@ -253,7 +272,7 @@
     </div>
 
     <!-- Item 6 -->
-    <div class="card">
+    <div class="card" data-category="pants" data-name="distressed denim jacket">
       <span class="badge">RESTOCK</span>
       <div class="img-container" onclick="openProductModal('Distressed Denim Jacket', 160, 'images/6.jpg', 'Custom stone washed denim with hand-distressed detailing and custom hardware.', 'sizes-6')"><img src="images/6.jpg" alt="Distressed Denim Jacket" /></div>
       <div class="details">
@@ -272,7 +291,7 @@
     </div>
 
     <!-- Item 7 -->
-    <div class="card">
+    <div class="card" data-category="tee" data-name="signature szn beanie">
       <span class="badge">EXCLUSIVE</span>
       <div class="img-container" onclick="openProductModal('Signature SZN Beanie', 40, 'images/7.jpg', 'Heavyweight double-layer ribbed knit beanie with silicone rubber logo patch.', 'sizes-7')"><img src="images/7.jpg" alt="Signature SZN Beanie" /></div>
       <div class="details">
@@ -289,6 +308,22 @@
     </div>
   </div>
 
+  <!-- Trust Highlights Section -->
+  <div class="trust-section">
+    <div class="trust-box">
+      <h4>HEAVYWEIGHT 450+ GSM</h4>
+      <p>Luxury fabric density engineered for structural drop fit.</p>
+    </div>
+    <div class="trust-box">
+      <h4>SECURE WHATSAPP ORDER</h4>
+      <p>Direct concierge checkout with instant order confirmation.</p>
+    </div>
+    <div class="trust-box">
+      <h4>EXPRESS DISPATCH</h4>
+      <p>All drop orders shipped out within 24 hours.</p>
+    </div>
+  </div>
+
   <!-- Product Modal Popup -->
   <div class="modal-overlay" id="product-modal">
     <div class="modal-content">
@@ -296,7 +331,7 @@
       <div class="modal-img"><img id="modal-img-src" src="" alt="" /></div>
       <div class="modal-info">
         <h2 id="modal-title"></h2>
-        <span id="modal-price" style="font-size:1.6rem; color:var(--accent); font-weight:900;"></span>
+        <span id="modal-price" style="font-size:1.7rem; color:var(--accent); font-weight:900;"></span>
         <p id="modal-desc"></p>
         <button class="checkout-btn" id="modal-add-btn" style="margin-top:1rem;">ADD TO CART</button>
       </div>
@@ -307,8 +342,8 @@
   <div class="modal-overlay" id="size-chart-modal">
     <div class="modal-content" style="padding: 2.5rem; max-width:600px; display:block; position:relative;">
       <button class="modal-close" onclick="closeSizeChart()" style="top:20px; right:20px;">&times;</button>
-      <h2 style="font-family:'Impact'; font-size:2.2rem; margin-bottom:0.5rem; text-align:center; letter-spacing:1.5px;">OFFICIAL SIZE GUIDE</h2>
-      <p style="color:var(--muted); font-size:0.9rem; text-align:center; margin-bottom:1.5rem;">All streetwear fits are designed boxy and oversized.</p>
+      <h2 style="font-family:'Impact'; font-size:2.3rem; margin-bottom:0.5rem; text-align:center; letter-spacing:1.5px; color:#fff;">OFFICIAL SIZE GUIDE</h2>
+      <p style="color:var(--muted); font-size:0.95rem; text-align:center; margin-bottom:1.5rem; font-weight:600;">All streetwear garments feature an authentic boxy oversized cut.</p>
       <table class="size-table">
         <thead>
           <tr>
@@ -333,17 +368,17 @@
     <div class="review-grid">
       <div class="review-card">
         <div class="stars">★★★★★</div>
-        <p>"The heavyweight hoodie is insane quality. Heavy cotton and fits perfectly boxy."</p>
+        <p>"The heavyweight hoodie quality is insane. Real thick cotton and fits with the perfect boxy drop."</p>
         <span class="review-author">— Marcus K.</span>
       </div>
       <div class="review-card">
         <div class="stars">★★★★★</div>
-        <p>"Shipping was super fast. The graphic tee feels like real high-end streetwear."</p>
+        <p>"Ordering through WhatsApp was smooth and simple. Shipping was fast as lightning."</p>
         <span class="review-author">— Alex R.</span>
       </div>
       <div class="review-card">
         <div class="stars">★★★★★</div>
-        <p>"Best brand out right now. Packaging was clean and quality is 10/10."</p>
+        <p>"Best brand out right now. Premium stitching, clean hardware, absolutely 10/10."</p>
         <span class="review-author">— Jordan T.</span>
       </div>
     </div>
@@ -353,10 +388,10 @@
     <div class="footer-container">
       <div class="footer-col">
         <h4>THUG SZN</h4>
-        <p>High-contrast modern apparel. Crafted for the street.</p>
+        <p>High-contrast modern apparel. Crafted exclusively for the street.</p>
       </div>
       <div class="footer-col">
-        <h4>INFO</h4>
+        <h4>INFO & HELP</h4>
         <ul>
           <li><a href="javascript:void(0)" onclick="openSizeChart()">Size Guide</a></li>
           <li><a href="#reviews">Customer Reviews</a></li>
@@ -364,25 +399,26 @@
       </div>
       <div class="footer-col">
         <h4>JOIN THE CLUB</h4>
-        <p style="margin-bottom:10px;">Subscribe to get early access to future drops.</p>
+        <p style="margin-bottom:10px;">Subscribe to secure priority access to future drops.</p>
         <div style="display:flex; gap:8px;">
-          <input type="email" placeholder="Enter your email" style="background:#151515; border:1px solid var(--border); color:#fff; padding:0.7rem; border-radius:4px; flex:1; outline:none;" />
-          <button style="background:var(--accent); border:none; padding:0.7rem 1.2rem; font-weight:900; cursor:pointer; border-radius:4px; color:#000;">JOIN</button>
+          <input type="email" placeholder="Enter your email" style="background:#151515; border:1px solid var(--border); color:#fff; padding:0.8rem; border-radius:4px; flex:1; outline:none; font-weight:600;" />
+          <button style="background:var(--accent); border:none; padding:0.8rem 1.2rem; font-weight:900; cursor:pointer; border-radius:4px; color:#000;">JOIN</button>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- Cart Drawer with Quantity Modifiers -->
   <div class="cart-drawer" id="cart-drawer">
     <div class="cart-header">
       <h2>YOUR CART</h2>
       <button class="close-btn" onclick="toggleCart()">&times;</button>
     </div>
     <div class="cart-items" id="cart-items">
-      <p style="color: var(--muted); font-size: 0.9rem;">Your cart is empty.</p>
+      <p style="color: var(--muted); font-size: 0.95rem; font-weight:600;">Your cart is empty.</p>
     </div>
     <div class="cart-footer">
-      <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 1.1rem; margin-bottom: 1rem;">
+      <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 1.2rem; margin-bottom: 1.2rem; color:#fff;">
         <span>TOTAL:</span>
         <span id="cart-total" style="color: var(--accent);">$0</span>
       </div>
@@ -402,17 +438,72 @@
       document.getElementById('cart-drawer').classList.toggle('open');
     }
 
+    // Filter products by search text
+    function filterProducts() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name');
+        if (name.includes(query)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    // Filter products by category tab
+    function filterCategory(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (category === 'all' || cat === category) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
     function addToCart(name, price, sizeContainerId) {
       const container = document.getElementById(sizeContainerId);
       const activeSizeBtn = container ? container.querySelector('.size-btn.active') : null;
       const size = activeSizeBtn ? activeSizeBtn.innerText : 'M';
 
       const existingItem = cart.find(item => item.name === name && item.size === size);
-      if (existingItem) { existingItem.qty += 1; } 
-      else { cart.push({ name, price, size, qty: 1 }); }
+      if (existingItem) { 
+        existingItem.qty += 1; 
+      } else { 
+        cart.push({ name, price, size, qty: 1 }); 
+      }
 
       updateCartUI();
       document.getElementById('cart-drawer').classList.add('open');
+    }
+
+    // Increase item quantity directly in cart
+    function increaseQty(index) {
+      cart[index].qty += 1;
+      updateCartUI();
+    }
+
+    // Decrease item quantity or remove if reaches 0
+    function decreaseQty(index) {
+      if (cart[index].qty > 1) {
+        cart[index].qty -= 1;
+      } else {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    // Completely remove item from cart
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
     }
 
     function updateCartUI() {
@@ -424,22 +515,28 @@
       cartCount.innerText = totalItems;
 
       if (cart.length === 0) {
-        cartItems.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Your cart is empty.</p>';
+        cartItems.innerHTML = '<p style="color: var(--muted); font-size: 0.95rem; font-weight:600;">Your cart is empty.</p>';
         cartTotal.innerText = '$0';
         return;
       }
 
       let itemsHTML = '';
       let total = 0;
-      cart.forEach((item) => {
+      cart.forEach((item, index) => {
         total += item.price * item.qty;
         itemsHTML += `
-          <div style="display:flex; justify-content:space-between; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:10px;">
+          <div class="cart-item-row">
             <div>
-              <strong style="font-size:0.95rem; color:#fff;">${item.name}</strong>
-              <div style="color:var(--muted); font-size:0.8rem; margin-top:3px;">Size: ${item.size} x ${item.qty}</div>
+              <strong style="font-size:1rem; color:#fff; display:block;">${item.name}</strong>
+              <div style="color:var(--muted); font-size:0.85rem; margin-top:2px; font-weight:600;">Size: ${item.size}</div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="decreaseQty(${index})">-</button>
+                <span class="item-qty-num">${item.qty}</span>
+                <button class="qty-btn" onclick="increaseQty(${index})">+</button>
+              </div>
+              <button class="remove-item-btn" onclick="removeFromCart(${index})">Remove</button>
             </div>
-            <div style="font-weight:bold; color:#fff;">$${item.price * item.qty}</div>
+            <div style="font-weight:900; color:#fff; font-size:1.05rem;">$${item.price * item.qty}</div>
           </div>`;
       });
 
@@ -489,9 +586,7 @@
       });
       orderSummary += `Total: $${total}`;
 
-       // WhatsApp Number configured: 233570349304
-      const whatsappPhone = "233570349304";
-      
+      const whatsappPhone = "233570349304"; 
       const encodedMessage = encodeURIComponent(orderSummary);
       window.open(`https://wa.me/${whatsappPhone}?text=${encodedMessage}`, '_blank');
     }
