@@ -1,541 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THUG SZN | Official Store</title>
-    <style>
-        :root {
-            --bg-color: #0b0b0b;
-            --card-bg: #141414;
-            --accent-color: #ffffff;
-            --text-muted: #888888;
-            --border-color: #222222;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THUG SZN | Exclusive Drop</title>
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --card-bg: #161616;
+      --accent: #00ff66;
+      --text: #ffffff;
+      --muted: #888888;
+      --border: #262626;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Impact', 'Arial Black', sans-serif;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--accent-color);
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            padding-bottom: 60px;
-            overflow-x: hidden;
-        }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text);
+      padding: 2rem 1rem;
+    }
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background-color: rgba(11, 11, 11, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
-        .brand-logo {
-            font-size: 1.3rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
+    .header h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(180deg, #fff 0%, #555 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .cart-status {
-            background: var(--accent-color);
-            color: #000;
-            padding: 6px 14px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            border-radius: 20px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
+    .header p {
+      font-family: sans-serif;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 0.5rem;
+      letter-spacing: 4px;
+    }
 
-        .hero-section {
-            text-align: center;
-            padding: 40px 15px 30px 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .hero-title {
-            font-size: 2.2rem;
-            font-weight: 900;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
 
-        .hero-subtitle {
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-        }
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+    }
 
-        .section-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 15px;
-        }
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--accent);
+      color: #000;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      z-index: 2;
+    }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
-        }
+    .img-container {
+      width: 100%;
+      height: 320px;
+      background: #1f1f1f;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .product-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s ease;
-        }
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
 
-        .product-card:hover {
-            transform: translateY(-4px);
-            border-color: #444;
-        }
+    .card:hover .img-container img {
+      transform: scale(1.08);
+    }
 
-        .product-card img {
-            width: 100%;
-            height: 260px;
-            object-fit: contain;
-            background: #000;
-            border-radius: 4px;
-            margin-bottom: 12px;
-            cursor: pointer;
-        }
+    .details {
+      padding: 1.5rem;
+      font-family: sans-serif;
+    }
 
-        .product-title {
-            font-size: 0.95rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
+    .details h3 {
+      font-size: 1.25rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      font-family: 'Impact', sans-serif;
+      text-transform: uppercase;
+    }
 
-        .product-price {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-        }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+    }
 
-        .btn {
-            background-color: var(--accent-color);
-            color: #000;
-            border: none;
-            padding: 12px 18px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
+    .price {
+      font-size: 1.4rem;
+      color: var(--text);
+      font-weight: bold;
+    }
 
-        .btn:hover { background-color: #ccc; }
+    .btn-add {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
 
-        .cart-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 200;
-            display: none;
-        }
-
-        .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 100%;
-            max-width: 380px;
-            height: 100%;
-            background: #111;
-            border-left: 1px solid var(--border-color);
-            z-index: 201;
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .cart-drawer.open { right: 0; }
-
-        .cart-header, .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .cart-items { flex: 1; overflow-y: auto; }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-            background: var(--card-bg);
-            padding: 10px;
-            border-radius: 4px;
-        }
-
-        .cart-item img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .cart-item-details { flex: 1; }
-        .cart-item-title { font-size: 0.85rem; font-weight: bold; }
-        .cart-item-price { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
-
-        .qty-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .qty-btn {
-            background: #222;
-            border: 1px solid var(--border-color);
-            color: #fff;
-            width: 24px;
-            height: 24px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .qty-count { font-size: 0.85rem; }
-
-        .remove-btn {
-            background: none;
-            border: none;
-            color: #ff4444;
-            font-size: 0.75rem;
-            cursor: pointer;
-            margin-left: auto;
-            text-transform: uppercase;
-        }
-
-        .cart-footer { border-top: 1px solid var(--border-color); padding-top: 15px; }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #111;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            width: 90%;
-            max-width: 400px;
-            padding: 20px;
-            z-index: 202;
-            display: none;
-        }
-
-        .modal img {
-            width: 100%;
-            height: 220px;
-            object-fit: contain;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-
-        .size-selector {
-            display: flex;
-            gap: 10px;
-            margin: 15px 0;
-        }
-
-        .size-btn {
-            flex: 1;
-            padding: 8px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .size-btn.active {
-            border-color: #fff;
-            background: #333;
-        }
-
-        @media (max-width: 600px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .product-card { padding: 10px; }
-            .product-card img { height: 180px; }
-            .hero-title { font-size: 1.8rem; }
-        }
-    </style>
+    .btn-add:hover {
+      background: var(--accent);
+      color: #000;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="brand-logo">THUG SZN</div>
-        <div class="cart-status" onclick="toggleCart()">CART (<span id="cart-count">0</span>)</div>
-    </header>
+  <div class="header">
+    <h1>THUG SZN</h1>
+    <p>LIMITED DROP // SEASON 01</p>
+  </div>
 
-    <div class="hero-section">
-        <h1 class="hero-title">THUG SZN</h1>
-        <p class="hero-subtitle">BUILT DIFFERENT — COLLECTION 2026</p>
+  <div class="grid">
+    <div class="card">
+      <span class="badge">NEW</span>
+      <div class="img-container">
+        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" alt="Hoodie" />
+      </div>
+      <div class="details">
+        <h3>Cyber Oversized Hoodie</h3>
+        <p style="color: var(--muted); font-size: 0.9rem;">Heavyweight Cotton | Black</p>
+        <div class="price-row">
+          <span class="price">$120</span>
+          <button class="btn-add">ADD TO CART</button>
+        </div>
+      </div>
     </div>
 
-    <div class="section-container">
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="images/1.jpg" alt="Zip Jersey 01" onclick="openModal('Zip Jersey 01', 85, 'images/1.jpg')">
-                <div class="product-title">Zip Jersey 01</div>
-                <div class="product-price">$85.00</div>
-                <button class="btn" onclick="openModal('Zip Jersey 01', 85, 'images/1.jpg')">Select Size</button>
-            </div>
-            <div class="product-card">
-                <img src="images/2.jpg" alt="Built Different Tee" onclick="openModal('Built Different Tee', 60, 'images/2.jpg')">
-                <div class="product-title">Built Different Tee</div>
-                <div class="product-price">$60.00</div>
-                <button class="btn" onclick="openModal('Built Different Tee', 60, 'images/2.jpg')">Select Size</button>
-            </div>
-            <div class="product-card">
-                <img src="images/3.jpg" alt="Graphic Statue Tee" onclick="openModal('Graphic Statue Tee', 65, 'images/3.jpg')">
-                <div class="product-title">Graphic Statue Tee</div>
-                <div class="product-price">$65.00</div>
-                <button class="btn" onclick="openModal('Graphic Statue Tee', 65, 'images/3.jpg')">Select Size</button>
-            </div>
-            <div class="product-card">
-                <img src="images/4.jpg" alt="Oversized Street Tee" onclick="openModal('Oversized Street Tee', 65, 'images/4.jpg')">
-                <div class="product-title">Oversized Street Tee</div>
-                <div class="product-price">$65.00</div>
-                <button class="btn" onclick="openModal('Oversized Street Tee', 65, 'images/4.jpg')">Select Size</button>
-            </div>
-            <div class="product-card">
-                <img src="images/5.jpg" alt="Heavyweight Crewneck" onclick="openModal('Heavyweight Crewneck', 80, 'images/5.jpg')">
-                <div class="product-title">Heavyweight Crewneck</div>
-                <div class="product-price">$80.00</div>
-                <button class="btn" onclick="openModal('Heavyweight Crewneck', 80, 'images/5.jpg')">Select Size</button>
-            </div>
-            <div class="product-card">
-                <img src="images/6.jpg" alt="Raglan Polo Heavyweight" onclick="openModal('Raglan Polo Heavyweight', 95, 'images/6.jpg')">
-                <div class="product-title">Raglan Polo Heavyweight</div>
-                <div class="product-price">$95.00</div>
-                <button class="btn" onclick="openModal('Raglan Polo Heavyweight', 95, 'images/6.jpg')">Select Size</button>
-            </div>
-            <div class="product-card">
-                <img src="images/7.jpg" alt="Barbed Wire Emblem Tee" onclick="openModal('Barbed Wire Emblem Tee', 70, 'images/7.jpg')">
-                <div class="product-title">Barbed Wire Emblem Tee</div>
-                <div class="product-price">$70.00</div>
-                <button class="btn" onclick="openModal('Barbed Wire Emblem Tee', 70, 'images/7.jpg')">Select Size</button>
-            </div>
+    <div class="card">
+      <span class="badge" style="background: #ff0055; color: #fff;">SOLD OUT</span>
+      <div class="img-container">
+        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" alt="Tee" />
+      </div>
+      <div class="details">
+        <h3>Acid Wash Graphic Tee</h3>
+        <p style="color: var(--muted); font-size: 0.9rem;">100% Vintage Vintage Cut</p>
+        <div class="price-row">
+          <span class="price">$65</span>
+          <button class="btn-add" disabled style="opacity:0.5; cursor:not-allowed;">UNAVAILABLE</button>
         </div>
+      </div>
     </div>
 
-    <div class="cart-overlay" id="overlay" onclick="closeAll()"></div>
-    <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header">
-            <h3>YOUR CART</h3>
-            <button class="close-btn" onclick="toggleCart()">&times;</button>
+    <div class="card">
+      <span class="badge">EXCLUSIVE</span>
+      <div class="img-container">
+        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80" alt="Cargo" />
+      </div>
+      <div class="details">
+        <h3>Tactical Cargo Pants</h3>
+        <p style="color: var(--muted); font-size: 0.9rem;">Multi-pocket | Strapped</p>
+        <div class="price-row">
+          <span class="price">$140</span>
+          <button class="btn-add">ADD TO CART</button>
         </div>
-        <div class="cart-items" id="cartItemsContainer">
-            <p style="color: var(--text-muted); text-align: center; margin-top: 40px;">Your cart is empty.</p>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>TOTAL:</span>
-                <span id="cartTotal">$0.00</span>
-            </div>
-            <button class="btn" onclick="alert('Proceeding to checkout...')">CHECKOUT</button>
-        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="modal" id="productModal">
-        <div class="modal-header">
-            <h3 id="modalTitle">PRODUCT DETAILS</h3>
-            <button class="close-btn" onclick="closeAll()">&times;</button>
-        </div>
-        <img id="modalImg" src="" alt="">
-        <div id="modalPrice" style="color: var(--text-muted); margin-bottom: 10px;"></div>
-        <p style="font-size: 0.8rem; letter-spacing: 1px;">SELECT SIZE:</p>
-        <div class="size-selector">
-            <button class="size-btn active" onclick="selectSize(this, 'S')">S</button>
-            <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
-            <button class="size-btn" onclick="selectSize(this, 'L')">L</button>
-            <button class="size-btn" onclick="selectSize(this, 'XL')">XL</button>
-        </div>
-        <button class="btn" onclick="confirmAddToCart()">ADD TO CART</button>
-    </div>
-
-    <script>
-        let cart = [];
-        try {
-            const savedCart = localStorage.getItem('thugszn_cart');
-            if (savedCart) {
-                cart = JSON.parse(savedCart);
-            }
-        } catch (e) {
-            cart = [];
-        }
-
-        let selectedProduct = null;
-        let selectedSize = 'S';
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updateCartUI();
-        });
-
-        function saveCartToStorage() {
-            localStorage.setItem('thugszn_cart', JSON.stringify(cart));
-        }
-
-        function toggleCart() {
-            const drawer = document.getElementById('cartDrawer');
-            const overlay = document.getElementById('overlay');
-            const isOpen = drawer.classList.contains('open');
-
-            closeAll();
-
-            if (!isOpen) {
-                drawer.classList.add('open');
-                overlay.style.display = 'block';
-            }
-        }
-
-        function openModal(name, price, img) {
-            closeAll();
-            selectedProduct = { name, price, img };
-            selectedSize = 'S';
-
-            document.getElementById('modalTitle').innerText = name;
-            document.getElementById('modalPrice').innerText = '$' + price + '.00';
-            document.getElementById('modalImg').src = img;
-
-            document.querySelectorAll('.size-btn').forEach((btn, index) => {
-                btn.classList.toggle('active', index === 0);
-            });
-
-            document.getElementById('productModal').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        }
-
-        function selectSize(btnElement, size) {
-            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-            btnElement.classList.add('active');
-            selectedSize = size;
-        }
-
-        function confirmAddToCart() {
-            if (selectedProduct) {
-                const existingIndex = cart.findIndex(item => item.name === selectedProduct.name && item.size === selectedSize);
-                
-                if (existingIndex > -1) {
-                    cart[existingIndex].qty += 1;
-                } else {
-                    cart.push({ ...selectedProduct, size: selectedSize, qty: 1 });
-                }
-
-                saveCartToStorage();
-                updateCartUI();
-                closeAll();
-                toggleCart();
-            }
-        }
-
-        function changeQty(index, delta) {
-            cart[index].qty += delta;
-            if (cart[index].qty <= 0) {
-                cart.splice(index, 1);
-            }
-            saveCartToStorage();
-            updateCartUI();
-        }
-
-        function removeItem(index) {
-            cart.splice(index, 1);
-            saveCartToStorage();
-            updateCartUI();
-        }
-
-        function closeAll() {
-            document.getElementById('cartDrawer').classList.remove('open');
-            document.getElementById('productModal').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-
-        function updateCartUI() {
-            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-            document.getElementById('cart-count').innerText = totalCount;
-
-            const container = document.getElementById('cartItemsContainer');
-            
-            if (cart.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-muted); text-align: center; margin-top: 40px;">Your cart is empty.</p>';
-                document.getElementById('cartTotal').innerText = '$0.00';
-                return;
-            }
-
-            let html = '';
-            let total = 0;
-
-            cart.forEach((item, index) => {
-                const itemSubtotal = item.price * item.qty;
-                total += itemSubtotal;
-                html += `
-                    <div class="cart-item">
-                        <img src="${item.img}" alt="${item.name}">
-                        <div class="cart-item-details">
-                            <div class="cart-item-title">${item.name} (${item.size})</div>
-                            <div class="cart-item-price">$${item.price}.00</div>
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                                <span class="qty-count">${item.qty}</span>
-                                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
-            document.getElementById('cartTotal').innerText = '$' + total + '.00';
-        }
-    </script>
 </body>
 </html>
