@@ -28,7 +28,6 @@
       padding-bottom: 3rem;
     }
 
-    /* Sticky Navbar */
     .navbar {
       position: fixed;
       top: 0;
@@ -60,9 +59,6 @@
       font-size: 0.9rem;
       cursor: pointer;
       border-radius: 4px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .cart-btn:hover {
@@ -70,7 +66,6 @@
       color: #000;
     }
 
-    /* Page Header */
     .header {
       text-align: center;
       margin: 2rem 0 3rem;
@@ -93,7 +88,6 @@
       letter-spacing: 4px;
     }
 
-    /* Grid Layout */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -160,11 +154,34 @@
       text-transform: uppercase;
     }
 
+    .size-selector {
+      display: flex;
+      gap: 8px;
+      margin: 1rem 0;
+    }
+
+    .size-btn {
+      background: #222;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      border-radius: 4px;
+
+    }
+
+    .size-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #111;
+    }
+
     .price-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
 
     .price {
@@ -188,12 +205,11 @@
       color: #000;
     }
 
-    /* Cart Drawer */
     .cart-drawer {
       position: fixed;
       top: 0;
       right: -400px;
-      width: 350px;
+      width: 380px;
       height: 100%;
       background: #111;
       border-left: 1px solid var(--border);
@@ -234,9 +250,27 @@
     .cart-item {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 0.8rem 0;
       border-bottom: 1px solid #222;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .qty-btn {
+      background: #222;
+      border: 1px solid var(--border);
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      border-radius: 3px;
     }
 
     .cart-footer {
@@ -260,7 +294,6 @@
 </head>
 <body>
 
-  <!-- Top Navbar -->
   <nav class="navbar">
     <a href="#" class="nav-logo">THUG SZN</a>
     <button class="cart-btn" onclick="toggleCart()">
@@ -273,7 +306,6 @@
     <p>LIMITED DROP // SEASON 01</p>
   </div>
 
-  <!-- Product Grid -->
   <div class="grid">
     <div class="card">
       <span class="badge">NEW</span>
@@ -282,10 +314,16 @@
       </div>
       <div class="details">
         <h3>Cyber Oversized Hoodie</h3>
-        <p style="color: var(--muted); font-size: 0.9rem;">Heavyweight Cotton | Black</p>
+        <p style="color: var(--muted); font-size: 0.85rem;">Heavyweight Cotton | Black</p>
+        <div class="size-selector" id="sizes-1">
+          <button class="size-btn active" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
         <div class="price-row">
           <span class="price">$120</span>
-          <button class="btn-add" onclick="addToCart('Cyber Oversized Hoodie', 120)">ADD TO CART</button>
+          <button class="btn-add" onclick="addToCart('Cyber Oversized Hoodie', 120, 'sizes-1')">ADD TO CART</button>
         </div>
       </div>
     </div>
@@ -297,7 +335,12 @@
       </div>
       <div class="details">
         <h3>Acid Wash Graphic Tee</h3>
-        <p style="color: var(--muted); font-size: 0.9rem;">100% Vintage Cut</p>
+        <p style="color: var(--muted); font-size: 0.85rem;">100% Vintage Cut</p>
+        <div class="size-selector" style="opacity: 0.5;">
+          <button class="size-btn" disabled>S</button>
+          <button class="size-btn" disabled>M</button>
+          <button class="size-btn" disabled>L</button>
+        </div>
         <div class="price-row">
           <span class="price">$65</span>
           <button class="btn-add" disabled style="opacity:0.5; cursor:not-allowed;">UNAVAILABLE</button>
@@ -312,16 +355,20 @@
       </div>
       <div class="details">
         <h3>Tactical Cargo Pants</h3>
-        <p style="color: var(--muted); font-size: 0.9rem;">Multi-pocket | Strapped</p>
+        <p style="color: var(--muted); font-size: 0.85rem;">Multi-pocket | Strapped</p>
+        <div class="size-selector" id="sizes-3">
+          <button class="size-btn active" onclick="selectSize(this)">30</button>
+          <button class="size-btn" onclick="selectSize(this)">32</button>
+          <button class="size-btn" onclick="selectSize(this)">34</button>
+        </div>
         <div class="price-row">
           <span class="price">$140</span>
-          <button class="btn-add" onclick="addToCart('Tactical Cargo Pants', 140)">ADD TO CART</button>
+          <button class="btn-add" onclick="addToCart('Tactical Cargo Pants', 140, 'sizes-3')">ADD TO CART</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Shopping Cart Drawer -->
   <div class="cart-drawer" id="cart-drawer">
     <div class="cart-header">
       <h2>YOUR CART</h2>
@@ -335,22 +382,46 @@
         <span>TOTAL:</span>
         <span id="cart-total">$0</span>
       </div>
-      <button class="checkout-btn" onclick="alert('Checkout coming soon!')">CHECKOUT</button>
+      <button class="checkout-btn" onclick="alert('Redirecting to checkout...')">CHECKOUT</button>
     </div>
   </div>
 
-  <!-- Cart Logic -->
   <script>
     let cart = [];
+
+    function selectSize(btn) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
 
     function toggleCart() {
       document.getElementById('cart-drawer').classList.toggle('open');
     }
 
-    function addToCart(name, price) {
-      cart.push({ name, price });
+    function addToCart(name, price, sizeContainerId) {
+      const container = document.getElementById(sizeContainerId);
+      const activeSizeBtn = container.querySelector('.size-btn.active');
+      const size = activeSizeBtn ? activeSizeBtn.innerText : 'M';
+
+      const existingItem = cart.find(item => item.name === name && item.size === size);
+      
+      if (existingItem) {
+        existingItem.qty += 1;
+      } else {
+        cart.push({ name, price, size, qty: 1 });
+      }
+
       updateCartUI();
       document.getElementById('cart-drawer').classList.add('open');
+    }
+
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
     }
 
     function updateCartUI() {
@@ -358,7 +429,8 @@
       const cartItems = document.getElementById('cart-items');
       const cartTotal = document.getElementById('cart-total');
 
-      cartCount.innerText = cart.length;
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCount.innerText = totalItems;
 
       if (cart.length === 0) {
         cartItems.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Your cart is empty.</p>';
@@ -369,12 +441,20 @@
       let itemsHTML = '';
       let total = 0;
 
-      cart.forEach(item => {
-        total += item.price;
+      cart.forEach((item, index) => {
+        total += item.price * item.qty;
         itemsHTML += `
           <div class="cart-item">
-            <span>${item.name}</span>
-            <span>$${item.price}</span>
+            <div>
+              <strong>${item.name}</strong>
+              <div style="color: var(--muted); font-size: 0.75rem;">Size: ${item.size}</div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                <span>${item.qty}</span>
+                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+              </div>
+            </div>
+            <div>$${item.price * item.qty}</div>
           </div>
         `;
       });
