@@ -24,12 +24,56 @@
     body {
       background-color: var(--bg-color);
       color: var(--text);
-      padding: 2rem 1rem;
+      padding-top: 80px;
+      padding-bottom: 3rem;
     }
 
+    /* Sticky Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background: rgba(13, 13, 13, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 1.8rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+
+    .cart-btn {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-btn:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    /* Page Header */
     .header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin: 2rem 0 3rem;
       text-transform: uppercase;
       letter-spacing: 2px;
     }
@@ -49,12 +93,14 @@
       letter-spacing: 4px;
     }
 
+    /* Grid Layout */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 1rem;
     }
 
     .card {
@@ -89,9 +135,6 @@
       height: 320px;
       background: #1f1f1f;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .img-container img {
@@ -112,7 +155,6 @@
 
     .details h3 {
       font-size: 1.25rem;
-      letter-spacing: 1px;
       margin-bottom: 0.5rem;
       font-family: 'Impact', sans-serif;
       text-transform: uppercase;
@@ -127,7 +169,6 @@
 
     .price {
       font-size: 1.4rem;
-      color: var(--text);
       font-weight: bold;
     }
 
@@ -139,22 +180,100 @@
       font-weight: bold;
       cursor: pointer;
       border-radius: 6px;
-      transition: background 0.2s, color 0.2s;
+      transition: 0.2s;
     }
 
     .btn-add:hover {
       background: var(--accent);
       color: #000;
     }
+
+    /* Cart Drawer */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 350px;
+      height: 100%;
+      background: #111;
+      border-left: 1px solid var(--border);
+      z-index: 200;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      font-family: sans-serif;
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      margin: 1rem 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #222;
+      font-size: 0.9rem;
+    }
+
+    .cart-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 0.8rem;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Top Navbar -->
+  <nav class="navbar">
+    <a href="#" class="nav-logo">THUG SZN</a>
+    <button class="cart-btn" onclick="toggleCart()">
+      CART (<span id="cart-count">0</span>)
+    </button>
+  </nav>
 
   <div class="header">
     <h1>THUG SZN</h1>
     <p>LIMITED DROP // SEASON 01</p>
   </div>
 
+  <!-- Product Grid -->
   <div class="grid">
     <div class="card">
       <span class="badge">NEW</span>
@@ -166,7 +285,7 @@
         <p style="color: var(--muted); font-size: 0.9rem;">Heavyweight Cotton | Black</p>
         <div class="price-row">
           <span class="price">$120</span>
-          <button class="btn-add">ADD TO CART</button>
+          <button class="btn-add" onclick="addToCart('Cyber Oversized Hoodie', 120)">ADD TO CART</button>
         </div>
       </div>
     </div>
@@ -178,7 +297,7 @@
       </div>
       <div class="details">
         <h3>Acid Wash Graphic Tee</h3>
-        <p style="color: var(--muted); font-size: 0.9rem;">100% Vintage Vintage Cut</p>
+        <p style="color: var(--muted); font-size: 0.9rem;">100% Vintage Cut</p>
         <div class="price-row">
           <span class="price">$65</span>
           <button class="btn-add" disabled style="opacity:0.5; cursor:not-allowed;">UNAVAILABLE</button>
@@ -196,11 +315,73 @@
         <p style="color: var(--muted); font-size: 0.9rem;">Multi-pocket | Strapped</p>
         <div class="price-row">
           <span class="price">$140</span>
-          <button class="btn-add">ADD TO CART</button>
+          <button class="btn-add" onclick="addToCart('Tactical Cargo Pants', 140)">ADD TO CART</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Shopping Cart Drawer -->
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h2>YOUR CART</h2>
+      <button class="close-btn" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <p style="color: var(--muted); font-size: 0.9rem;">Your cart is empty.</p>
+    </div>
+    <div class="cart-footer">
+      <div style="display: flex; justify-content: space-between; font-weight: bold;">
+        <span>TOTAL:</span>
+        <span id="cart-total">$0</span>
+      </div>
+      <button class="checkout-btn" onclick="alert('Checkout coming soon!')">CHECKOUT</button>
+    </div>
+  </div>
+
+  <!-- Cart Logic -->
+  <script>
+    let cart = [];
+
+    function toggleCart() {
+      document.getElementById('cart-drawer').classList.toggle('open');
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCartUI();
+      document.getElementById('cart-drawer').classList.add('open');
+    }
+
+    function updateCartUI() {
+      const cartCount = document.getElementById('cart-count');
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+
+      cartCount.innerText = cart.length;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Your cart is empty.</p>';
+        cartTotal.innerText = '$0';
+        return;
+      }
+
+      let itemsHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        total += item.price;
+        itemsHTML += `
+          <div class="cart-item">
+            <span>${item.name}</span>
+            <span>$${item.price}</span>
+          </div>
+        `;
+      });
+
+      cartItems.innerHTML = itemsHTML;
+      cartTotal.innerText = `$${total}`;
+    }
+  </script>
 </body>
 </html>
