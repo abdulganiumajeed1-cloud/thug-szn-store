@@ -14,326 +14,81 @@
       --border: #222222;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Impact', 'Arial Black', sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Impact', 'Arial Black', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text); }
 
-    body {
-      background-color: var(--bg-color);
-      color: var(--text);
-    }
+    .banner { background: var(--accent); color: #000; text-align: center; padding: 8px; font-size: 0.85rem; letter-spacing: 2px; font-family: sans-serif; font-weight: bold; }
 
-    /* 1. Announcement Bar */
-    .banner {
-      background: var(--accent);
-      color: #000;
-      text-align: center;
-      padding: 8px;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      font-family: sans-serif;
-      font-weight: bold;
-    }
+    .navbar { position: sticky; top: 0; width: 100%; height: 70px; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; z-index: 100; }
+    .nav-links a { color: var(--text); text-decoration: none; font-family: sans-serif; margin: 0 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
 
-    /* 2. Navigation */
-    .navbar {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      height: 70px;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 2rem;
-      z-index: 100;
-    }
+    .cart-btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer; border-radius: 4px; }
 
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-family: sans-serif;
-      margin: 0 15px;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: color 0.2s;
-    }
+    .hero { height: 70vh; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(10,10,10,1) 100%), url('images/1.jpg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 1rem; }
+    .hero h1 { font-size: 5rem; letter-spacing: 4px; text-shadow: 0 5px 20px rgba(0,0,0,0.8); }
+    .hero p { font-family: sans-serif; color: var(--accent); letter-spacing: 3px; font-size: 1.2rem; margin-top: 10px; }
+    .hero-btn { margin-top: 2rem; background: var(--accent); color: #000; padding: 1rem 2.5rem; font-size: 1.1rem; text-decoration: none; border-radius: 4px; transition: transform 0.2s; }
+    .hero-btn:hover { transform: scale(1.05); }
 
-    .nav-links a:hover {
-      color: var(--accent);
-    }
+    .features-bar { display: flex; justify-content: space-around; padding: 2rem; background: #111; border-y: 1px solid var(--border); font-family: sans-serif; text-align: center; }
+    .feature-item h4 { color: var(--accent); margin-bottom: 5px; }
+    .feature-item p { color: var(--muted); font-size: 0.85rem; }
 
-    .cart-btn {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    /* 3. Hero Showcase Section */
-    .hero {
-      height: 75vh;
-      background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(10,10,10,1) 100%), 
-                  url('images/1.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 1rem;
-    }
-
-    .hero h1 {
-      font-size: 5rem;
-      letter-spacing: 4px;
-      text-shadow: 0 5px 20px rgba(0,0,0,0.8);
-    }
-
-    .hero p {
-      font-family: sans-serif;
-      color: var(--accent);
-      letter-spacing: 3px;
-      font-size: 1.2rem;
-      margin-top: 10px;
-    }
-
-    .hero-btn {
-      margin-top: 2rem;
-      background: var(--accent);
-      color: #000;
-      padding: 1rem 2.5rem;
-      font-size: 1.1rem;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: transform 0.2s;
-    }
-
-    .hero-btn:hover {
-      transform: scale(1.05);
-    }
-
-    /* 4. Value Props Bar */
-    .features-bar {
-      display: flex;
-      justify-content: space-around;
-      padding: 2rem;
-      background: #111;
-      border-y: 1px solid var(--border);
-      font-family: sans-serif;
-      text-align: center;
-    }
-
-    .feature-item h4 {
-      color: var(--accent);
-      margin-bottom: 5px;
-    }
-
-    .feature-item p {
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-
-    /* Section Headers */
-    .section-title {
-      text-align: center;
-      margin: 4rem 0 2rem;
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-    }
+    .section-title { text-align: center; margin: 4rem 0 2rem; font-size: 2.5rem; letter-spacing: 2px; }
 
     /* Product Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem 4rem;
-    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 1rem 4rem; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; position: relative; transition: transform 0.3s ease, border-color 0.3s ease; }
+    .card:hover { transform: translateY(-8px); border-color: var(--accent); }
+    .badge { position: absolute; top: 12px; left: 12px; background: var(--accent); color: #000; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold; z-index: 2; }
+    
+    .img-container { width: 100%; height: 320px; background: #1f1f1f; overflow: hidden; cursor: pointer; }
+    .img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .card:hover .img-container img { transform: scale(1.08); }
 
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
+    .details { padding: 1.5rem; font-family: sans-serif; }
+    .details h3 { font-size: 1.25rem; margin-bottom: 0.5rem; font-family: 'Impact', sans-serif; text-transform: uppercase; cursor: pointer; }
+    
+    .size-selector { display: flex; gap: 8px; margin: 1rem 0; }
+    .size-btn { background: #222; border: 1px solid var(--border); color: #fff; padding: 4px 8px; font-size: 0.8rem; cursor: pointer; border-radius: 4px; }
+    .size-btn.active { border-color: var(--accent); color: var(--accent); background: #111; }
 
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent);
-    }
+    .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
+    .price { font-size: 1.4rem; font-weight: bold; }
+    .btn-add { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.6rem 1.2rem; font-weight: bold; cursor: pointer; border-radius: 6px; }
+    .btn-add:hover { background: var(--accent); color: #000; }
 
-    .badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--accent);
-      color: #000;
-      font-size: 0.75rem;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-weight: bold;
-      z-index: 2;
-    }
+    /* Modals */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 300; display: none; justify-content: center; align-items: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal-content { background: #141414; border: 1px solid var(--border); border-radius: 12px; max-width: 800px; width: 100%; display: flex; flex-wrap: wrap; overflow: hidden; position: relative; font-family: sans-serif; }
+    .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; color: #fff; background: none; border: none; cursor: pointer; z-index: 10; }
+    .modal-img { flex: 1; min-width: 300px; height: 400px; }
+    .modal-img img { width: 100%; height: 100%; object-fit: cover; }
+    .modal-info { flex: 1; min-width: 300px; padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+    .modal-info h2 { font-family: 'Impact', sans-serif; font-size: 2rem; margin-bottom: 0.5rem; }
+    .modal-info p { color: var(--muted); margin: 1rem 0; line-height: 1.5; font-size: 0.95rem; }
 
-    .img-container {
-      width: 100%;
-      height: 320px;
-      background: #1f1f1f;
-      overflow: hidden;
-    }
+    /* Size Chart Table */
+    .size-table { width: 100%; border-collapse: collapse; margin-top: 1rem; color: #fff; font-size: 0.85rem; }
+    .size-table th, .size-table td { border: 1px solid var(--border); padding: 8px; text-align: center; }
+    .size-table th { background: #222; color: var(--accent); }
 
-    .img-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .card:hover .img-container img {
-      transform: scale(1.08);
-    }
-
-    .details {
-      padding: 1.5rem;
-      font-family: sans-serif;
-    }
-
-    .details h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-      font-family: 'Impact', sans-serif;
-      text-transform: uppercase;
-    }
-
-    .size-selector {
-      display: flex;
-      gap: 8px;
-      margin: 1rem 0;
-    }
-
-    .size-btn {
-      background: #222;
-      border: 1px solid var(--border);
-      color: #fff;
-      padding: 4px 8px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .size-btn.active {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: #111;
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.5rem;
-    }
-
-    .price {
-      font-size: 1.4rem;
-      font-weight: bold;
-    }
-
-    .btn-add {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 0.6rem 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-
-    .btn-add:hover {
-      background: var(--accent);
-      color: #000;
-    }
-
-    /* 5. Reviews Section */
-    .reviews {
-      background: #0f0f0f;
-      padding: 4rem 1rem;
-      text-align: center;
-    }
-
-    .review-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: 2rem auto 0;
-      font-family: sans-serif;
-    }
-
-    .review-card {
-      background: #161616;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      text-align: left;
-    }
-
+    /* Reviews Section */
+    .reviews { background: #0f0f0f; padding: 4rem 1rem; text-align: center; }
+    .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 2rem auto 0; font-family: sans-serif; }
+    .review-card { background: #161616; padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); text-align: left; }
     .stars { color: var(--accent); margin-bottom: 10px; }
 
-    /* Footer */
-    footer {
-      background: #050505;
-      border-top: 1px solid var(--border);
-      padding: 3rem 2rem 2rem;
-      font-family: sans-serif;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-    }
-
-    .footer-col h4 {
-      font-family: 'Impact', sans-serif;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
+    footer { background: #050505; border-top: 1px solid var(--border); padding: 3rem 2rem 2rem; font-family: sans-serif; }
+    .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .footer-col h4 { font-family: 'Impact', sans-serif; font-size: 1.2rem; margin-bottom: 1rem; }
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 0.5rem; }
     .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
 
-    .cart-drawer {
-      position: fixed;
-      top: 0;
-      right: -400px;
-      width: 380px;
-      height: 100%;
-      background: #111;
-      border-left: 1px solid var(--border);
-      z-index: 200;
-      transition: right 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-      font-family: sans-serif;
-    }
-
+    .cart-drawer { position: fixed; top: 0; right: -400px; width: 380px; height: 100%; background: #111; border-left: 1px solid var(--border); z-index: 200; transition: right 0.3s ease; display: flex; flex-direction: column; padding: 1.5rem; font-family: sans-serif; }
     .cart-drawer.open { right: 0; }
     .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
     .close-btn { background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
@@ -349,7 +104,7 @@
     <a href="#" style="font-size:1.8rem; color:#fff; text-decoration:none;">THUG SZN</a>
     <div class="nav-links">
       <a href="#shop">Shop All</a>
-      <a href="#about">About</a>
+      <a href="javascript:void(0)" onclick="openSizeChart()">Size Guide</a>
       <a href="#reviews">Reviews</a>
     </div>
     <button class="cart-btn" onclick="toggleCart()">CART (<span id="cart-count">0</span>)</button>
@@ -379,11 +134,12 @@
   <h2 class="section-title" id="shop">THE COLLECTION</h2>
 
   <div class="grid">
+    <!-- Item 1 -->
     <div class="card">
       <span class="badge">NEW</span>
-      <div class="img-container"><img src="images/1.jpg" alt="Cyber Oversized Hoodie" /></div>
+      <div class="img-container" onclick="openProductModal('Cyber Oversized Hoodie', 120, 'images/1.jpg', '450 GSM custom heavyweight fleece hoodie with dropped shoulders and boxy fit silhouette.', 'sizes-1')"><img src="images/1.jpg" alt="Cyber Oversized Hoodie" /></div>
       <div class="details">
-        <h3>Cyber Oversized Hoodie</h3>
+        <h3 onclick="openProductModal('Cyber Oversized Hoodie', 120, 'images/1.jpg', '450 GSM custom heavyweight fleece hoodie with dropped shoulders and boxy fit silhouette.', 'sizes-1')">Cyber Oversized Hoodie</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Heavyweight Cotton | Black</p>
         <div class="size-selector" id="sizes-1">
           <button class="size-btn active" onclick="selectSize(this)">S</button>
@@ -398,11 +154,12 @@
       </div>
     </div>
 
+    <!-- Item 2 -->
     <div class="card">
       <span class="badge" style="background:#ff0055; color:#fff;">HOT</span>
-      <div class="img-container"><img src="images/2.jpg" alt="Acid Wash Graphic Tee" /></div>
+      <div class="img-container" onclick="openProductModal('Acid Wash Graphic Tee', 65, 'images/2.jpg', '280 GSM heavyweight cotton vintage wash graphic tee with reinforced collar.', 'sizes-2')"><img src="images/2.jpg" alt="Acid Wash Graphic Tee" /></div>
       <div class="details">
-        <h3>Acid Wash Graphic Tee</h3>
+        <h3 onclick="openProductModal('Acid Wash Graphic Tee', 65, 'images/2.jpg', '280 GSM heavyweight cotton vintage wash graphic tee with reinforced collar.', 'sizes-2')">Acid Wash Graphic Tee</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">100% Vintage Cut</p>
         <div class="size-selector" id="sizes-2">
           <button class="size-btn active" onclick="selectSize(this)">S</button>
@@ -416,11 +173,12 @@
       </div>
     </div>
 
+    <!-- Item 3 -->
     <div class="card">
       <span class="badge">EXCLUSIVE</span>
-      <div class="img-container"><img src="images/3.jpg" alt="Tactical Cargo Pants" /></div>
+      <div class="img-container" onclick="openProductModal('Tactical Cargo Pants', 140, 'images/3.jpg', 'Heavy duty ripstop tactical pants featuring multiple cargo pockets and custom ankle straps.', 'sizes-3')"><img src="images/3.jpg" alt="Tactical Cargo Pants" /></div>
       <div class="details">
-        <h3>Tactical Cargo Pants</h3>
+        <h3 onclick="openProductModal('Tactical Cargo Pants', 140, 'images/3.jpg', 'Heavy duty ripstop tactical pants featuring multiple cargo pockets and custom ankle straps.', 'sizes-3')">Tactical Cargo Pants</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Multi-pocket | Strapped</p>
         <div class="size-selector" id="sizes-3">
           <button class="size-btn active" onclick="selectSize(this)">30</button>
@@ -434,11 +192,12 @@
       </div>
     </div>
 
+    <!-- Item 4 -->
     <div class="card">
       <span class="badge">NEW</span>
-      <div class="img-container"><img src="images/4.jpg" alt="Heavyweight Sweatshirt" /></div>
+      <div class="img-container" onclick="openProductModal('Heavyweight Sweatshirt', 110, 'images/4.jpg', 'Minimalist street sweatshirt crafted with brushed fleece interior and ribbed trim.', 'sizes-4')"><img src="images/4.jpg" alt="Heavyweight Sweatshirt" /></div>
       <div class="details">
-        <h3>Heavyweight Sweatshirt</h3>
+        <h3 onclick="openProductModal('Heavyweight Sweatshirt', 110, 'images/4.jpg', 'Minimalist street sweatshirt crafted with brushed fleece interior and ribbed trim.', 'sizes-4')">Heavyweight Sweatshirt</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Fleece Interior | Dark Grey</p>
         <div class="size-selector" id="sizes-4">
           <button class="size-btn active" onclick="selectSize(this)">S</button>
@@ -452,11 +211,12 @@
       </div>
     </div>
 
+    <!-- Item 5 -->
     <div class="card">
       <span class="badge" style="background:#ff0055; color:#fff;">LIMITED</span>
-      <div class="img-container"><img src="images/5.jpg" alt="Utility Overshirt" /></div>
+      <div class="img-container" onclick="openProductModal('Utility Overshirt', 95, 'images/5.jpg', 'Structured outer layer with dual magnetic chest pockets and boxy fit.', 'sizes-5')"><img src="images/5.jpg" alt="Utility Overshirt" /></div>
       <div class="details">
-        <h3>Utility Overshirt</h3>
+        <h3 onclick="openProductModal('Utility Overshirt', 95, 'images/5.jpg', 'Structured outer layer with dual magnetic chest pockets and boxy fit.', 'sizes-5')">Utility Overshirt</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Boxy Fit | Dual Chest Pockets</p>
         <div class="size-selector" id="sizes-5">
           <button class="size-btn active" onclick="selectSize(this)">M</button>
@@ -470,11 +230,12 @@
       </div>
     </div>
 
+    <!-- Item 6 -->
     <div class="card">
       <span class="badge">RESTOCK</span>
-      <div class="img-container"><img src="images/6.jpg" alt="Distressed Denim Jacket" /></div>
+      <div class="img-container" onclick="openProductModal('Distressed Denim Jacket', 160, 'images/6.jpg', 'Custom stone washed denim with hand-distressed detailing and custom hardware.', 'sizes-6')"><img src="images/6.jpg" alt="Distressed Denim Jacket" /></div>
       <div class="details">
-        <h3>Distressed Denim Jacket</h3>
+        <h3 onclick="openProductModal('Distressed Denim Jacket', 160, 'images/6.jpg', 'Custom stone washed denim with hand-distressed detailing and custom hardware.', 'sizes-6')">Distressed Denim Jacket</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Custom Wash | Silver Hardware</p>
         <div class="size-selector" id="sizes-6">
           <button class="size-btn active" onclick="selectSize(this)">S</button>
@@ -488,11 +249,12 @@
       </div>
     </div>
 
+    <!-- Item 7 -->
     <div class="card">
       <span class="badge">EXCLUSIVE</span>
-      <div class="img-container"><img src="images/7.jpg" alt="Signature SZN Beanie" /></div>
+      <div class="img-container" onclick="openProductModal('Signature SZN Beanie', 40, 'images/7.jpg', 'Heavyweight double-layer ribbed knit beanie with silicone rubber logo patch.', 'sizes-7')"><img src="images/7.jpg" alt="Signature SZN Beanie" /></div>
       <div class="details">
-        <h3>Signature SZN Beanie</h3>
+        <h3 onclick="openProductModal('Signature SZN Beanie', 40, 'images/7.jpg', 'Heavyweight double-layer ribbed knit beanie with silicone rubber logo patch.', 'sizes-7')">Signature SZN Beanie</h3>
         <p style="color: var(--muted); font-size: 0.85rem;">Ribbed Knit | High Density Patch</p>
         <div class="size-selector" id="sizes-7">
           <button class="size-btn active" onclick="selectSize(this)">ONE SIZE</button>
@@ -502,6 +264,45 @@
           <button class="btn-add" onclick="addToCart('Signature SZN Beanie', 40, 'sizes-7')">ADD TO CART</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Product Modal Popup -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeProductModal()">&times;</button>
+      <div class="modal-img"><img id="modal-img-src" src="" alt="" /></div>
+      <div class="modal-info">
+        <h2 id="modal-title"></h2>
+        <span id="modal-price" style="font-size:1.5rem; color:var(--accent); font-weight:bold;"></span>
+        <p id="modal-desc"></p>
+        <button class="checkout-btn" id="modal-add-btn">ADD TO CART</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Size Chart Modal Popup -->
+  <div class="modal-overlay" id="size-chart-modal">
+    <div class="modal-content" style="padding: 2rem; max-width:600px;">
+      <button class="modal-close" onclick="closeSizeChart()">&times;</button>
+      <h2 style="font-family:'Impact'; font-size:2rem; margin-bottom:1rem; text-align:center;">OFFICIAL SIZE GUIDE</h2>
+      <p style="color:var(--muted); font-size:0.85rem; text-align:center;">All streetwear fits are designed boxy and oversized.</p>
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>SIZE</th>
+            <th>CHEST (IN)</th>
+            <th>LENGTH (IN)</th>
+            <th>SLEEVE (IN)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>S</td><td>44"</td><td>27"</td><td>24"</td></tr>
+          <tr><td>M</td><td>48"</td><td>28"</td><td>25"</td></tr>
+          <tr><td>L</td><td>52"</td><td>29"</td><td>26"</td></tr>
+          <tr><td>XL</td><td>56"</td><td>30"</td><td>27"</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -535,9 +336,8 @@
       <div class="footer-col">
         <h4>INFO</h4>
         <ul>
-          <li><a href="#">Shipping & Returns</a></li>
-          <li><a href="#">Size Guide</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="javascript:void(0)" onclick="openSizeChart()">Size Guide</a></li>
+          <li><a href="#reviews">Customer Reviews</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -563,40 +363,49 @@
         <span>TOTAL:</span>
         <span id="cart-total">$0</span>
       </div>
-      <button class="checkout-btn" onclick="alert('Proceeding to checkout...')">CHECKOUT</button>
+      <button class="checkout-btn" onclick="processCheckout()">PROCEED TO CHECKOUT</button>
     </div>
   </div>
 
   <script>
     let cart = [];
+
     function selectSize(btn) {
       btn.parentElement.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
+
     function toggleCart() {
       document.getElementById('cart-drawer').classList.toggle('open');
     }
+
     function addToCart(name, price, sizeContainerId) {
       const container = document.getElementById(sizeContainerId);
-      const activeSizeBtn = container.querySelector('.size-btn.active');
+      const activeSizeBtn = container ? container.querySelector('.size-btn.active') : null;
       const size = activeSizeBtn ? activeSizeBtn.innerText : 'M';
+
       const existingItem = cart.find(item => item.name === name && item.size === size);
       if (existingItem) { existingItem.qty += 1; } 
       else { cart.push({ name, price, size, qty: 1 }); }
+
       updateCartUI();
       document.getElementById('cart-drawer').classList.add('open');
     }
+
     function updateCartUI() {
       const cartCount = document.getElementById('cart-count');
       const cartItems = document.getElementById('cart-items');
       const cartTotal = document.getElementById('cart-total');
+
       const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
       cartCount.innerText = totalItems;
+
       if (cart.length === 0) {
         cartItems.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Your cart is empty.</p>';
         cartTotal.innerText = '$0';
         return;
       }
+
       let itemsHTML = '';
       let total = 0;
       cart.forEach((item) => {
@@ -610,8 +419,59 @@
             <div>$${item.price * item.qty}</div>
           </div>`;
       });
+
       cartItems.innerHTML = itemsHTML;
       cartTotal.innerText = `$${total}`;
+    }
+
+    // Modal handlers
+    function openProductModal(name, price, imgSrc, desc, sizeContainerId) {
+      document.getElementById('modal-title').innerText = name;
+      document.getElementById('modal-price').innerText = `$${price}`;
+      document.getElementById('modal-img-src').src = imgSrc;
+      document.getElementById('modal-desc').innerText = desc;
+      
+      const addBtn = document.getElementById('modal-add-btn');
+      addBtn.onclick = function() {
+        addToCart(name, price, sizeContainerId);
+        closeProductModal();
+      };
+
+      document.getElementById('product-modal').classList.add('open');
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.remove('open');
+    }
+
+    function openSizeChart() {
+      document.getElementById('size-chart-modal').classList.add('open');
+    }
+
+    function closeSizeChart() {
+      document.getElementById('size-chart-modal').classList.remove('open');
+    }
+
+    // Direct WhatsApp / DM Order Handler
+    function processCheckout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty! Add items before checking out.");
+        return;
+      }
+
+      let orderSummary = "Hello THUG SZN! I want to order:\n";
+      let total = 0;
+      cart.forEach(item => {
+        orderSummary += `- ${item.name} (Size: ${item.size}) x${item.qty} - $${item.price * item.qty}\n`;
+        total += item.price * item.qty;
+      });
+      orderSummary += `Total: $${total}`;
+
+      // Open WhatsApp or direct order message prompt
+      const whatsappPhone = "1234567890"; // Optional: Add your WhatsApp phone number here
+      const encodedMessage = encodeURIComponent(orderSummary);
+      
+      window.open(`https://wa.me/${whatsappPhone}?text=${encodedMessage}`, '_blank');
     }
   </script>
 </body>
