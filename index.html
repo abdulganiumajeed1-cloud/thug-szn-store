@@ -11,7 +11,6 @@
     content="THUG SZN — Built Different. Worldwide streetwear. Limited drops, bold designs and no feelings. Only focus."
   >
 
-  <!-- THUG SZN browser favicon -->
   <link
     rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23080808'/%3E%3Ctext x='50' y='64' text-anchor='middle' font-family='Arial,sans-serif' font-size='38' font-weight='900' fill='%23b7ff00'%3ETS%3C/text%3E%3C/svg%3E"
@@ -26,6 +25,8 @@
       --muted: #999999;
       --green: #b7ff00;
       --border: #292929;
+      --soft-border: rgba(255,255,255,0.08);
+      --glow: rgba(183,255,0,0.18);
     }
 
     * {
@@ -40,7 +41,9 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--black);
+      background:
+        radial-gradient(circle at 50% -10%, rgba(183,255,0,0.055), transparent 30%),
+        var(--black);
       color: var(--white);
       line-height: 1.5;
       overflow-x: hidden;
@@ -76,13 +79,43 @@
     ========================== */
 
     .announcement {
+      position: relative;
+      overflow: hidden;
       background: var(--green);
       color: #000;
       text-align: center;
-      padding: 9px 15px;
-      font-size: 12px;
+      padding: 10px 15px;
+      font-size: 11px;
       font-weight: 900;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
+    }
+
+    .announcement::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.45),
+        transparent
+      );
+      transform: skewX(-20deg);
+      animation: announcementShine 5s infinite;
+    }
+
+    @keyframes announcementShine {
+      0% {
+        left: -120%;
+      }
+
+      35%,
+      100% {
+        left: 150%;
+      }
     }
 
     /* =========================
@@ -93,9 +126,11 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(8, 8, 8, 0.9);
-      backdrop-filter: blur(15px);
+      background: rgba(8, 8, 8, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     }
 
     .nav {
@@ -108,6 +143,7 @@
     }
 
     .logo {
+      position: relative;
       font-size: 25px;
       font-weight: 1000;
       letter-spacing: -1px;
@@ -124,29 +160,49 @@
     }
 
     .nav-links a {
-      font-size: 14px;
-      font-weight: 800;
+      position: relative;
+      font-size: 12px;
+      font-weight: 900;
       text-transform: uppercase;
+      letter-spacing: 0.8px;
       transition: 0.2s;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 2px;
+      background: var(--green);
+      transition: width 0.25s ease;
     }
 
     .nav-links a:hover {
       color: var(--green);
     }
 
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
     .cart-button {
+      position: relative;
+      overflow: hidden;
       background: transparent;
       border: 1px solid var(--border);
       color: var(--white);
       padding: 9px 14px;
       border-radius: 5px;
-      font-weight: 800;
-      transition: 0.2s;
+      font-weight: 900;
+      transition: 0.25s;
     }
 
     .cart-button:hover {
       border-color: var(--green);
       color: var(--green);
+      box-shadow: 0 0 25px rgba(183,255,0,0.08);
     }
 
     #cart-count {
@@ -189,35 +245,95 @@
     ========================== */
 
     .hero {
-      min-height: 82vh;
+      position: relative;
+      min-height: 86vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 80px 20px;
+      padding: 100px 20px;
+      overflow: hidden;
       background:
-        radial-gradient(circle at center, rgba(183, 255, 0, 0.08), transparent 35%),
+        radial-gradient(
+          circle at center,
+          rgba(183,255,0,0.11),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 20% 80%,
+          rgba(183,255,0,0.035),
+          transparent 25%
+        ),
         var(--black);
     }
 
+    .hero::before {
+      content: "THUG SZN";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      text-align: center;
+      font-size: clamp(90px, 18vw, 260px);
+      font-weight: 1000;
+      letter-spacing: -12px;
+      color: rgba(255,255,255,0.018);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border: 1px solid rgba(183,255,0,0.08);
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow:
+        0 0 100px rgba(183,255,0,0.04),
+        inset 0 0 100px rgba(183,255,0,0.025);
+      pointer-events: none;
+    }
+
     .hero-content {
-      max-width: 900px;
+      position: relative;
+      z-index: 2;
+      max-width: 950px;
+      animation: heroEnter 0.8s ease both;
+    }
+
+    @keyframes heroEnter {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero-kicker {
       color: var(--green);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 900;
-      letter-spacing: 4px;
-      margin-bottom: 20px;
+      letter-spacing: 5px;
+      margin-bottom: 22px;
     }
 
     .hero h1 {
       font-size: clamp(60px, 12vw, 150px);
-      line-height: 0.85;
+      line-height: 0.82;
       font-weight: 1000;
-      letter-spacing: -7px;
-      margin-bottom: 28px;
+      letter-spacing: -8px;
+      margin-bottom: 32px;
+      text-shadow: 0 0 45px rgba(183,255,0,0.04);
     }
 
     .hero p {
@@ -228,7 +344,7 @@
     }
 
     .hero-buttons {
-      margin-top: 35px;
+      margin-top: 38px;
       display: flex;
       justify-content: center;
       gap: 12px;
@@ -236,6 +352,8 @@
     }
 
     .btn {
+      position: relative;
+      overflow: hidden;
       display: inline-block;
       padding: 14px 24px;
       border-radius: 5px;
@@ -244,13 +362,30 @@
       color: #000;
       font-weight: 900;
       text-transform: uppercase;
-      font-size: 13px;
-      transition: 0.2s;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      transition: 0.25s;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: rgba(255,255,255,0.25);
+      transform: skewX(-20deg);
+      transition: 0.5s;
+    }
+
+    .btn:hover::after {
+      left: 130%;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      opacity: 0.9;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(183,255,0,0.14);
     }
 
     .btn-outline {
@@ -262,6 +397,7 @@
     .btn-outline:hover {
       border-color: var(--green);
       color: var(--green);
+      background: rgba(183,255,0,0.025);
     }
 
     /* =========================
@@ -273,10 +409,11 @@
       border-bottom: 1px solid var(--border);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      background: rgba(255,255,255,0.012);
     }
 
     .trust-item {
-      padding: 25px 15px;
+      padding: 27px 15px;
       text-align: center;
       border-right: 1px solid var(--border);
     }
@@ -288,14 +425,14 @@
     .trust-item strong {
       display: block;
       color: var(--green);
-      font-size: 12px;
-      letter-spacing: 1px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
       margin-bottom: 5px;
     }
 
     .trust-item span {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
     }
 
     /* =========================
@@ -303,20 +440,21 @@
     ========================== */
 
     section {
+      position: relative;
       max-width: 1250px;
       margin: auto;
-      padding: 90px 25px;
+      padding: 100px 25px;
     }
 
     .section-heading {
-      margin-bottom: 35px;
+      margin-bottom: 40px;
     }
 
     .section-heading span {
       color: var(--green);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
     }
 
@@ -330,7 +468,7 @@
     .section-heading p {
       color: var(--muted);
       max-width: 650px;
-      margin-top: 15px;
+      margin-top: 17px;
     }
 
     /* =========================
@@ -352,15 +490,17 @@
     .search-box input {
       width: 100%;
       padding: 14px;
-      background: var(--dark);
+      background: rgba(17,17,17,0.85);
       border: 1px solid var(--border);
       color: var(--white);
       border-radius: 5px;
       outline: none;
+      transition: 0.2s;
     }
 
     .search-box input:focus {
       border-color: var(--green);
+      box-shadow: 0 0 25px rgba(183,255,0,0.05);
     }
 
     .filter-buttons {
@@ -375,9 +515,10 @@
       border: 1px solid var(--border);
       color: var(--white);
       border-radius: 5px;
-      font-size: 12px;
-      font-weight: 800;
+      font-size: 11px;
+      font-weight: 900;
       text-transform: uppercase;
+      transition: 0.2s;
     }
 
     .filter-button.active,
@@ -394,15 +535,28 @@
     }
 
     .product-card {
-      background: var(--card);
+      position: relative;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.025),
+          rgba(255,255,255,0.005)
+        ),
+        var(--card);
       border: 1px solid var(--border);
       overflow: hidden;
-      transition: 0.25s;
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .product-card:hover {
-      transform: translateY(-5px);
-      border-color: #444;
+      transform: translateY(-7px);
+      border-color: rgba(183,255,0,0.35);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.35),
+        0 0 35px rgba(183,255,0,0.035);
     }
 
     .product-image {
@@ -412,31 +566,44 @@
       background: #111;
     }
 
+    .product-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.2),
+        transparent 35%
+      );
+      pointer-events: none;
+    }
+
     .product-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s;
+      transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
     }
 
     .product-card:hover .product-image img {
-      transform: scale(1.05);
+      transform: scale(1.07);
     }
 
     .product-badge {
       position: absolute;
+      z-index: 2;
       top: 12px;
       left: 12px;
       background: var(--green);
       color: #000;
       padding: 6px 8px;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
+      font-size: 9px;
+      font-weight: 1000;
+      letter-spacing: 0.8px;
     }
 
     .product-info {
-      padding: 20px;
+      padding: 21px;
     }
 
     .product-info h3 {
@@ -447,7 +614,8 @@
     .product-info p {
       color: var(--muted);
       font-size: 13px;
-      margin-bottom: 15px;
+      margin-bottom: 17px;
+      min-height: 39px;
     }
 
     .product-bottom {
@@ -464,7 +632,7 @@
 
     .product-price.soon {
       color: var(--green);
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
     }
 
@@ -474,8 +642,9 @@
       color: var(--white);
       border: 1px solid var(--border);
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 900;
+      transition: 0.2s;
     }
 
     .view-product:hover {
@@ -497,13 +666,15 @@
       color: #000;
       border: 1px solid var(--green);
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 900;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     .quick-add:hover {
       filter: brightness(0.9);
+      transform: translateY(-1px);
     }
 
     .quick-add:disabled {
@@ -520,7 +691,7 @@
     }
 
     /* =========================
-       ABOUT
+       STORY / ABOUT
     ========================== */
 
     .about-section {
@@ -530,7 +701,22 @@
       align-items: center;
     }
 
+    .about-section::before {
+      content: "MINDSET";
+      position: absolute;
+      right: -80px;
+      bottom: 0;
+      font-size: clamp(90px, 17vw, 210px);
+      font-weight: 1000;
+      letter-spacing: -12px;
+      color: rgba(255,255,255,0.018);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
     .about-title {
+      position: relative;
+      z-index: 1;
       font-size: clamp(50px, 8vw, 95px);
       font-weight: 1000;
       line-height: 0.85;
@@ -541,9 +727,120 @@
       color: var(--green);
     }
 
+    .about-text {
+      position: relative;
+      z-index: 1;
+    }
+
     .about-text p {
       color: var(--muted);
       margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    /* =========================
+       OFFICIAL BRAND STORY
+    ========================== */
+
+    .story-section {
+      max-width: 1250px;
+    }
+
+    .story-card {
+      position: relative;
+      overflow: hidden;
+      padding: 70px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(183,255,0,0.08),
+          transparent 30%
+        ),
+        linear-gradient(
+          145deg,
+          #141414,
+          #0c0c0c
+        );
+    }
+
+    .story-card::before {
+      content: "THUG";
+      position: absolute;
+      right: -25px;
+      top: -55px;
+      font-size: 180px;
+      line-height: 1;
+      font-weight: 1000;
+      letter-spacing: -12px;
+      color: rgba(255,255,255,0.018);
+      pointer-events: none;
+    }
+
+    .story-label {
+      position: relative;
+      z-index: 1;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .story-title {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      font-size: clamp(40px, 7vw, 82px);
+      line-height: 0.92;
+      letter-spacing: -4px;
+      margin-bottom: 35px;
+    }
+
+    .story-title span {
+      color: var(--green);
+    }
+
+    .story-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+    }
+
+    .story-copy p {
+      color: #b1b1b1;
+      font-size: 16px;
+      margin-bottom: 18px;
+    }
+
+    .story-highlight {
+      display: inline-block;
+      color: var(--white);
+      font-weight: 900;
+      font-size: 15px;
+      border-left: 3px solid var(--green);
+      padding-left: 14px;
+      margin-top: 5px;
+    }
+
+    .story-tags {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 30px;
+    }
+
+    .story-tag {
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      color: #aaa;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
     }
 
     /* =========================
@@ -557,22 +854,59 @@
     }
 
     .business-card {
+      position: relative;
+      overflow: hidden;
       padding: 30px;
       border: 1px solid var(--border);
-      background: var(--dark);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.02),
+          transparent
+        ),
+        var(--dark);
+      transition: 0.3s;
+    }
+
+    .business-card::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      right: -50px;
+      bottom: -50px;
+      border-radius: 50%;
+      background: rgba(183,255,0,0.06);
+      transition: 0.3s;
+    }
+
+    .business-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(183,255,0,0.25);
+    }
+
+    .business-card:hover::after {
+      transform: scale(1.5);
     }
 
     .business-number {
+      position: relative;
+      z-index: 1;
       color: var(--green);
       font-weight: 900;
-      font-size: 12px;
+      font-size: 11px;
+      letter-spacing: 1px;
     }
 
     .business-card h3 {
+      position: relative;
+      z-index: 1;
       margin: 15px 0 10px;
     }
 
     .business-card p {
+      position: relative;
+      z-index: 1;
       color: var(--muted);
       font-size: 14px;
     }
@@ -591,6 +925,12 @@
       border: 1px solid var(--border);
       padding: 25px;
       background: var(--dark);
+      transition: 0.25s;
+    }
+
+    .policy-card:hover {
+      border-color: rgba(183,255,0,0.25);
+      transform: translateY(-3px);
     }
 
     .policy-card h3 {
@@ -612,6 +952,11 @@
 
     .faq-item {
       border-bottom: 1px solid var(--border);
+      transition: 0.2s;
+    }
+
+    .faq-item.open {
+      background: rgba(183,255,0,0.015);
     }
 
     .faq-question {
@@ -630,6 +975,7 @@
     .faq-question span {
       color: var(--green);
       font-size: 20px;
+      transition: transform 0.2s;
     }
 
     .faq-answer {
@@ -650,7 +996,8 @@
 
     footer {
       border-top: 1px solid var(--border);
-      padding: 50px 25px;
+      padding: 60px 25px 30px;
+      background: #050505;
     }
 
     .footer-inner {
@@ -681,6 +1028,7 @@
     .footer-links a {
       color: var(--muted);
       font-size: 13px;
+      transition: 0.2s;
     }
 
     .footer-links a:hover {
@@ -705,9 +1053,11 @@
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.82);
       padding: 20px;
       overflow-y: auto;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .modal-overlay.open {
@@ -723,6 +1073,9 @@
       background: var(--dark);
       border: 1px solid var(--border);
       position: relative;
+      box-shadow:
+        0 30px 100px rgba(0,0,0,0.55),
+        0 0 50px rgba(183,255,0,0.025);
     }
 
     .modal-close {
@@ -737,6 +1090,12 @@
       height: 35px;
       border-radius: 50%;
       font-size: 20px;
+      transition: 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--green);
+      border-color: var(--green);
     }
 
     .product-modal-content {
@@ -783,9 +1142,10 @@
     .form-group label {
       display: block;
       margin-bottom: 7px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .form-control {
@@ -796,10 +1156,12 @@
       border: 1px solid var(--border);
       border-radius: 4px;
       outline: none;
+      transition: 0.2s;
     }
 
     .form-control:focus {
       border-color: var(--green);
+      box-shadow: 0 0 20px rgba(183,255,0,0.04);
     }
 
     textarea.form-control {
@@ -831,6 +1193,7 @@
       inset: 0;
       z-index: 2500;
       background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(3px);
     }
 
     .cart-overlay.open {
@@ -843,13 +1206,19 @@
       top: 0;
       bottom: 0;
       width: min(450px, 100%);
-      background: var(--dark);
+      background:
+        linear-gradient(
+          145deg,
+          #151515,
+          #0e0e0e
+        );
       border-left: 1px solid var(--border);
       z-index: 2600;
       transform: translateX(100%);
-      transition: transform 0.3s;
+      transition: transform 0.3s cubic-bezier(.2,.8,.2,1);
       display: flex;
       flex-direction: column;
+      box-shadow: -25px 0 70px rgba(0,0,0,0.35);
     }
 
     .cart-drawer.open {
@@ -873,6 +1242,11 @@
       color: var(--white);
       border: 0;
       font-size: 25px;
+      transition: 0.2s;
+    }
+
+    .cart-close:hover {
+      color: var(--green);
     }
 
     .cart-items {
@@ -932,10 +1306,16 @@
       background: #0a0a0a;
       color: var(--white);
       border: 1px solid var(--border);
+      transition: 0.2s;
+    }
+
+    .cart-controls button:hover {
+      border-color: var(--green);
+      color: var(--green);
     }
 
     .remove-item {
-      color: #ff5b5b;
+      color: #ff5b5b !important;
       background: none !important;
       border: 0 !important;
       width: auto !important;
@@ -969,9 +1349,20 @@
       color: #000;
       padding: 13px 17px;
       border-radius: 30px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 1000;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      letter-spacing: 0.5px;
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(183,255,0,0.08);
+      transition: 0.25s;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 14px 35px rgba(0,0,0,0.5),
+        0 0 35px rgba(183,255,0,0.15);
     }
 
     /* =========================
@@ -979,6 +1370,7 @@
     ========================== */
 
     @media (max-width: 900px) {
+
       .products-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1003,9 +1395,15 @@
       .trust-item:nth-child(-n + 2) {
         border-bottom: 1px solid var(--border);
       }
+
+      .story-card {
+        padding: 50px 35px;
+      }
+
     }
 
     @media (max-width: 700px) {
+
       .nav-links {
         display: none;
       }
@@ -1019,15 +1417,21 @@
       }
 
       section {
-        padding: 65px 18px;
+        padding: 70px 18px;
       }
 
       .hero {
-        min-height: 75vh;
+        min-height: 76vh;
+        padding: 80px 18px;
       }
 
       .hero h1 {
         letter-spacing: -4px;
+      }
+
+      .hero::after {
+        width: 300px;
+        height: 300px;
       }
 
       .products-grid {
@@ -1062,13 +1466,28 @@
         padding: 30px 20px;
       }
 
+      .story-card {
+        padding: 40px 25px;
+      }
+
+      .story-card::before {
+        font-size: 100px;
+        top: -20px;
+      }
+
+      .story-title {
+        letter-spacing: -2px;
+      }
+
       .whatsapp-float {
         right: 12px;
         bottom: 12px;
       }
+
     }
 
     @media (max-width: 450px) {
+
       .trust-strip {
         grid-template-columns: 1fr;
       }
@@ -1088,8 +1507,41 @@
 
       .btn {
         width: 100%;
+        text-align: center;
       }
+
+      .product-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .product-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
     }
+
+    /* =========================
+       REDUCED MOTION
+    ========================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+    }
+
   </style>
 </head>
 
@@ -1108,6 +1560,7 @@
   ========================== -->
 
   <header>
+
     <div class="nav">
 
       <a href="#home" class="logo">
@@ -1115,13 +1568,30 @@
       </a>
 
       <nav class="nav-links">
-        <a href="#collection">Collection</a>
-        <a href="#about">About</a>
-        <a href="#faq">FAQ</a>
 
-        <button class="cart-button" onclick="openCart()">
+        <a href="#collection">
+          Collection
+        </a>
+
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#story">
+          Story
+        </a>
+
+        <a href="#faq">
+          FAQ
+        </a>
+
+        <button
+          class="cart-button"
+          onclick="openCart()"
+        >
           CART (<span id="cart-count">0</span>)
         </button>
+
       </nav>
 
       <button
@@ -1134,15 +1604,47 @@
 
     </div>
 
-    <div class="mobile-nav" id="mobile-nav">
-      <a href="#collection" onclick="closeMenu()">Collection</a>
-      <a href="#about" onclick="closeMenu()">About</a>
-      <a href="#faq" onclick="closeMenu()">FAQ</a>
+    <div
+      class="mobile-nav"
+      id="mobile-nav"
+    >
 
-      <button onclick="openCart(); closeMenu();">
+      <a
+        href="#collection"
+        onclick="closeMenu()"
+      >
+        Collection
+      </a>
+
+      <a
+        href="#about"
+        onclick="closeMenu()"
+      >
+        About
+      </a>
+
+      <a
+        href="#story"
+        onclick="closeMenu()"
+      >
+        Story
+      </a>
+
+      <a
+        href="#faq"
+        onclick="closeMenu()"
+      >
+        FAQ
+      </a>
+
+      <button
+        onclick="openCart(); closeMenu();"
+      >
         Cart (<span id="mobile-cart-count">0</span>)
       </button>
+
     </div>
+
   </header>
 
   <!-- =========================
@@ -1151,7 +1653,10 @@
 
   <main>
 
-    <section class="hero" id="home">
+    <section
+      class="hero"
+      id="home"
+    >
 
       <div class="hero-content">
 
@@ -1159,7 +1664,10 @@
           THUG SZN COLLECTION
         </div>
 
-        <h1>BUILT<br>DIFFERENT.</h1>
+        <h1>
+          BUILT<br>
+          DIFFERENT.
+        </h1>
 
         <p>
           No feelings. Only focus.
@@ -1168,13 +1676,21 @@
         </p>
 
         <div class="hero-buttons">
-          <a href="#collection" class="btn">
+
+          <a
+            href="#collection"
+            class="btn"
+          >
             Shop Collection
           </a>
 
-          <a href="#about" class="btn btn-outline">
+          <a
+            href="#story"
+            class="btn btn-outline"
+          >
             Our Story
           </a>
+
         </div>
 
       </div>
@@ -1188,23 +1704,51 @@
     <div class="trust-strip">
 
       <div class="trust-item">
-        <strong>WORLDWIDE</strong>
-        <span>Shipping available</span>
+
+        <strong>
+          WORLDWIDE
+        </strong>
+
+        <span>
+          Shipping available
+        </span>
+
       </div>
 
       <div class="trust-item">
-        <strong>LIMITED DROPS</strong>
-        <span>Built for the bold</span>
+
+        <strong>
+          LIMITED DROPS
+        </strong>
+
+        <span>
+          Built for the bold
+        </span>
+
       </div>
 
       <div class="trust-item">
-        <strong>WHATSAPP ORDERS</strong>
-        <span>Direct customer support</span>
+
+        <strong>
+          WHATSAPP ORDERS
+        </strong>
+
+        <span>
+          Direct customer support
+        </span>
+
       </div>
 
       <div class="trust-item">
-        <strong>BUILT DIFFERENT</strong>
-        <span>No ordinary pieces</span>
+
+        <strong>
+          BUILT DIFFERENT
+        </strong>
+
+        <span>
+          No ordinary pieces
+        </span>
+
       </div>
 
     </div>
@@ -1216,23 +1760,33 @@
     <section id="collection">
 
       <div class="section-heading">
-        <span>Shop</span>
-        <h2>THE COLLECTION</h2>
+
+        <span>
+          Shop
+        </span>
+
+        <h2>
+          THE COLLECTION
+        </h2>
+
         <p>
           Explore the current THUG SZN collection.
           Every piece is designed to stand out.
         </p>
+
       </div>
 
       <div class="collection-tools">
 
         <div class="search-box">
+
           <input
             type="text"
             id="search-input"
             placeholder="Search products..."
             oninput="renderProducts()"
           >
+
         </div>
 
         <div class="filter-buttons">
@@ -1281,9 +1835,15 @@
 
       </div>
 
-      <div class="products-grid" id="products-grid"></div>
+      <div
+        class="products-grid"
+        id="products-grid"
+      ></div>
 
-      <div class="no-results" id="no-results">
+      <div
+        class="no-results"
+        id="no-results"
+      >
         No products found.
       </div>
 
@@ -1298,15 +1858,28 @@
       <div class="about-section">
 
         <div>
+
           <div class="section-heading">
-            <span>Our mindset</span>
+
+            <span>
+              Our mindset
+            </span>
+
           </div>
 
           <div class="about-title">
+
             NO<br>
+
             FEELINGS.<br>
-            <span>ONLY<br>FOCUS.</span>
+
+            <span>
+              ONLY<br>
+              FOCUS.
+            </span>
+
           </div>
+
         </div>
 
         <div class="about-text">
@@ -1328,9 +1901,105 @@
             THUG SZN is built for the world.
           </p>
 
-          <a href="#collection" class="btn">
+          <a
+            href="#collection"
+            class="btn"
+          >
             Explore the Drop
           </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         OFFICIAL BRAND STORY
+    ========================== -->
+
+    <section
+      id="story"
+      class="story-section"
+    >
+
+      <div class="section-heading">
+
+        <span>
+          The THUG SZN Story
+        </span>
+
+        <h2>
+          BUILT FROM<br>
+          PRESSURE.
+        </h2>
+
+        <p>
+          The meaning behind the name.
+        </p>
+
+      </div>
+
+      <div class="story-card">
+
+        <div class="story-label">
+          THIS IS THUG SZN
+        </div>
+
+        <h3 class="story-title">
+          MORE THAN<br>
+          <span>CLOTHING.</span>
+        </h3>
+
+        <div class="story-copy">
+
+          <p>
+            THUG SZN isn't about crime.
+          </p>
+
+          <p>
+            It's about surviving the pressure,
+            fighting through setbacks, and becoming
+            stronger because of it.
+          </p>
+
+          <p>
+            Built for the dreamers, the hustlers,
+            the believers, and everyone creating
+            their own path.
+          </p>
+
+          <p>
+            This is more than clothing.
+          </p>
+
+          <p>
+            This is a mindset.
+          </p>
+
+          <div class="story-highlight">
+            BUILT FROM PRESSURE. BUILT DIFFERENT.
+          </div>
+
+        </div>
+
+        <div class="story-tags">
+
+          <span class="story-tag">
+            Built From Pressure
+          </span>
+
+          <span class="story-tag">
+            Streetwear Culture
+          </span>
+
+          <span class="story-tag">
+            Trust The Process
+          </span>
+
+          <span class="story-tag">
+            Create Your Path
+          </span>
 
         </div>
 
@@ -1345,41 +2014,73 @@
     <section>
 
       <div class="section-heading">
-        <span>Shopping with THUG SZN</span>
-        <h2>MADE SIMPLE.</h2>
+
+        <span>
+          Shopping with THUG SZN
+        </span>
+
+        <h2>
+          MADE SIMPLE.
+        </h2>
+
         <p>
           We're building a simple and direct shopping experience
           for customers worldwide.
         </p>
+
       </div>
 
       <div class="business-grid">
 
         <div class="business-card">
-          <div class="business-number">01</div>
-          <h3>Worldwide Shipping</h3>
+
+          <div class="business-number">
+            01
+          </div>
+
+          <h3>
+            Worldwide Shipping
+          </h3>
+
           <p>
             THUG SZN accepts orders from customers around the world.
             Shipping details are confirmed before your order is finalized.
           </p>
+
         </div>
 
         <div class="business-card">
-          <div class="business-number">02</div>
-          <h3>Flexible Payments</h3>
+
+          <div class="business-number">
+            02
+          </div>
+
+          <h3>
+            Flexible Payments
+          </h3>
+
           <p>
             Card and other payment options are being prepared.
             Secure card and other available payment methods are handled through Paystack.
           </p>
+
         </div>
 
         <div class="business-card">
-          <div class="business-number">03</div>
-          <h3>Direct Support</h3>
+
+          <div class="business-number">
+            03
+          </div>
+
+          <h3>
+            Direct Support
+          </h3>
+
           <p>
             Have a question about sizing, products or your order?
             Contact THUG SZN directly through WhatsApp.
           </p>
+
         </div>
 
       </div>
@@ -1393,35 +2094,66 @@
     <section>
 
       <div class="section-heading">
-        <span>How it works</span>
-        <h2>ORDER PROCESS.</h2>
+
+        <span>
+          How it works
+        </span>
+
+        <h2>
+          ORDER PROCESS.
+        </h2>
+
       </div>
 
       <div class="business-grid">
 
         <div class="business-card">
-          <div class="business-number">01</div>
-          <h3>Choose Your Piece</h3>
+
+          <div class="business-number">
+            01
+          </div>
+
+          <h3>
+            Choose Your Piece
+          </h3>
+
           <p>
             Browse the collection and select your product and size.
           </p>
+
         </div>
 
         <div class="business-card">
-          <div class="business-number">02</div>
-          <h3>Add To Cart</h3>
+
+          <div class="business-number">
+            02
+          </div>
+
+          <h3>
+            Add To Cart
+          </h3>
+
           <p>
             Add your products to the cart and review your order.
           </p>
+
         </div>
 
         <div class="business-card">
-          <div class="business-number">03</div>
-          <h3>Confirm Your Order</h3>
+
+          <div class="business-number">
+            03
+          </div>
+
+          <h3>
+            Confirm Your Order
+          </h3>
+
           <p>
             Enter your details, pay securely through Paystack, and your paid order
             will be confirmed.
           </p>
+
         </div>
 
       </div>
@@ -1435,45 +2167,72 @@
     <section>
 
       <div class="section-heading">
-        <span>Customer information</span>
-        <h2>OUR POLICIES.</h2>
+
+        <span>
+          Customer information
+        </span>
+
+        <h2>
+          OUR POLICIES.
+        </h2>
+
       </div>
 
       <div class="policy-grid">
 
         <div class="policy-card">
-          <h3>Shipping</h3>
+
+          <h3>
+            Shipping
+          </h3>
+
           <p>
             We offer worldwide shipping.
             Delivery timing and shipping costs depend on the destination
             and will be confirmed before the order is finalized.
           </p>
+
         </div>
 
         <div class="policy-card">
-          <h3>Returns & Exchanges</h3>
+
+          <h3>
+            Returns & Exchanges
+          </h3>
+
           <p>
             Returns and exchanges are accepted for eligible items.
             Contact THUG SZN before returning an item so the process
             can be confirmed.
           </p>
+
         </div>
 
         <div class="policy-card">
-          <h3>Payments</h3>
+
+          <h3>
+            Payments
+          </h3>
+
           <p>
             USD prices are displayed throughout the store.
             Secure payments are processed through Paystack.
             USD prices are converted to Ghana cedis for checkout.
           </p>
+
         </div>
 
         <div class="policy-card">
-          <h3>Order Confirmation</h3>
+
+          <h3>
+            Order Confirmation
+          </h3>
+
           <p>
             After successful payment, your order details can be sent
             directly to THUG SZN through WhatsApp for confirmation.
           </p>
+
         </div>
 
       </div>
@@ -1487,8 +2246,15 @@
     <section id="faq">
 
       <div class="section-heading">
-        <span>Questions</span>
-        <h2>FAQ.</h2>
+
+        <span>
+          Questions
+        </span>
+
+        <h2>
+          FAQ.
+        </h2>
+
       </div>
 
       <div class="faq-list">
@@ -1500,7 +2266,11 @@
             onclick="toggleFAQ(this)"
           >
             Do you ship worldwide?
-            <span>+</span>
+
+            <span>
+              +
+            </span>
+
           </button>
 
           <div class="faq-answer">
@@ -1517,7 +2287,11 @@
             onclick="toggleFAQ(this)"
           >
             What sizes are available?
-            <span>+</span>
+
+            <span>
+              +
+            </span>
+
           </button>
 
           <div class="faq-answer">
@@ -1534,7 +2308,11 @@
             onclick="toggleFAQ(this)"
           >
             How do I place an order?
-            <span>+</span>
+
+            <span>
+              +
+            </span>
+
           </button>
 
           <div class="faq-answer">
@@ -1552,7 +2330,11 @@
             onclick="toggleFAQ(this)"
           >
             Can I return my order?
-            <span>+</span>
+
+            <span>
+              +
+            </span>
+
           </button>
 
           <div class="faq-answer">
@@ -1570,7 +2352,11 @@
             onclick="toggleFAQ(this)"
           >
             Do you accept card payments?
-            <span>+</span>
+
+            <span>
+              +
+            </span>
+
           </button>
 
           <div class="faq-answer">
@@ -1597,7 +2383,10 @@
       <div class="footer-brand">
 
         <h2>
-          THUG <span style="color:#b7ff00;">SZN</span>
+          THUG
+          <span style="color:#b7ff00;">
+            SZN
+          </span>
         </h2>
 
         <p>
@@ -1607,12 +2396,30 @@
       </div>
 
       <div class="footer-links">
-        <a href="#collection">Collection</a>
-        <a href="#about">About</a>
-        <a href="#faq">FAQ</a>
-        <a href="#" onclick="openWhatsApp(); return false;">
+
+        <a href="#collection">
+          Collection
+        </a>
+
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#story">
+          Story
+        </a>
+
+        <a href="#faq">
+          FAQ
+        </a>
+
+        <a
+          href="#"
+          onclick="openWhatsApp(); return false;"
+        >
           WhatsApp
         </a>
+
       </div>
 
     </div>
@@ -1645,11 +2452,13 @@
       <div class="product-modal-content">
 
         <div class="modal-product-image">
+
           <img
             id="modal-product-image"
             src=""
             alt=""
           >
+
         </div>
 
         <div class="modal-product-info">
@@ -1676,12 +2485,31 @@
               id="product-size"
               class="form-control"
             >
-              <option value="">Select size</option>
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-              <option value="XXL">XXL</option>
+
+              <option value="">
+                Select size
+              </option>
+
+              <option value="S">
+                S
+              </option>
+
+              <option value="M">
+                M
+              </option>
+
+              <option value="L">
+                L
+              </option>
+
+              <option value="XL">
+                XL
+              </option>
+
+              <option value="XXL">
+                XXL
+              </option>
+
             </select>
 
           </div>
@@ -1732,7 +2560,9 @@
 
       <div class="modal-full">
 
-        <h2>SIZE GUIDE</h2>
+        <h2>
+          SIZE GUIDE
+        </h2>
 
         <p>
           Choose your normal size. If you prefer an oversized fit,
@@ -1740,23 +2570,38 @@
         </p>
 
         <p>
-          <strong style="color:#b7ff00;">S</strong> — Small
+          <strong style="color:#b7ff00;">
+            S
+          </strong>
+          — Small
         </p>
 
         <p>
-          <strong style="color:#b7ff00;">M</strong> — Medium
+          <strong style="color:#b7ff00;">
+            M
+          </strong>
+          — Medium
         </p>
 
         <p>
-          <strong style="color:#b7ff00;">L</strong> — Large
+          <strong style="color:#b7ff00;">
+            L
+          </strong>
+          — Large
         </p>
 
         <p>
-          <strong style="color:#b7ff00;">XL</strong> — Extra Large
+          <strong style="color:#b7ff00;">
+            XL
+          </strong>
+          — Extra Large
         </p>
 
         <p>
-          <strong style="color:#b7ff00;">XXL</strong> — Double Extra Large
+          <strong style="color:#b7ff00;">
+            XXL
+          </strong>
+          — Double Extra Large
         </p>
 
       </div>
@@ -1779,11 +2624,16 @@
        CART DRAWER
   ========================== -->
 
-  <aside class="cart-drawer" id="cart-drawer">
+  <aside
+    class="cart-drawer"
+    id="cart-drawer"
+  >
 
     <div class="cart-header">
 
-      <h2>Your Cart</h2>
+      <h2>
+        Your Cart
+      </h2>
 
       <button
         class="cart-close"
@@ -1802,8 +2652,15 @@
     <div class="cart-footer">
 
       <div class="cart-total">
-        <span>Total</span>
-        <span id="cart-total">$0.00</span>
+
+        <span>
+          Total
+        </span>
+
+        <span id="cart-total">
+          $0.00
+        </span>
+
       </div>
 
       <button
@@ -1839,7 +2696,9 @@
 
       <div class="modal-full">
 
-        <h2>CHECKOUT</h2>
+        <h2>
+          CHECKOUT
+        </h2>
 
         <p>
           Enter your details below.
@@ -1929,7 +2788,9 @@
             "
           >
 
-            <strong>Payment</strong>
+            <strong>
+              Payment
+            </strong>
 
             <p style="margin:7px 0 0;">
               Secure payment is handled by Paystack.
@@ -2023,11 +2884,6 @@
         available: true
       },
 
-      /*
-        CORRECTED:
-        Long sleeve now uses images/5.jpg
-      */
-
       {
         id: 5,
         name: "Raglan Polo Long Sleeve",
@@ -2038,11 +2894,6 @@
         badge: "NEW",
         available: true
       },
-
-      /*
-        CORRECTED:
-        Coming soon now uses images/6.jpg
-      */
 
       {
         id: 6,
@@ -2182,6 +3033,7 @@
               </div>
 
               <div class="product-actions">
+
                 <button
                   class="quick-add"
                   ${product.available ? "" : "disabled"}
@@ -2196,6 +3048,7 @@
                 >
                   VIEW
                 </button>
+
               </div>
 
             </div>
@@ -2347,15 +3200,16 @@
     }
 
     function quickAddProduct(id) {
-      const product = products.find(p => p.id === id);
+
+      const product =
+        products.find(p => p.id === id);
 
       if (!product || !product.available) {
         return;
       }
 
-      // No manual typing. Open the normal product selector so
-      // the customer can choose the size from the dropdown.
       openProduct(id);
+
     }
 
     /* =========================
@@ -2638,37 +3492,59 @@
         );
 
         const responseText = await response.text();
+
         let data;
 
         try {
+
           data = JSON.parse(responseText);
+
         } catch (parseError) {
-          console.error("Invalid payment response:", responseText);
+
+          console.error(
+            "Invalid payment response:",
+            responseText
+          );
+
           throw new Error(
             `Payment server returned an invalid response (HTTP ${response.status}).`
           );
+
         }
 
         if (!response.ok || !data.authorization_url) {
+
           throw new Error(
-            data.error || data.message ||
+            data.error ||
+            data.message ||
             `Unable to start payment (HTTP ${response.status}).`
           );
+
         }
 
-        const paymentUrl = String(data.authorization_url).trim();
+        const paymentUrl =
+          String(data.authorization_url).trim();
 
         try {
+
           new URL(paymentUrl);
+
         } catch (urlError) {
-          throw new Error("Paystack returned an invalid payment link.");
+
+          throw new Error(
+            "Paystack returned an invalid payment link."
+          );
+
         }
 
         window.location.assign(paymentUrl);
 
       } catch (error) {
 
-        console.error("Payment error:", error);
+        console.error(
+          "Payment error:",
+          error
+        );
 
         alert(
           error.message ||
@@ -2676,7 +3552,9 @@
         );
 
         button.disabled = false;
-        button.textContent = "Pay Securely With Paystack";
+
+        button.textContent =
+          "Pay Securely With Paystack";
 
       }
 
@@ -2688,9 +3566,10 @@
 
     async function handlePaymentReturn() {
 
-      const params = new URLSearchParams(
-        window.location.search
-      );
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
 
       const paymentStatus =
         params.get("payment");
@@ -2698,23 +3577,34 @@
       const reference =
         params.get("reference");
 
-      if (paymentStatus !== "success" || !reference) {
+      if (
+        paymentStatus !== "success" ||
+        !reference
+      ) {
         return;
       }
 
       try {
 
-        const response = await fetch(
-          `/.netlify/functions/verify-payment?reference=${encodeURIComponent(reference)}`
-        );
+        const response =
+          await fetch(
+            `/.netlify/functions/verify-payment?reference=${encodeURIComponent(reference)}`
+          );
 
-        const data = await response.json();
+        const data =
+          await response.json();
 
-        if (!response.ok || !data.paid) {
+        if (
+          !response.ok ||
+          !data.paid
+        ) {
+
           alert(
             "Payment was not confirmed. Please contact THUG SZN before trying again."
           );
+
           return;
+
         }
 
         const metadata =
@@ -2742,7 +3632,8 @@
         message +=
           `Address: ${metadata.address || ""}\n\n`;
 
-        message += "ORDER:\n";
+        message +=
+          "ORDER:\n";
 
         items.forEach(item => {
 
@@ -2773,6 +3664,7 @@
           "Payment confirmed through Paystack.";
 
         cart = [];
+
         saveCart();
 
         closeModal("checkout-modal");
@@ -2798,7 +3690,10 @@
 
       } catch (error) {
 
-        console.error("Verification error:", error);
+        console.error(
+          "Verification error:",
+          error
+        );
 
         alert(
           "We couldn't verify the payment automatically. Please contact THUG SZN and provide your Paystack reference: " +
@@ -2854,7 +3749,9 @@
 
     function closeModalOutside(event, id) {
 
-      if (event.target.id === id) {
+      if (
+        event.target.id === id
+      ) {
 
         closeModal(id);
 
@@ -2937,7 +3834,9 @@
     ========================== */
 
     renderProducts();
+
     renderCart();
+
     handlePaymentReturn();
 
   </script>
