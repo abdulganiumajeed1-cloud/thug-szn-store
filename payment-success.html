@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THUG SZN | Payment Status</title>
+<style>
+body{margin:0;background:#0b0b0b;color:#fff;font-family:Arial,sans-serif;display:grid;place-items:center;min-height:100vh;padding:24px;box-sizing:border-box}.card{width:min(620px,100%);border:1px solid #2b2b2b;padding:36px;background:#111}h1{font-size:42px;margin:0 0 12px;letter-spacing:-.04em}p{color:#bdbdbd;line-height:1.6}.status{font-weight:800;margin:24px 0}.btn{display:inline-block;background:#b7ff00;color:#090909;text-decoration:none;padding:14px 18px;font-weight:900;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="card">
+  <div style="font-size:12px;letter-spacing:.18em;color:#b7ff00">THUG SZN / PAYMENT</div>
+  <h1 id="title">VERIFYING...</h1>
+  <p id="status" class="status">Checking your Paystack transaction.</p>
+  <p id="detail"></p>
+  <a class="btn" href="/">Back to THUG SZN</a>
+</div>
+<script>
+(async function(){
+  const reference = new URLSearchParams(location.search).get('reference');
+  const title = document.getElementById('title');
+  const status = document.getElementById('status');
+  const detail = document.getElementById('detail');
+  if(!reference){title.textContent='NO REFERENCE';status.textContent='We could not find a payment reference.';return;}
+  try{
+    const res = await fetch('/api/verify-payment?reference='+encodeURIComponent(reference));
+    const data = await res.json();
+    if(!res.ok) throw new Error(data.error || 'Verification failed');
+    if(data.paid){
+      title.textContent='PAYMENT CONFIRMED';
+      status.textContent='Your THUG SZN payment was successful.';
+      detail.textContent=`Reference: ${data.reference} · Amount: GHS ${data.amountGHS.toFixed(2)}`;
+    }else{
+      title.textContent='PAYMENT NOT COMPLETED';
+      status.textContent=`Payment status: ${data.status}`;
+      detail.textContent=`Reference: ${data.reference}`;
+    }
+  }catch(err){
+    title.textContent='CHECK FAILED';
+    status.textContent=err.message;
+  }
+})();
+</script>
+</body>
+</html>
