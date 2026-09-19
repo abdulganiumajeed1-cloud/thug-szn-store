@@ -11,6 +11,8 @@
     content="THUG SZN — Built Different. Worldwide streetwear. Limited drops, bold designs and no feelings. Only focus."
   >
 
+  <meta name="theme-color" content="#080808">
+
   <link
     rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23080808'/%3E%3Ctext x='50' y='64' text-anchor='middle' font-family='Arial,sans-serif' font-size='38' font-weight='900' fill='%23b7ff00'%3ETS%3C/text%3E%3C/svg%3E"
@@ -19,14 +21,19 @@
   <style>
     :root {
       --black: #080808;
-      --dark: #111111;
+      --dark: #101010;
+      --dark-2: #141414;
       --card: #181818;
+      --card-2: #1c1c1c;
       --white: #f5f5f5;
       --muted: #999999;
+      --muted-2: #707070;
       --green: #b7ff00;
+      --green-soft: rgba(183,255,0,0.10);
+      --green-glow: rgba(183,255,0,0.18);
       --border: #292929;
       --soft-border: rgba(255,255,255,0.08);
-      --glow: rgba(183,255,0,0.18);
+      --danger: #ff6262;
     }
 
     * {
@@ -37,6 +44,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
@@ -74,6 +82,32 @@
       display: block;
     }
 
+    ::selection {
+      background: var(--green);
+      color: #000;
+    }
+
+    /* =========================
+       SCROLLBAR
+    ========================== */
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #080808;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--green);
+    }
+
     /* =========================
        ANNOUNCEMENT
     ========================== */
@@ -85,8 +119,8 @@
       color: #000;
       text-align: center;
       padding: 10px 15px;
-      font-size: 11px;
-      font-weight: 900;
+      font-size: 10px;
+      font-weight: 1000;
       letter-spacing: 2px;
     }
 
@@ -100,7 +134,7 @@
       background: linear-gradient(
         90deg,
         transparent,
-        rgba(255,255,255,0.45),
+        rgba(255,255,255,0.5),
         transparent
       );
       transform: skewX(-20deg);
@@ -126,27 +160,31 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(8, 8, 8, 0.82);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      background: rgba(8,8,8,0.84);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
     }
 
     .nav {
-      max-width: 1250px;
+      max-width: 1280px;
       margin: auto;
-      padding: 18px 25px;
+      padding: 17px 25px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .logo {
-      position: relative;
       font-size: 25px;
       font-weight: 1000;
-      letter-spacing: -1px;
+      letter-spacing: -1.2px;
+      transition: 0.2s;
+    }
+
+    .logo:hover {
+      transform: translateY(-1px);
     }
 
     .logo span {
@@ -156,15 +194,15 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 29px;
     }
 
     .nav-links a {
       position: relative;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.9px;
       transition: 0.2s;
     }
 
@@ -195,6 +233,7 @@
       color: var(--white);
       padding: 9px 14px;
       border-radius: 5px;
+      font-size: 11px;
       font-weight: 900;
       transition: 0.25s;
     }
@@ -205,7 +244,8 @@
       box-shadow: 0 0 25px rgba(183,255,0,0.08);
     }
 
-    #cart-count {
+    #cart-count,
+    #mobile-cart-count {
       color: var(--green);
     }
 
@@ -234,6 +274,12 @@
       border: 0;
       font-weight: 800;
       text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav button:hover {
+      color: var(--green);
     }
 
     .mobile-nav.open {
@@ -246,7 +292,7 @@
 
     .hero {
       position: relative;
-      min-height: 86vh;
+      min-height: 88vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -256,15 +302,33 @@
       background:
         radial-gradient(
           circle at center,
-          rgba(183,255,0,0.11),
-          transparent 30%
+          rgba(183,255,0,0.12),
+          transparent 29%
         ),
         radial-gradient(
           circle at 20% 80%,
-          rgba(183,255,0,0.035),
+          rgba(183,255,0,0.04),
           transparent 25%
         ),
         var(--black);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.035;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 25%,
+        black 75%,
+        transparent
+      );
+      pointer-events: none;
     }
 
     .hero::before {
@@ -287,8 +351,8 @@
     .hero::after {
       content: "";
       position: absolute;
-      width: 500px;
-      height: 500px;
+      width: 560px;
+      height: 560px;
       border: 1px solid rgba(183,255,0,0.08);
       border-radius: 50%;
       left: 50%;
@@ -303,14 +367,14 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 950px;
+      max-width: 1000px;
       animation: heroEnter 0.8s ease both;
     }
 
     @keyframes heroEnter {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(22px);
       }
 
       to {
@@ -320,27 +384,44 @@
     }
 
     .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       color: var(--green);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 5px;
-      margin-bottom: 22px;
+      font-size: 11px;
+      font-weight: 1000;
+      letter-spacing: 4px;
+      margin-bottom: 24px;
+    }
+
+    .hero-kicker::before,
+    .hero-kicker::after {
+      content: "";
+      width: 25px;
+      height: 1px;
+      background: var(--green);
+      opacity: 0.6;
     }
 
     .hero h1 {
-      font-size: clamp(60px, 12vw, 150px);
-      line-height: 0.82;
+      font-size: clamp(62px, 12vw, 155px);
+      line-height: 0.80;
       font-weight: 1000;
-      letter-spacing: -8px;
-      margin-bottom: 32px;
-      text-shadow: 0 0 45px rgba(183,255,0,0.04);
+      letter-spacing: -9px;
+      margin-bottom: 35px;
+      text-shadow: 0 0 45px rgba(183,255,0,0.05);
+    }
+
+    .hero h1 span {
+      color: var(--green);
     }
 
     .hero p {
-      max-width: 650px;
+      max-width: 670px;
       margin: auto;
       color: var(--muted);
-      font-size: 17px;
+      font-size: 16px;
+      line-height: 1.7;
     }
 
     .hero-buttons {
@@ -354,16 +435,19 @@
     .btn {
       position: relative;
       overflow: hidden;
-      display: inline-block;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       padding: 14px 24px;
+      min-height: 47px;
       border-radius: 5px;
       border: 1px solid var(--green);
       background: var(--green);
       color: #000;
-      font-weight: 900;
+      font-weight: 1000;
       text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 0.5px;
+      font-size: 11px;
+      letter-spacing: 0.6px;
       transition: 0.25s;
     }
 
@@ -388,6 +472,13 @@
       box-shadow: 0 12px 35px rgba(183,255,0,0.14);
     }
 
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
     .btn-outline {
       background: transparent;
       color: var(--white);
@@ -398,6 +489,42 @@
       border-color: var(--green);
       color: var(--green);
       background: rgba(183,255,0,0.025);
+    }
+
+    .hero-stats {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      margin: 60px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-stat {
+      padding: 17px 10px;
+      border-right: 1px solid var(--border);
+    }
+
+    .hero-stat:last-child {
+      border-right: 0;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 1000;
+    }
+
+    .hero-stat span {
+      display: block;
+      color: var(--muted-2);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      margin-top: 3px;
     }
 
     /* =========================
@@ -425,14 +552,15 @@
     .trust-item strong {
       display: block;
       color: var(--green);
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 1.5px;
       margin-bottom: 5px;
+      font-weight: 1000;
     }
 
     .trust-item span {
       color: var(--muted);
-      font-size: 11px;
+      font-size: 10px;
     }
 
     /* =========================
@@ -441,34 +569,36 @@
 
     section {
       position: relative;
-      max-width: 1250px;
+      max-width: 1280px;
       margin: auto;
-      padding: 100px 25px;
+      padding: 105px 25px;
     }
 
     .section-heading {
-      margin-bottom: 40px;
+      margin-bottom: 42px;
     }
 
     .section-heading span {
       color: var(--green);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 2.5px;
+      font-size: 10px;
+      font-weight: 1000;
+      letter-spacing: 2.7px;
       text-transform: uppercase;
     }
 
     .section-heading h2 {
-      font-size: clamp(35px, 6vw, 65px);
-      line-height: 0.95;
+      font-size: clamp(38px, 6vw, 67px);
+      line-height: 0.93;
       margin-top: 10px;
-      letter-spacing: -3px;
+      letter-spacing: -3.5px;
+      font-weight: 1000;
     }
 
     .section-heading p {
       color: var(--muted);
       max-width: 650px;
       margin-top: 17px;
+      font-size: 14px;
     }
 
     /* =========================
@@ -498,6 +628,10 @@
       transition: 0.2s;
     }
 
+    .search-box input::placeholder {
+      color: #666;
+    }
+
     .search-box input:focus {
       border-color: var(--green);
       box-shadow: 0 0 25px rgba(183,255,0,0.05);
@@ -515,8 +649,8 @@
       border: 1px solid var(--border);
       color: var(--white);
       border-radius: 5px;
-      font-size: 11px;
-      font-weight: 900;
+      font-size: 10px;
+      font-weight: 1000;
       text-transform: uppercase;
       transition: 0.2s;
     }
@@ -570,11 +704,12 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.2),
-        transparent 35%
-      );
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,0.38),
+          transparent 40%
+        );
       pointer-events: none;
     }
 
@@ -597,23 +732,57 @@
       background: var(--green);
       color: #000;
       padding: 6px 8px;
-      font-size: 9px;
+      font-size: 8px;
       font-weight: 1000;
       letter-spacing: 0.8px;
+    }
+
+    .product-view-overlay {
+      position: absolute;
+      z-index: 3;
+      left: 50%;
+      bottom: 18px;
+      transform: translate(-50%, 15px);
+      opacity: 0;
+      white-space: nowrap;
+      padding: 10px 14px;
+      background: rgba(0,0,0,0.78);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--white);
+      font-size: 9px;
+      font-weight: 1000;
+      letter-spacing: 1px;
+      transition: 0.25s;
+      backdrop-filter: blur(8px);
+    }
+
+    .product-card:hover .product-view-overlay {
+      opacity: 1;
+      transform: translate(-50%, 0);
     }
 
     .product-info {
       padding: 21px;
     }
 
+    .product-category {
+      color: var(--green);
+      font-size: 9px;
+      font-weight: 1000;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
     .product-info h3 {
       font-size: 17px;
       margin-bottom: 6px;
+      line-height: 1.2;
     }
 
     .product-info p {
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
       margin-bottom: 17px;
       min-height: 39px;
     }
@@ -626,30 +795,14 @@
     }
 
     .product-price {
-      font-weight: 900;
+      font-weight: 1000;
       font-size: 18px;
     }
 
     .product-price.soon {
       color: var(--green);
-      font-size: 11px;
-      text-transform: uppercase;
-    }
-
-    .view-product {
-      padding: 9px 12px;
-      background: transparent;
-      color: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 4px;
       font-size: 10px;
-      font-weight: 900;
-      transition: 0.2s;
-    }
-
-    .view-product:hover {
-      border-color: var(--green);
-      color: var(--green);
+      text-transform: uppercase;
     }
 
     .product-actions {
@@ -666,8 +819,8 @@
       color: #000;
       border: 1px solid var(--green);
       border-radius: 4px;
-      font-size: 10px;
-      font-weight: 900;
+      font-size: 9px;
+      font-weight: 1000;
       cursor: pointer;
       transition: 0.2s;
     }
@@ -682,6 +835,22 @@
       cursor: not-allowed;
     }
 
+    .view-product {
+      padding: 9px 12px;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 9px;
+      font-weight: 1000;
+      transition: 0.2s;
+    }
+
+    .view-product:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
     .no-results {
       display: none;
       padding: 50px 20px;
@@ -691,7 +860,7 @@
     }
 
     /* =========================
-       STORY / ABOUT
+       ABOUT
     ========================== */
 
     .about-section {
@@ -736,14 +905,22 @@
       color: var(--muted);
       margin-bottom: 20px;
       font-size: 15px;
+      max-width: 570px;
+    }
+
+    .about-line {
+      width: 55px;
+      height: 3px;
+      background: var(--green);
+      margin-bottom: 25px;
     }
 
     /* =========================
-       OFFICIAL BRAND STORY
+       STORY
     ========================== */
 
     .story-section {
-      max-width: 1250px;
+      max-width: 1280px;
     }
 
     .story-card {
@@ -781,8 +958,8 @@
       position: relative;
       z-index: 1;
       color: var(--green);
-      font-size: 11px;
-      font-weight: 900;
+      font-size: 10px;
+      font-weight: 1000;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 20px;
@@ -796,6 +973,7 @@
       line-height: 0.92;
       letter-spacing: -4px;
       margin-bottom: 35px;
+      font-weight: 1000;
     }
 
     .story-title span {
@@ -817,7 +995,7 @@
     .story-highlight {
       display: inline-block;
       color: var(--white);
-      font-weight: 900;
+      font-weight: 1000;
       font-size: 15px;
       border-left: 3px solid var(--green);
       padding-left: 14px;
@@ -837,8 +1015,8 @@
       border: 1px solid var(--border);
       padding: 8px 12px;
       color: #aaa;
-      font-size: 10px;
-      font-weight: 900;
+      font-size: 9px;
+      font-weight: 1000;
       letter-spacing: 0.8px;
       text-transform: uppercase;
     }
@@ -893,8 +1071,8 @@
       position: relative;
       z-index: 1;
       color: var(--green);
-      font-weight: 900;
-      font-size: 11px;
+      font-weight: 1000;
+      font-size: 10px;
       letter-spacing: 1px;
     }
 
@@ -902,13 +1080,14 @@
       position: relative;
       z-index: 1;
       margin: 15px 0 10px;
+      font-size: 18px;
     }
 
     .business-card p {
       position: relative;
       z-index: 1;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
     }
 
     /* =========================
@@ -968,7 +1147,7 @@
       border: 0;
       color: var(--white);
       text-align: left;
-      font-weight: 900;
+      font-weight: 1000;
       font-size: 15px;
     }
 
@@ -1001,7 +1180,7 @@
     }
 
     .footer-inner {
-      max-width: 1250px;
+      max-width: 1280px;
       margin: auto;
       display: flex;
       justify-content: space-between;
@@ -1036,7 +1215,7 @@
     }
 
     .copyright {
-      max-width: 1250px;
+      max-width: 1280px;
       margin: 30px auto 0;
       padding-top: 20px;
       border-top: 1px solid var(--border);
@@ -1053,7 +1232,7 @@
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(0, 0, 0, 0.82);
+      background: rgba(0,0,0,0.82);
       padding: 20px;
       overflow-y: auto;
       backdrop-filter: blur(8px);
@@ -1064,6 +1243,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      animation: overlayIn 0.2s ease both;
+    }
+
+    @keyframes overlayIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .modal {
@@ -1076,6 +1266,19 @@
       box-shadow:
         0 30px 100px rgba(0,0,0,0.55),
         0 0 50px rgba(183,255,0,0.025);
+      animation: modalIn 0.25s ease both;
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .modal-close {
@@ -1096,6 +1299,7 @@
     .modal-close:hover {
       color: var(--green);
       border-color: var(--green);
+      transform: rotate(90deg);
     }
 
     .product-modal-content {
@@ -1131,7 +1335,7 @@
 
     .modal-price {
       font-size: 25px;
-      font-weight: 900;
+      font-weight: 1000;
       margin-bottom: 25px;
     }
 
@@ -1142,10 +1346,10 @@
     .form-group label {
       display: block;
       margin-bottom: 7px;
-      font-size: 11px;
-      font-weight: 800;
+      font-size: 10px;
+      font-weight: 1000;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.7px;
     }
 
     .form-control {
@@ -1184,6 +1388,39 @@
     }
 
     /* =========================
+       PAYMENT BOX
+    ========================== */
+
+    .payment-box {
+      border: 1px solid var(--border);
+      padding: 17px;
+      margin-bottom: 20px;
+      background: rgba(183,255,0,0.02);
+    }
+
+    .payment-box-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 7px;
+    }
+
+    .payment-badge {
+      color: #000;
+      background: var(--green);
+      padding: 4px 7px;
+      font-size: 8px;
+      font-weight: 1000;
+      letter-spacing: 0.7px;
+    }
+
+    .payment-box p {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    /* =========================
        CART DRAWER
     ========================== */
 
@@ -1192,7 +1429,7 @@
       position: fixed;
       inset: 0;
       z-index: 2500;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0,0,0,0.7);
       backdrop-filter: blur(3px);
     }
 
@@ -1205,7 +1442,7 @@
       right: 0;
       top: 0;
       bottom: 0;
-      width: min(450px, 100%);
+      width: min(450px,100%);
       background:
         linear-gradient(
           145deg,
@@ -1237,6 +1474,10 @@
       font-size: 20px;
     }
 
+    .cart-header span {
+      color: var(--green);
+    }
+
     .cart-close {
       background: transparent;
       color: var(--white);
@@ -1259,6 +1500,13 @@
       color: var(--muted);
       text-align: center;
       padding: 50px 20px;
+    }
+
+    .cart-empty strong {
+      display: block;
+      color: var(--white);
+      font-size: 18px;
+      margin-bottom: 7px;
     }
 
     .cart-item {
@@ -1289,7 +1537,7 @@
     }
 
     .cart-item-price {
-      font-weight: 900;
+      font-weight: 1000;
       font-size: 13px;
     }
 
@@ -1315,29 +1563,98 @@
     }
 
     .remove-item {
-      color: #ff5b5b !important;
+      color: var(--danger) !important;
       background: none !important;
       border: 0 !important;
       width: auto !important;
       margin-left: 8px;
-      font-size: 11px;
+      font-size: 10px;
+      font-weight: 900;
     }
 
     .cart-footer {
       padding: 20px;
       border-top: 1px solid var(--border);
+      background: rgba(0,0,0,0.18);
     }
 
     .cart-total {
       display: flex;
       justify-content: space-between;
       font-size: 20px;
-      font-weight: 900;
+      font-weight: 1000;
       margin-bottom: 15px;
     }
 
+    .cart-note {
+      color: var(--muted-2);
+      font-size: 10px;
+      margin-bottom: 13px;
+    }
+
     /* =========================
-       FLOATING WHATSAPP
+       TOAST
+    ========================== */
+
+    .toast-container {
+      position: fixed;
+      right: 20px;
+      bottom: 85px;
+      z-index: 5000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast {
+      min-width: 260px;
+      max-width: 360px;
+      padding: 14px 16px;
+      background: #141414;
+      border: 1px solid var(--border);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.45);
+      color: var(--white);
+      font-size: 12px;
+      animation: toastIn 0.25s ease both;
+      pointer-events: auto;
+    }
+
+    .toast.success {
+      border-color: rgba(183,255,0,0.4);
+    }
+
+    .toast.error {
+      border-color: rgba(255,98,98,0.45);
+    }
+
+    .toast strong {
+      display: block;
+      color: var(--green);
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .toast.error strong {
+      color: var(--danger);
+    }
+
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       WHATSAPP
     ========================== */
 
     .whatsapp-float {
@@ -1349,11 +1666,11 @@
       color: #000;
       padding: 13px 17px;
       border-radius: 30px;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 1000;
       letter-spacing: 0.5px;
       box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 8px 30px rgba(0,0,0,0.4),
         0 0 25px rgba(183,255,0,0.08);
       transition: 0.25s;
     }
@@ -1366,13 +1683,45 @@
     }
 
     /* =========================
+       SCROLL TOP
+    ========================== */
+
+    .scroll-top {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      z-index: 1500;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(10,10,10,0.88);
+      color: var(--white);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: 0.25s;
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      color: var(--green);
+      border-color: var(--green);
+    }
+
+    /* =========================
        RESPONSIVE
     ========================== */
 
     @media (max-width: 900px) {
 
       .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
       }
 
       .about-section {
@@ -1385,14 +1734,14 @@
       }
 
       .trust-strip {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
       }
 
       .trust-item:nth-child(2) {
         border-right: 0;
       }
 
-      .trust-item:nth-child(-n + 2) {
+      .trust-item:nth-child(-n+2) {
         border-bottom: 1px solid var(--border);
       }
 
@@ -1417,21 +1766,25 @@
       }
 
       section {
-        padding: 70px 18px;
+        padding: 75px 18px;
       }
 
       .hero {
-        min-height: 76vh;
+        min-height: 78vh;
         padding: 80px 18px;
       }
 
       .hero h1 {
-        letter-spacing: -4px;
+        letter-spacing: -5px;
       }
 
       .hero::after {
-        width: 300px;
-        height: 300px;
+        width: 310px;
+        height: 310px;
+      }
+
+      .hero-stats {
+        margin-top: 45px;
       }
 
       .products-grid {
@@ -1484,6 +1837,22 @@
         bottom: 12px;
       }
 
+      .scroll-top {
+        left: 12px;
+        bottom: 12px;
+      }
+
+      .toast-container {
+        left: 12px;
+        right: 12px;
+        bottom: 70px;
+      }
+
+      .toast {
+        min-width: 0;
+        max-width: none;
+      }
+
     }
 
     @media (max-width: 450px) {
@@ -1493,7 +1862,7 @@
       }
 
       .trust-item {
-        border-right: 0;
+        border-right: 0 !important;
         border-bottom: 1px solid var(--border);
       }
 
@@ -1508,6 +1877,19 @@
       .btn {
         width: 100%;
         text-align: center;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stat {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .hero-stat:last-child {
+        border-bottom: 0;
       }
 
       .product-bottom {
@@ -1541,7 +1923,6 @@
       }
 
     }
-
   </style>
 </head>
 
@@ -1552,7 +1933,7 @@
   ========================== -->
 
   <div class="announcement">
-    WORLDWIDE SHIPPING • USD PRICES • BUILT DIFFERENT
+    WORLDWIDE SHIPPING • USD PRICES • SECURE PAYSTACK CHECKOUT
   </div>
 
   <!-- =========================
@@ -1569,25 +1950,18 @@
 
       <nav class="nav-links">
 
-        <a href="#collection">
-          Collection
-        </a>
+        <a href="#collection">Collection</a>
 
-        <a href="#about">
-          About
-        </a>
+        <a href="#about">About</a>
 
-        <a href="#story">
-          Story
-        </a>
+        <a href="#story">Story</a>
 
-        <a href="#faq">
-          FAQ
-        </a>
+        <a href="#faq">FAQ</a>
 
         <button
           class="cart-button"
           onclick="openCart()"
+          aria-label="Open shopping cart"
         >
           CART (<span id="cart-count">0</span>)
         </button>
@@ -1598,48 +1972,32 @@
         class="mobile-menu-button"
         onclick="toggleMenu()"
         aria-label="Open menu"
+        aria-expanded="false"
       >
         ☰
       </button>
 
     </div>
 
-    <div
-      class="mobile-nav"
-      id="mobile-nav"
-    >
+    <div class="mobile-nav" id="mobile-nav">
 
-      <a
-        href="#collection"
-        onclick="closeMenu()"
-      >
+      <a href="#collection" onclick="closeMenu()">
         Collection
       </a>
 
-      <a
-        href="#about"
-        onclick="closeMenu()"
-      >
+      <a href="#about" onclick="closeMenu()">
         About
       </a>
 
-      <a
-        href="#story"
-        onclick="closeMenu()"
-      >
+      <a href="#story" onclick="closeMenu()">
         Story
       </a>
 
-      <a
-        href="#faq"
-        onclick="closeMenu()"
-      >
+      <a href="#faq" onclick="closeMenu()">
         FAQ
       </a>
 
-      <button
-        onclick="openCart(); closeMenu();"
-      >
+      <button onclick="openCart(); closeMenu();">
         Cart (<span id="mobile-cart-count">0</span>)
       </button>
 
@@ -1648,15 +2006,16 @@
   </header>
 
   <!-- =========================
-       HERO
+       MAIN
   ========================== -->
 
   <main>
 
-    <section
-      class="hero"
-      id="home"
-    >
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+      <div class="hero-grid"></div>
 
       <div class="hero-content">
 
@@ -1666,7 +2025,7 @@
 
         <h1>
           BUILT<br>
-          DIFFERENT.
+          <span>DIFFERENT.</span>
         </h1>
 
         <p>
@@ -1677,19 +2036,32 @@
 
         <div class="hero-buttons">
 
-          <a
-            href="#collection"
-            class="btn"
-          >
+          <a href="#collection" class="btn">
             Shop Collection
           </a>
 
-          <a
-            href="#story"
-            class="btn btn-outline"
-          >
+          <a href="#story" class="btn btn-outline">
             Our Story
           </a>
+
+        </div>
+
+        <div class="hero-stats">
+
+          <div class="hero-stat">
+            <strong>WORLDWIDE</strong>
+            <span>Shipping</span>
+          </div>
+
+          <div class="hero-stat">
+            <strong>PAYSTACK</strong>
+            <span>Secure Checkout</span>
+          </div>
+
+          <div class="hero-stat">
+            <strong>WHATSAPP</strong>
+            <span>Direct Support</span>
+          </div>
 
         </div>
 
@@ -1697,73 +2069,39 @@
 
     </section>
 
-    <!-- =========================
-         TRUST STRIP
-    ========================== -->
+    <!-- TRUST STRIP -->
 
     <div class="trust-strip">
 
       <div class="trust-item">
-
-        <strong>
-          WORLDWIDE
-        </strong>
-
-        <span>
-          Shipping available
-        </span>
-
+        <strong>WORLDWIDE</strong>
+        <span>Shipping available</span>
       </div>
 
       <div class="trust-item">
-
-        <strong>
-          LIMITED DROPS
-        </strong>
-
-        <span>
-          Built for the bold
-        </span>
-
+        <strong>LIMITED DROPS</strong>
+        <span>Built for the bold</span>
       </div>
 
       <div class="trust-item">
-
-        <strong>
-          WHATSAPP ORDERS
-        </strong>
-
-        <span>
-          Direct customer support
-        </span>
-
+        <strong>SECURE CHECKOUT</strong>
+        <span>Powered by Paystack</span>
       </div>
 
       <div class="trust-item">
-
-        <strong>
-          BUILT DIFFERENT
-        </strong>
-
-        <span>
-          No ordinary pieces
-        </span>
-
+        <strong>BUILT DIFFERENT</strong>
+        <span>No ordinary pieces</span>
       </div>
 
     </div>
 
-    <!-- =========================
-         COLLECTION
-    ========================== -->
+    <!-- COLLECTION -->
 
     <section id="collection">
 
       <div class="section-heading">
 
-        <span>
-          Shop
-        </span>
+        <span>Shop</span>
 
         <h2>
           THE COLLECTION
@@ -1785,6 +2123,7 @@
             id="search-input"
             placeholder="Search products..."
             oninput="renderProducts()"
+            aria-label="Search products"
           >
 
         </div>
@@ -1849,9 +2188,7 @@
 
     </section>
 
-    <!-- =========================
-         ABOUT
-    ========================== -->
+    <!-- ABOUT -->
 
     <section id="about">
 
@@ -1860,12 +2197,10 @@
         <div>
 
           <div class="section-heading">
-
-            <span>
-              Our mindset
-            </span>
-
+            <span>Our mindset</span>
           </div>
+
+          <div class="about-line"></div>
 
           <div class="about-title">
 
@@ -1901,11 +2236,8 @@
             THUG SZN is built for the world.
           </p>
 
-          <a
-            href="#collection"
-            class="btn"
-          >
-            Explore the Drop
+          <a href="#collection" class="btn">
+            Explore The Drop
           </a>
 
         </div>
@@ -1914,9 +2246,7 @@
 
     </section>
 
-    <!-- =========================
-         OFFICIAL BRAND STORY
-    ========================== -->
+    <!-- STORY -->
 
     <section
       id="story"
@@ -2007,9 +2337,7 @@
 
     </section>
 
-    <!-- =========================
-         BUSINESS / SHOPPING
-    ========================== -->
+    <!-- SHOPPING -->
 
     <section>
 
@@ -2056,12 +2384,13 @@
           </div>
 
           <h3>
-            Flexible Payments
+            Secure Payments
           </h3>
 
           <p>
-            Card and other payment options are being prepared.
-            Secure card and other available payment methods are handled through Paystack.
+            Prices are displayed in USD and secure checkout is handled
+            through Paystack. Available payment methods depend on the
+            checkout configuration.
           </p>
 
         </div>
@@ -2087,9 +2416,7 @@
 
     </section>
 
-    <!-- =========================
-         ORDER PROCESS
-    ========================== -->
+    <!-- ORDER PROCESS -->
 
     <section>
 
@@ -2146,12 +2473,12 @@
           </div>
 
           <h3>
-            Confirm Your Order
+            Secure Checkout
           </h3>
 
           <p>
-            Enter your details, pay securely through Paystack, and your paid order
-            will be confirmed.
+            Enter your details, pay securely through Paystack,
+            and your paid order will be confirmed.
           </p>
 
         </div>
@@ -2160,9 +2487,7 @@
 
     </section>
 
-    <!-- =========================
-         POLICIES
-    ========================== -->
+    <!-- POLICIES -->
 
     <section>
 
@@ -2239,9 +2564,7 @@
 
     </section>
 
-    <!-- =========================
-         FAQ
-    ========================== -->
+    <!-- FAQ -->
 
     <section id="faq">
 
@@ -2267,9 +2590,7 @@
           >
             Do you ship worldwide?
 
-            <span>
-              +
-            </span>
+            <span>+</span>
 
           </button>
 
@@ -2288,9 +2609,7 @@
           >
             What sizes are available?
 
-            <span>
-              +
-            </span>
+            <span>+</span>
 
           </button>
 
@@ -2309,9 +2628,7 @@
           >
             How do I place an order?
 
-            <span>
-              +
-            </span>
+            <span>+</span>
 
           </button>
 
@@ -2331,9 +2648,7 @@
           >
             Can I return my order?
 
-            <span>
-              +
-            </span>
+            <span>+</span>
 
           </button>
 
@@ -2353,15 +2668,15 @@
           >
             Do you accept card payments?
 
-            <span>
-              +
-            </span>
+            <span>+</span>
 
           </button>
 
           <div class="faq-answer">
             Yes. Secure payment is handled through Paystack.
-            After payment, your order can be confirmed through WhatsApp.
+            Available payment methods depend on the Paystack checkout
+            configuration. After payment, your order can be confirmed
+            through WhatsApp.
           </div>
 
         </div>
@@ -2445,6 +2760,7 @@
       <button
         class="modal-close"
         onclick="closeModal('product-modal')"
+        aria-label="Close product"
       >
         ×
       </button>
@@ -2490,25 +2806,11 @@
                 Select size
               </option>
 
-              <option value="S">
-                S
-              </option>
-
-              <option value="M">
-                M
-              </option>
-
-              <option value="L">
-                L
-              </option>
-
-              <option value="XL">
-                XL
-              </option>
-
-              <option value="XXL">
-                XXL
-              </option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
 
             </select>
 
@@ -2554,6 +2856,7 @@
       <button
         class="modal-close"
         onclick="closeModal('size-guide-modal')"
+        aria-label="Close size guide"
       >
         ×
       </button>
@@ -2570,37 +2873,27 @@
         </p>
 
         <p>
-          <strong style="color:#b7ff00;">
-            S
-          </strong>
+          <strong style="color:#b7ff00;">S</strong>
           — Small
         </p>
 
         <p>
-          <strong style="color:#b7ff00;">
-            M
-          </strong>
+          <strong style="color:#b7ff00;">M</strong>
           — Medium
         </p>
 
         <p>
-          <strong style="color:#b7ff00;">
-            L
-          </strong>
+          <strong style="color:#b7ff00;">L</strong>
           — Large
         </p>
 
         <p>
-          <strong style="color:#b7ff00;">
-            XL
-          </strong>
+          <strong style="color:#b7ff00;">XL</strong>
           — Extra Large
         </p>
 
         <p>
-          <strong style="color:#b7ff00;">
-            XXL
-          </strong>
+          <strong style="color:#b7ff00;">XXL</strong>
           — Double Extra Large
         </p>
 
@@ -2633,11 +2926,13 @@
 
       <h2>
         Your Cart
+        <span>•</span>
       </h2>
 
       <button
         class="cart-close"
         onclick="closeCart()"
+        aria-label="Close cart"
       >
         ×
       </button>
@@ -2653,14 +2948,16 @@
 
       <div class="cart-total">
 
-        <span>
-          Total
-        </span>
+        <span>Total</span>
 
         <span id="cart-total">
           $0.00
         </span>
 
+      </div>
+
+      <div class="cart-note">
+        Final payment is processed securely through Paystack.
       </div>
 
       <button
@@ -2690,6 +2987,7 @@
       <button
         class="modal-close"
         onclick="closeModal('checkout-modal')"
+        aria-label="Close checkout"
       >
         ×
       </button>
@@ -2716,6 +3014,7 @@
             <input
               class="form-control"
               id="customer-name"
+              autocomplete="name"
               required
             >
 
@@ -2731,6 +3030,7 @@
               class="form-control"
               id="customer-email"
               type="email"
+              autocomplete="email"
               placeholder="you@example.com"
               required
             >
@@ -2747,6 +3047,7 @@
               class="form-control"
               id="customer-phone"
               type="tel"
+              autocomplete="tel"
               required
             >
 
@@ -2761,6 +3062,7 @@
             <input
               class="form-control"
               id="customer-country"
+              autocomplete="country-name"
               required
             >
 
@@ -2775,26 +3077,29 @@
             <textarea
               class="form-control"
               id="customer-address"
+              autocomplete="street-address"
               required
             ></textarea>
 
           </div>
 
-          <div
-            style="
-              border:1px solid #292929;
-              padding:15px;
-              margin-bottom:20px;
-            "
-          >
+          <div class="payment-box">
 
-            <strong>
-              Payment
-            </strong>
+            <div class="payment-box-title">
 
-            <p style="margin:7px 0 0;">
-              Secure payment is handled by Paystack.
-              You will be redirected to Paystack to complete your payment.
+              <strong>
+                Secure Payment
+              </strong>
+
+              <span class="payment-badge">
+                PAYSTACK
+              </span>
+
+            </div>
+
+            <p>
+              Your payment will be processed securely through Paystack.
+              You will be redirected to Paystack to complete checkout.
             </p>
 
           </div>
@@ -2817,7 +3122,17 @@
   </div>
 
   <!-- =========================
-       FLOATING WHATSAPP
+       TOAST
+  ========================== -->
+
+  <div
+    class="toast-container"
+    id="toast-container"
+    aria-live="polite"
+  ></div>
+
+  <!-- =========================
+       WHATSAPP
   ========================== -->
 
   <a
@@ -2827,6 +3142,19 @@
   >
     CHAT WITH US
   </a>
+
+  <!-- =========================
+       SCROLL TOP
+  ========================== -->
+
+  <button
+    class="scroll-top"
+    id="scroll-top"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    aria-label="Scroll to top"
+  >
+    ↑
+  </button>
 
   <!-- =========================
        JAVASCRIPT
@@ -2931,7 +3259,7 @@
 
     function imageFallback(img) {
 
-      img.onerror = function () {
+      img.onerror = function() {
 
         this.onerror = null;
 
@@ -2939,6 +3267,45 @@
           "https://placehold.co/800x800/171717/b7ff00?text=THUG+SZN";
 
       };
+
+    }
+
+    /* =========================
+       TOAST
+    ========================== */
+
+    function showToast(message, type = "success") {
+
+      const container =
+        document.getElementById("toast-container");
+
+      const toast =
+        document.createElement("div");
+
+      toast.className = `toast ${type}`;
+
+      const title =
+        type === "error"
+          ? "Something went wrong"
+          : "THUG SZN";
+
+      toast.innerHTML = `
+        <strong>${title}</strong>
+        <span>${message}</span>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+
+        toast.style.opacity = "0";
+        toast.style.transform = "translateY(8px)";
+
+        setTimeout(() => {
+          toast.remove();
+        }, 250);
+
+      }, 3500);
 
     }
 
@@ -2954,11 +3321,13 @@
       const noResults =
         document.getElementById("no-results");
 
+      const searchInput =
+        document.getElementById("search-input");
+
       const search =
-        document.getElementById("search-input")
-          .value
-          .toLowerCase()
-          .trim();
+        searchInput
+          ? searchInput.value.toLowerCase().trim()
+          : "";
 
       const filtered =
         products.filter(product => {
@@ -2969,6 +3338,9 @@
 
           const matchesSearch =
             product.name
+              .toLowerCase()
+              .includes(search) ||
+            product.description
               .toLowerCase()
               .includes(search);
 
@@ -3000,6 +3372,15 @@
             ? `$${product.price.toFixed(2)}`
             : `<span class="soon">Coming Soon</span>`;
 
+        const categoryLabel =
+          product.category === "tshirt"
+            ? "T-Shirt"
+            : product.category === "jersey"
+              ? "Jersey"
+              : product.category === "long sleeve"
+                ? "Long Sleeve"
+                : "Future Drop";
+
         card.innerHTML = `
 
           <div class="product-image">
@@ -3008,15 +3389,27 @@
               src="${product.image}"
               alt="${product.name}"
               onerror="imageFallback(this)"
+              loading="lazy"
             >
 
             <div class="product-badge">
               ${product.badge}
             </div>
 
+            <button
+              class="product-view-overlay"
+              onclick="openProduct(${product.id})"
+            >
+              VIEW PRODUCT
+            </button>
+
           </div>
 
           <div class="product-info">
+
+            <div class="product-category">
+              ${categoryLabel}
+            </div>
 
             <h3>
               ${product.name}
@@ -3096,17 +3489,13 @@
 
       currentProduct = product;
 
-      document.getElementById(
-        "modal-product-image"
-      ).src = product.image;
+      const image =
+        document.getElementById("modal-product-image");
 
-      document.getElementById(
-        "modal-product-image"
-      ).alt = product.name;
+      image.src = product.image;
+      image.alt = product.name;
 
-      imageFallback(
-        document.getElementById("modal-product-image")
-      );
+      imageFallback(image);
 
       document.getElementById(
         "modal-product-name"
@@ -3132,7 +3521,7 @@
       if (product.available) {
 
         sizeSelect.style.display = "block";
-        addButton.style.display = "block";
+        addButton.style.display = "inline-flex";
 
       } else {
 
@@ -3162,7 +3551,10 @@
 
       if (!size) {
 
-        alert("Please select a size.");
+        showToast(
+          "Please select a size first.",
+          "error"
+        );
 
         return;
 
@@ -3182,11 +3574,9 @@
       } else {
 
         cart.push({
-
           productId: currentProduct.id,
           size: size,
           quantity: 1
-
         });
 
       }
@@ -3194,6 +3584,10 @@
       saveCart();
 
       closeModal("product-modal");
+
+      showToast(
+        `${currentProduct.name} added to your cart.`
+      );
 
       openCart();
 
@@ -3284,13 +3678,14 @@
 
         container.innerHTML = `
           <div class="cart-empty">
-            Your cart is empty.
+            <strong>Your cart is empty.</strong>
+            Add a THUG SZN piece to get started.
           </div>
         `;
 
       }
 
-      cart.forEach((item, index) => {
+      cart.forEach((item,index) => {
 
         const product =
           products.find(
@@ -3337,7 +3732,8 @@
             <div class="cart-controls">
 
               <button
-                onclick="changeQuantity(${index}, -1)"
+                onclick="changeQuantity(${index},-1)"
+                aria-label="Decrease quantity"
               >
                 −
               </button>
@@ -3347,7 +3743,8 @@
               </span>
 
               <button
-                onclick="changeQuantity(${index}, 1)"
+                onclick="changeQuantity(${index},1)"
+                aria-label="Increase quantity"
               >
                 +
               </button>
@@ -3380,13 +3777,15 @@
 
     }
 
-    function changeQuantity(index, change) {
+    function changeQuantity(index,change) {
+
+      if (!cart[index]) return;
 
       cart[index].quantity += change;
 
       if (cart[index].quantity <= 0) {
 
-        cart.splice(index, 1);
+        cart.splice(index,1);
 
       }
 
@@ -3396,9 +3795,13 @@
 
     function removeFromCart(index) {
 
-      cart.splice(index, 1);
+      if (!cart[index]) return;
+
+      cart.splice(index,1);
 
       saveCart();
+
+      showToast("Item removed from your cart.");
 
     }
 
@@ -3410,7 +3813,10 @@
 
       if (cart.length === 0) {
 
-        alert("Your cart is empty.");
+        showToast(
+          "Your cart is empty.",
+          "error"
+        );
 
         return;
 
@@ -3428,7 +3834,10 @@
 
       if (cart.length === 0) {
 
-        alert("Your cart is empty.");
+        showToast(
+          "Your cart is empty.",
+          "error"
+        );
 
         return;
 
@@ -3468,36 +3877,47 @@
         document.getElementById("paystack-button");
 
       button.disabled = true;
-      button.textContent = "CONNECTING TO PAYSTACK...";
+
+      button.textContent =
+        "CONNECTING TO PAYSTACK...";
 
       try {
 
-        const response = await fetch(
-          "/.netlify/functions/initialize-payment",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              email,
-              name,
-              phone,
-              country,
-              address,
-              cart,
-              callbackUrl: `${window.location.origin}/?payment=success`
-            })
-          }
-        );
+        const response =
+          await fetch(
+            "/.netlify/functions/initialize-payment",
+            {
+              method: "POST",
 
-        const responseText = await response.text();
+              headers: {
+                "Content-Type": "application/json"
+              },
+
+              body: JSON.stringify({
+
+                email,
+                name,
+                phone,
+                country,
+                address,
+                cart,
+
+                callbackUrl:
+                  `${window.location.origin}/?payment=success`
+
+              })
+            }
+          );
+
+        const responseText =
+          await response.text();
 
         let data;
 
         try {
 
-          data = JSON.parse(responseText);
+          data =
+            JSON.parse(responseText);
 
         } catch (parseError) {
 
@@ -3512,7 +3932,10 @@
 
         }
 
-        if (!response.ok || !data.authorization_url) {
+        if (
+          !response.ok ||
+          !data.authorization_url
+        ) {
 
           throw new Error(
             data.error ||
@@ -3523,7 +3946,9 @@
         }
 
         const paymentUrl =
-          String(data.authorization_url).trim();
+          String(
+            data.authorization_url
+          ).trim();
 
         try {
 
@@ -3537,7 +3962,9 @@
 
         }
 
-        window.location.assign(paymentUrl);
+        window.location.assign(
+          paymentUrl
+        );
 
       } catch (error) {
 
@@ -3546,9 +3973,10 @@
           error
         );
 
-        alert(
+        showToast(
           error.message ||
-          "Unable to start payment. Please try again."
+          "Unable to start payment. Please try again.",
+          "error"
         );
 
         button.disabled = false;
@@ -3581,7 +4009,9 @@
         paymentStatus !== "success" ||
         !reference
       ) {
+
         return;
+
       }
 
       try {
@@ -3599,8 +4029,9 @@
           !data.paid
         ) {
 
-          alert(
-            "Payment was not confirmed. Please contact THUG SZN before trying again."
+          showToast(
+            "Payment was not confirmed. Please contact THUG SZN before trying again.",
+            "error"
           );
 
           return;
@@ -3647,15 +4078,21 @@
             `  Qty: ${item.quantity}\n`;
 
           message +=
-            `  Price: $${Number(item.lineTotalUSD || 0).toFixed(2)}\n\n`;
+            `  Price: $${Number(
+              item.lineTotalUSD || 0
+            ).toFixed(2)}\n\n`;
 
         });
 
         message +=
-          `TOTAL: $${Number(metadata.total_usd || 0).toFixed(2)}\n`;
+          `TOTAL: $${Number(
+            metadata.total_usd || 0
+          ).toFixed(2)}\n`;
 
         message +=
-          `PAYMENT: ${data.currency || "GHS"} ${Number(data.amountGHS || 0).toFixed(2)}\n`;
+          `PAYMENT: ${data.currency || "GHS"} ${Number(
+            data.amountGHS || 0
+          ).toFixed(2)}\n`;
 
         message +=
           `REFERENCE: ${data.reference}\n\n`;
@@ -3669,18 +4106,21 @@
 
         closeModal("checkout-modal");
 
-        alert(
-          "Payment successful! Your THUG SZN order has been confirmed. Your payment reference is " +
-          data.reference
+        showToast(
+          "Payment successful. Your THUG SZN order is confirmed."
         );
 
         const whatsappURL =
           `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
-        window.open(
-          whatsappURL,
-          "_blank"
-        );
+        setTimeout(() => {
+
+          window.open(
+            whatsappURL,
+            "_blank"
+          );
+
+        }, 900);
 
         window.history.replaceState(
           {},
@@ -3695,9 +4135,10 @@
           error
         );
 
-        alert(
-          "We couldn't verify the payment automatically. Please contact THUG SZN and provide your Paystack reference: " +
-          reference
+        showToast(
+          "We couldn't verify the payment automatically. Please contact THUG SZN with your Paystack reference: " +
+          reference,
+          "error"
         );
 
       }
@@ -3729,9 +4170,12 @@
 
     function openModal(id) {
 
-      document
-        .getElementById(id)
-        .classList.add("open");
+      const modal =
+        document.getElementById(id);
+
+      if (!modal) return;
+
+      modal.classList.add("open");
 
       document.body.classList.add("modal-open");
 
@@ -3739,15 +4183,25 @@
 
     function closeModal(id) {
 
-      document
-        .getElementById(id)
-        .classList.remove("open");
+      const modal =
+        document.getElementById(id);
 
-      document.body.classList.remove("modal-open");
+      if (!modal) return;
+
+      modal.classList.remove("open");
+
+      const anyOpenModal =
+        document.querySelector(
+          ".modal-overlay.open"
+        );
+
+      if (!anyOpenModal) {
+        document.body.classList.remove("modal-open");
+      }
 
     }
 
-    function closeModalOutside(event, id) {
+    function closeModalOutside(event,id) {
 
       if (
         event.target.id === id
@@ -3815,19 +4269,100 @@
 
     function toggleMenu() {
 
-      document
-        .getElementById("mobile-nav")
-        .classList.toggle("open");
+      const menu =
+        document.getElementById("mobile-nav");
+
+      const button =
+        document.querySelector(
+          ".mobile-menu-button"
+        );
+
+      menu.classList.toggle("open");
+
+      button.setAttribute(
+        "aria-expanded",
+        menu.classList.contains("open")
+          ? "true"
+          : "false"
+      );
 
     }
 
     function closeMenu() {
 
-      document
-        .getElementById("mobile-nav")
-        .classList.remove("open");
+      const menu =
+        document.getElementById("mobile-nav");
+
+      const button =
+        document.querySelector(
+          ".mobile-menu-button"
+        );
+
+      menu.classList.remove("open");
+
+      button.setAttribute(
+        "aria-expanded",
+        "false"
+      );
 
     }
+
+    /* =========================
+       SCROLL TOP
+    ========================== */
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        const button =
+          document.getElementById("scroll-top");
+
+        if (
+          window.scrollY > 600
+        ) {
+
+          button.classList.add("show");
+
+        } else {
+
+          button.classList.remove("show");
+
+        }
+
+      },
+      { passive: true }
+    );
+
+    /* =========================
+       ESCAPE KEY
+    ========================== */
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (event.key !== "Escape") {
+          return;
+        }
+
+        document
+          .querySelectorAll(".modal-overlay.open")
+          .forEach(modal => {
+
+            modal.classList.remove("open");
+
+          });
+
+        closeCart();
+        closeMenu();
+
+        document.body.classList.remove(
+          "modal-open"
+        );
+
+      }
+    );
 
     /* =========================
        INITIALIZE
