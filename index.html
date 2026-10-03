@@ -1925,339 +1925,253 @@
     }
   
 
-    /* =========================
-       THUG SZN MOTION SYSTEM
-       Premium animation upgrade
-    ========================== */
+/* =========================================================
+   THUG SZN V2 — CREATIVE EXPERIENCE SYSTEM
+   High-end editorial motion / interaction layer
+========================================================= */
 
-    .hero-content {
-      animation: none;
-    }
+:root{
+  --v2-ease:cubic-bezier(.16,1,.3,1);
+  --v2-fast:cubic-bezier(.2,.8,.2,1);
+  --v2-line:rgba(255,255,255,.10);
+}
 
-    .hero-kicker,
-    .hero h1,
-    .hero p,
-    .hero-buttons,
-    .hero-stats {
-      opacity: 0;
-      transform: translateY(34px);
-      animation: thugHeroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
+/* --- loading / progress --- */
+#v2-loader{
+  position:fixed;inset:0;z-index:99999;background:#050505;
+  display:grid;place-items:center;transition:opacity .8s var(--v2-ease),visibility .8s;
+}
+#v2-loader.is-done{opacity:0;visibility:hidden;pointer-events:none}
+.v2-loader-inner{width:min(420px,78vw);text-align:center}
+.v2-loader-mark{font-size:clamp(42px,10vw,92px);font-weight:1000;letter-spacing:-7px;line-height:.8}
+.v2-loader-mark span{color:var(--green)}
+.v2-loader-line{height:1px;background:#222;margin-top:28px;overflow:hidden}
+.v2-loader-line i{display:block;height:100%;width:0;background:var(--green);transition:width 1.1s var(--v2-ease)}
+.v2-loader-meta{margin-top:10px;display:flex;justify-content:space-between;color:#666;font-size:8px;font-weight:900;letter-spacing:1.8px}
 
-    .hero-kicker { animation-delay: 0.10s; }
-    .hero h1 { animation-delay: 0.24s; }
-    .hero p { animation-delay: 0.40s; }
-    .hero-buttons { animation-delay: 0.56s; }
-    .hero-stats { animation-delay: 0.72s; }
+/* --- scroll progress --- */
+#v2-progress{position:fixed;left:0;top:0;height:2px;width:0;background:var(--green);z-index:10001;box-shadow:0 0 18px rgba(183,255,0,.7);pointer-events:none}
 
-    @keyframes thugHeroReveal {
-      from {
-        opacity: 0;
-        transform: translateY(34px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+/* --- cinematic cursor --- */
+#v2-cursor,#v2-cursor-ring{
+  position:fixed;left:0;top:0;pointer-events:none;z-index:99998;
+  border-radius:50%;opacity:0;transform:translate3d(-50%,-50%,0);
+}
+#v2-cursor{width:5px;height:5px;background:var(--green);transition:transform .08s linear,opacity .2s}
+#v2-cursor-ring{
+  width:34px;height:34px;border:1px solid rgba(183,255,0,.55);
+  transition:width .25s var(--v2-ease),height .25s var(--v2-ease),border-color .25s,opacity .2s;
+}
+body.v2-cursor-ready #v2-cursor,body.v2-cursor-ready #v2-cursor-ring{opacity:1}
+body.v2-cursor-hover #v2-cursor-ring{width:58px;height:58px;border-color:var(--green)}
+body.v2-cursor-click #v2-cursor-ring{width:22px;height:22px}
+@media(max-width:700px),(pointer:coarse){
+  #v2-cursor,#v2-cursor-ring{display:none!important}
+}
 
-    .hero-grid {
-      animation: thugGridDrift 18s ease-in-out infinite alternate;
-      transform-origin: center;
-    }
+/* --- page noise / atmosphere --- */
+body::before{
+  content:"";position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
 
-    @keyframes thugGridDrift {
-      from { transform: scale(1) translate3d(0, 0, 0); }
-      to { transform: scale(1.035) translate3d(12px, -8px, 0); }
-    }
+/* --- header becomes editorial glass --- */
+header{transition:background .45s var(--v2-ease),border-color .45s,box-shadow .45s,transform .45s var(--v2-ease)}
+header.v2-scrolled{
+  background:rgba(5,5,5,.72);
+  border-bottom-color:rgba(183,255,0,.16);
+  box-shadow:0 18px 70px rgba(0,0,0,.42);
+}
 
-    .hero h1 span {
-      display: inline-block;
-      animation: thugTextPulse 5s ease-in-out 1.2s infinite;
-    }
+/* --- hero upgrade --- */
+.hero{
+  min-height:100svh!important;
+  perspective:1200px;
+  isolation:isolate;
+}
+.hero-grid{
+  opacity:.07!important;
+  background-size:90px 90px!important;
+  transform:perspective(800px) rotateX(58deg) scale(1.6);
+  transform-origin:center bottom;
+  animation:v2GridDrift 18s linear infinite;
+}
+@keyframes v2GridDrift{from{background-position:0 0}to{background-position:0 90px}}
+.hero::before{
+  font-size:clamp(100px,21vw,310px)!important;
+  letter-spacing:-.08em!important;
+  animation:v2Breath 7s ease-in-out infinite alternate;
+}
+@keyframes v2Breath{from{transform:translate(-50%,-50%) scale(.98);opacity:.7}to{transform:translate(-50%,-50%) scale(1.03);opacity:1}}
+.hero::after{
+  width:min(72vw,760px)!important;height:min(72vw,760px)!important;
+  border-color:rgba(183,255,0,.13)!important;
+  animation:v2Orb 10s ease-in-out infinite alternate;
+}
+@keyframes v2Orb{to{transform:translate(-50%,-50%) rotate(12deg) scale(1.08);box-shadow:0 0 140px rgba(183,255,0,.08),inset 0 0 140px rgba(183,255,0,.04)}}
 
-    @keyframes thugTextPulse {
-      0%, 100% { text-shadow: 0 0 0 rgba(183,255,0,0); }
-      50% { text-shadow: 0 0 34px rgba(183,255,0,0.14); }
-    }
+.v2-hero-orb{
+  position:absolute;width:360px;height:360px;border-radius:50%;z-index:1;pointer-events:none;
+  background:radial-gradient(circle at 35% 30%,rgba(183,255,0,.18),rgba(183,255,0,.025) 34%,transparent 68%);
+  filter:blur(3px);transform:translate3d(-50%,-50%,0);left:50%;top:50%;
+  mix-blend-mode:screen;transition:transform .25s var(--v2-ease);
+}
+.v2-hero-side{
+  position:absolute;z-index:3;left:25px;bottom:30px;writing-mode:vertical-rl;
+  color:#555;font-size:8px;font-weight:900;letter-spacing:3px;text-transform:uppercase;
+}
+.v2-hero-side b{color:var(--green);margin-bottom:10px}
+.v2-hero-corner{
+  position:absolute;z-index:3;right:25px;bottom:30px;color:#555;
+  font-size:8px;font-weight:900;letter-spacing:2px;text-transform:uppercase;text-align:right
+}
+.v2-hero-corner span{display:block;color:#aaa;margin-top:5px}
+.hero-content{animation:none!important;will-change:transform,opacity}
+.hero-kicker{transform:translateY(20px);opacity:0;animation:v2Reveal .9s .25s var(--v2-ease) forwards}
+.hero h1{opacity:0;transform:translateY(50px);animation:v2Reveal 1.1s .35s var(--v2-ease) forwards;text-shadow:0 0 80px rgba(183,255,0,.08)!important}
+.hero p{opacity:0;transform:translateY(25px);animation:v2Reveal .9s .58s var(--v2-ease) forwards}
+.hero-buttons{opacity:0;transform:translateY(20px);animation:v2Reveal .9s .7s var(--v2-ease) forwards}
+.hero-stats{opacity:0;transform:translateY(18px);animation:v2Reveal .9s .85s var(--v2-ease) forwards}
+@keyframes v2Reveal{to{opacity:1;transform:translateY(0)}}
 
-    /* Scroll reveals */
-    .thug-reveal {
-      opacity: 0;
-      transform: translateY(45px);
-      transition:
-        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
-    }
+/* --- marquee / kinetic statement --- */
+.v2-marquee{
+  position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:#070707;padding:18px 0;white-space:nowrap;
+}
+.v2-marquee-track{display:inline-flex;gap:32px;align-items:center;min-width:max-content;animation:v2Marquee 24s linear infinite}
+.v2-marquee span{font-size:clamp(25px,4vw,58px);font-weight:1000;letter-spacing:-2px}
+.v2-marquee .acid{color:var(--green)}
+.v2-marquee .dot{font-size:12px;color:#444}
+@keyframes v2Marquee{to{transform:translateX(-50%)}}
 
-    .thug-reveal.thug-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* --- section architecture --- */
+section:not(.hero){overflow:clip}
+.v2-section-number{
+  position:absolute;right:25px;top:40px;color:#333;font-size:9px;font-weight:900;letter-spacing:2px;
+}
+.v2-section-number b{color:var(--green);font-weight:1000}
 
-    .thug-reveal-left {
-      opacity: 0;
-      transform: translateX(-45px);
-      transition:
-        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+/* --- scroll reveal --- */
+.v2-reveal{opacity:0;transform:translateY(55px);transition:opacity 1s var(--v2-ease),transform 1.1s var(--v2-ease)}
+.v2-reveal.v2-visible{opacity:1;transform:none}
+.v2-stagger>*{opacity:0;transform:translateY(35px);transition:opacity .9s var(--v2-ease),transform .9s var(--v2-ease)}
+.v2-stagger.v2-visible>*{opacity:1;transform:none}
+.v2-stagger.v2-visible>*:nth-child(2){transition-delay:.08s}
+.v2-stagger.v2-visible>*:nth-child(3){transition-delay:.16s}
+.v2-stagger.v2-visible>*:nth-child(4){transition-delay:.24s}
+.v2-stagger.v2-visible>*:nth-child(5){transition-delay:.32s}
+.v2-stagger.v2-visible>*:nth-child(6){transition-delay:.40s}
 
-    .thug-reveal-left.thug-visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
+/* --- giant editorial type --- */
+.v2-statement{
+  max-width:none!important;padding-top:130px!important;padding-bottom:130px!important;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.v2-statement-inner{max-width:1280px;margin:auto}
+.v2-statement-kicker{color:var(--green);font-size:9px;font-weight:1000;letter-spacing:3px;margin-bottom:22px}
+.v2-statement h2{font-size:clamp(58px,11vw,160px);line-height:.79;letter-spacing:-.08em;font-weight:1000}
+.v2-statement h2 span{display:block;color:transparent;-webkit-text-stroke:1px #444;transition:color .7s var(--v2-ease),-webkit-text-stroke-color .7s}
+.v2-statement.is-lit h2 span{color:var(--green);-webkit-text-stroke-color:var(--green);text-shadow:0 0 50px rgba(183,255,0,.12)}
+.v2-statement-foot{display:flex;justify-content:space-between;gap:30px;margin-top:35px;color:#666;font-size:10px;text-transform:uppercase;letter-spacing:1.5px}
+.v2-statement-foot strong{color:#aaa}
 
-    .thug-reveal-scale {
-      opacity: 0;
-      transform: scale(0.94) translateY(20px);
-      transition:
-        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+/* --- product cards become editorial objects --- */
+.product-card{
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .55s var(--v2-ease),border-color .35s,box-shadow .45s;
+}
+.product-card::before{
+  content:"";position:absolute;z-index:4;inset:0;pointer-events:none;opacity:0;
+  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.10) 48%,transparent 58%);
+  transform:translateX(-120%);transition:opacity .3s,transform .8s var(--v2-ease)
+}
+.product-card:hover::before{opacity:1;transform:translateX(120%)}
+.product-image{transform:translateZ(0)}
+.product-image img{will-change:transform}
+.product-info{position:relative;z-index:5}
+.product-card:hover .product-info{transform:translateZ(10px)}
+.product-badge{box-shadow:0 5px 25px rgba(0,0,0,.3)}
+.product-view-overlay{backdrop-filter:blur(14px)!important}
 
-    .thug-reveal-scale.thug-visible {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
+/* --- collection header / tools --- */
+.collection-tools{position:relative}
+.search-box input{border-radius:0;background:#0b0b0b}
+.filter-button{border-radius:0}
+.filter-button.active,.filter-button:hover{box-shadow:0 8px 30px rgba(183,255,0,.12)}
 
-    /* Staggered children */
-    .thug-stagger > * {
-      opacity: 0;
-      transform: translateY(25px);
-      transition:
-        opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+/* --- image depth --- */
+.v2-image-depth{overflow:hidden;position:relative}
+.v2-image-depth img{transition:transform 1.2s var(--v2-ease);will-change:transform}
+.v2-image-depth.v2-visible img{transform:scale(1.03)}
+.v2-image-depth::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.12),transparent 70%);
+  transform:translateX(-120%);transition:transform 1.4s var(--v2-ease)
+}
+.v2-image-depth.v2-visible::after{transform:translateX(120%)}
 
-    .thug-stagger.thug-visible > * {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* --- about/story cinematic treatment --- */
+.about-section{position:relative}
+.about-title{transition:transform 1.2s var(--v2-ease)}
+.about-section.v2-parallax .about-title{transform:translateY(var(--v2-shift,0))}
+.story-card{
+  transform-style:preserve-3d;transition:transform .7s var(--v2-ease),border-color .5s,box-shadow .5s;
+}
+.story-card:hover{border-color:rgba(183,255,0,.24);box-shadow:0 35px 100px rgba(0,0,0,.35)}
+.story-card::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at var(--mx,80%) var(--my,20%),rgba(183,255,0,.09),transparent 28%);
+}
 
-    .thug-stagger.thug-visible > *:nth-child(1) { transition-delay: 0.04s; }
-    .thug-stagger.thug-visible > *:nth-child(2) { transition-delay: 0.10s; }
-    .thug-stagger.thug-visible > *:nth-child(3) { transition-delay: 0.16s; }
-    .thug-stagger.thug-visible > *:nth-child(4) { transition-delay: 0.22s; }
-    .thug-stagger.thug-visible > *:nth-child(5) { transition-delay: 0.28s; }
-    .thug-stagger.thug-visible > *:nth-child(6) { transition-delay: 0.34s; }
+/* --- business/policy cards --- */
+.business-card,.policy-card{transition:transform .55s var(--v2-ease),border-color .35s,background .35s;transform-style:preserve-3d}
+.business-card:hover,.policy-card:hover{transform:translateY(-9px) rotateX(1deg);box-shadow:0 25px 70px rgba(0,0,0,.22)}
 
-    /* Premium section headings */
-    .section-heading h2 {
-      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                  text-shadow 0.7s ease;
-    }
+/* --- buttons become magnetic-looking --- */
+.btn,.quick-add,.view-product,.cart-button{will-change:transform}
+.btn:active,.quick-add:active,.view-product:active,.cart-button:active{transform:scale(.97)!important}
 
-    .section-heading:hover h2 {
-      transform: translateX(5px);
-      text-shadow: 0 0 28px rgba(183,255,0,0.08);
-    }
+/* --- modal cinematic --- */
+.modal-overlay.open{animation:v2ModalOverlay .5s var(--v2-ease) both}
+.modal-overlay.open .modal{animation:v2Modal .7s var(--v2-ease) both}
+@keyframes v2ModalOverlay{from{opacity:0;backdrop-filter:blur(0)}to{opacity:1;backdrop-filter:blur(12px)}}
+@keyframes v2Modal{from{opacity:0;transform:translateY(35px) scale(.96) rotateX(3deg)}to{opacity:1;transform:none}}
+.modal-product-image{position:relative;overflow:hidden}
+.modal-product-image::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 30% 20%,rgba(183,255,0,.08),transparent 32%)
+}
 
-    /* Product cards */
-    .product-card {
-      transition:
-        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.35s ease,
-        box-shadow 0.5s ease;
-    }
+/* --- cart drawer --- */
+.cart-drawer{box-shadow:-45px 0 120px rgba(0,0,0,.55)}
+.cart-drawer.open{transition:transform .7s var(--v2-ease)}
+.cart-item{transition:transform .3s var(--v2-fast),border-color .3s}
+.cart-item:hover{transform:translateX(-4px);border-color:rgba(183,255,0,.16)}
 
-    .product-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0;
-      background: linear-gradient(
-        115deg,
-        transparent 25%,
-        rgba(255,255,255,0.06) 48%,
-        transparent 70%
-      );
-      transform: translateX(-120%);
-      transition: opacity 0.2s ease;
-    }
+/* --- footer --- */
+footer{position:relative;overflow:hidden}
+footer::before{
+  content:"THUG SZN";position:absolute;left:50%;top:20%;transform:translateX(-50%);
+  font-size:clamp(90px,20vw,290px);font-weight:1000;letter-spacing:-.09em;white-space:nowrap;
+  color:rgba(255,255,255,.018);pointer-events:none
+}
 
-    .product-card:hover::after {
-      opacity: 1;
-      animation: thugCardShine 0.9s ease forwards;
-    }
+/* --- reduced motion overrides --- */
+@media (prefers-reduced-motion:reduce){
+  .v2-marquee-track,.hero-grid,.hero::before,.hero::after{animation:none!important}
+  .v2-reveal,.v2-stagger>*{opacity:1!important;transform:none!important;transition:none!important}
+  #v2-loader{display:none!important}
+}
 
-    @keyframes thugCardShine {
-      to { transform: translateX(120%); }
-    }
-
-    .product-card:hover {
-      transform: translateY(-10px) scale(1.012);
-    }
-
-    .product-image img {
-      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.5s ease;
-    }
-
-    .product-card:hover .product-image img {
-      transform: scale(1.09);
-      filter: saturate(1.08) contrast(1.03);
-    }
-
-    .product-view-overlay {
-      transition:
-        opacity 0.35s ease,
-        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Buttons */
-    .btn {
-      position: relative;
-      overflow: hidden;
-      transition:
-        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-        box-shadow 0.35s ease,
-        border-color 0.35s ease;
-    }
-
-    .btn::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -120%;
-      width: 70%;
-      height: 100%;
-      transform: skewX(-20deg);
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.18),
-        transparent
-      );
-      transition: left 0.65s ease;
-      pointer-events: none;
-    }
-
-    .btn:hover::after {
-      left: 140%;
-    }
-
-    .btn:active {
-      transform: translateY(1px) scale(0.985);
-    }
-
-    /* Header depth on scroll */
-    header {
-      transition:
-        background 0.35s ease,
-        box-shadow 0.35s ease,
-        border-color 0.35s ease,
-        transform 0.35s ease;
-    }
-
-    header.thug-scrolled {
-      background: rgba(8,8,8,0.92);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.22);
-      border-bottom-color: rgba(183,255,0,0.10);
-    }
-
-    /* Story depth */
-    .story-card {
-      transition:
-        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.4s ease,
-        box-shadow 0.5s ease;
-    }
-
-    .story-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(183,255,0,0.22);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.28);
-    }
-
-    /* FAQ / interactive panels */
-    .faq-item,
-    .about-card,
-    .trust-item {
-      transition:
-        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.35s ease,
-        box-shadow 0.35s ease;
-    }
-
-    .faq-item:hover,
-    .about-card:hover,
-    .trust-item:hover {
-      transform: translateY(-4px);
-      border-color: rgba(183,255,0,0.18);
-    }
-
-    /* Cart micro-interaction */
-    #cart-count {
-      display: inline-block;
-      transition: transform 0.25s ease;
-    }
-
-    #cart-count.thug-bump {
-      animation: thugCartBump 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes thugCartBump {
-      0% { transform: scale(1); }
-      45% { transform: scale(1.45); }
-      100% { transform: scale(1); }
-    }
-
-    /* Back-to-top button */
-    #scroll-top {
-      transition:
-        opacity 0.35s ease,
-        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-    }
-
-    #scroll-top:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 35px rgba(183,255,0,0.12);
-    }
-
-    /* Smooth image depth for story/about imagery */
-    .story-card img,
-    .about-card img {
-      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .story-card:hover img,
-    .about-card:hover img {
-      transform: scale(1.025);
-    }
-
-    @media (max-width: 700px) {
-      .hero-grid {
-        animation-duration: 24s;
-      }
-
-      .product-card:hover {
-        transform: translateY(-5px);
-      }
-
-      .story-card:hover,
-      .faq-item:hover,
-      .about-card:hover,
-      .trust-item:hover {
-        transform: none;
-      }
-    }
-
-
-    @media (min-width: 701px) and (pointer: fine) {
-      .product-card:hover {
-        transform:
-          translateY(-10px)
-          perspective(900px)
-          rotateX(var(--tilt-x, 0deg))
-          rotateY(var(--tilt-y, 0deg))
-          scale(1.012);
-      }
-    }
+/* --- responsive editorial layout --- */
+@media(max-width:700px){
+  .v2-hero-side,.v2-hero-corner{display:none}
+  .v2-statement{padding-top:90px!important;padding-bottom:90px!important}
+  .v2-statement-foot{flex-direction:column;gap:10px}
+  .v2-marquee-track{animation-duration:18s}
+}
 
   </style>
 </head>
@@ -4700,137 +4614,6 @@
       }
     );
 
-
-
-    /* =========================
-       THUG SZN MOTION ENGINE
-    ========================== */
-
-    (() => {
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-      const header = document.querySelector("header");
-
-      const bumpCart = () => {
-        const count = document.getElementById("cart-count");
-        if (!count || reduceMotion) return;
-        count.classList.remove("thug-bump");
-        void count.offsetWidth;
-        count.classList.add("thug-bump");
-      };
-
-      if (!reduceMotion) {
-        const revealObserver = new IntersectionObserver(
-          entries => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("thug-visible");
-                revealObserver.unobserve(entry.target);
-              }
-            });
-          },
-          {
-            threshold: 0.12,
-            rootMargin: "0px 0px -50px 0px"
-          }
-        );
-
-        const prepareMotion = root => {
-          const sections = root.querySelectorAll(
-            "main > section:not(.hero), .trust-strip, footer"
-          );
-
-          sections.forEach(section => {
-            if (!section.classList.contains("thug-reveal")) {
-              section.classList.add("thug-reveal");
-              revealObserver.observe(section);
-            }
-          });
-
-          root.querySelectorAll(
-            ".section-heading, .story-card, .about-card, .faq-item"
-          ).forEach(element => {
-            if (!element.classList.contains("thug-reveal")) {
-              element.classList.add("thug-reveal");
-              revealObserver.observe(element);
-            }
-          });
-
-          root.querySelectorAll(".product-card").forEach((card, index) => {
-            if (!card.classList.contains("thug-reveal-scale")) {
-              card.classList.add("thug-reveal-scale");
-              card.style.transitionDelay = `${Math.min(index * 0.07, 0.42)}s`;
-              revealObserver.observe(card);
-            }
-          });
-        };
-
-        prepareMotion(document);
-
-        const motionObserver = new MutationObserver(mutations => {
-          let changed = false;
-          mutations.forEach(mutation => {
-            if (mutation.addedNodes.length) changed = true;
-          });
-          if (changed) prepareMotion(document);
-        });
-
-        motionObserver.observe(document.body, {
-          childList: true,
-          subtree: true
-        });
-
-        window.addEventListener(
-          "scroll",
-          () => {
-            if (header) {
-              header.classList.toggle("thug-scrolled", window.scrollY > 30);
-            }
-          },
-          { passive: true }
-        );
-
-        document.addEventListener("click", event => {
-          if (event.target.closest(".add-to-cart, [data-add-to-cart]")) {
-            bumpCart();
-          }
-        });
-
-        /* Subtle pointer depth on desktop product cards */
-        if (window.matchMedia("(pointer: fine)").matches) {
-          document.addEventListener("pointermove", event => {
-            const card = event.target.closest(".product-card");
-            if (!card) return;
-
-            const rect = card.getBoundingClientRect();
-            const x = (event.clientX - rect.left) / rect.width - 0.5;
-            const y = (event.clientY - rect.top) / rect.height - 0.5;
-
-            card.style.setProperty(
-              "--tilt-x",
-              `${(-y * 2.2).toFixed(2)}deg`
-            );
-            card.style.setProperty(
-              "--tilt-y",
-              `${(x * 2.2).toFixed(2)}deg`
-            );
-          });
-
-          document.addEventListener("pointerout", event => {
-            const card = event.target.closest(".product-card");
-            if (!card || card.contains(event.relatedTarget)) return;
-            card.style.setProperty("--tilt-x", "0deg");
-            card.style.setProperty("--tilt-y", "0deg");
-          });
-        }
-      } else if (header) {
-        header.classList.remove("thug-scrolled");
-      }
-    })();
-
-
     /* =========================
        INITIALIZE
     ========================== */
@@ -4840,6 +4623,296 @@
     renderCart();
 
     handlePaymentReturn();
+
+  
+
+/* =========================================================
+   THUG SZN V2 — INTERACTION ENGINE
+========================================================= */
+(function(){
+  "use strict";
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function addNode(html, parent=document.body){
+    const wrap=document.createElement("div");
+    wrap.innerHTML=html.trim();
+    const node=wrap.firstElementChild;
+    if(node) parent.appendChild(node);
+    return node;
+  }
+
+  /* --- loader --- */
+  const loader=addNode(`
+    <div id="v2-loader" aria-hidden="true">
+      <div class="v2-loader-inner">
+        <div class="v2-loader-mark">THUG <span>SZN</span></div>
+        <div class="v2-loader-line"><i></i></div>
+        <div class="v2-loader-meta"><span>BUILT DIFFERENT</span><span id="v2-loader-count">0%</span></div>
+      </div>
+    </div>`);
+  const loadLine=loader.querySelector("i");
+  const loadCount=loader.querySelector("#v2-loader-count");
+  let loadPct=0;
+  const loadTimer=setInterval(()=>{
+    loadPct=Math.min(94,loadPct+Math.random()*18);
+    loadLine.style.width=loadPct+"%";
+    loadCount.textContent=Math.round(loadPct)+"%";
+  },90);
+
+  window.addEventListener("load",()=>{
+    clearInterval(loadTimer);
+    loadLine.style.width="100%";loadCount.textContent="100%";
+    setTimeout(()=>loader.classList.add("is-done"),380);
+  });
+
+  /* --- progress --- */
+  const progress=addNode(`<div id="v2-progress"></div>`);
+  function updateProgress(){
+    const max=document.documentElement.scrollHeight-window.innerHeight;
+    progress.style.width=(max>0?(window.scrollY/max)*100:0)+"%";
+  }
+  window.addEventListener("scroll",updateProgress,{passive:true});
+  updateProgress();
+
+  /* --- custom cursor --- */
+  if(!reduced && matchMedia("(pointer:fine)").matches){
+    const dot=addNode(`<div id="v2-cursor"></div>`);
+    const ring=addNode(`<div id="v2-cursor-ring"></div>`);
+    let x=innerWidth/2,y=innerHeight/2,rx=x,ry=y;
+    addEventListener("pointermove",e=>{
+      x=e.clientX;y=e.clientY;
+      dot.style.transform=`translate3d(${x}px,${y}px,0) translate(-50%,-50%)`;
+      document.body.classList.add("v2-cursor-ready");
+    },{passive:true});
+    function cursorLoop(){
+      rx+=(x-rx)*.16;ry+=(y-ry)*.16;
+      ring.style.transform=`translate3d(${rx}px,${ry}px,0) translate(-50%,-50%)`;
+      requestAnimationFrame(cursorLoop);
+    }
+    cursorLoop();
+    document.addEventListener("pointerdown",()=>document.body.classList.add("v2-cursor-click"));
+    document.addEventListener("pointerup",()=>document.body.classList.remove("v2-cursor-click"));
+    document.addEventListener("mouseover",e=>{
+      if(e.target.closest("a,button,input,select,textarea,.product-card,.faq-question")){
+        document.body.classList.add("v2-cursor-hover");
+      }
+    });
+    document.addEventListener("mouseout",e=>{
+      if(e.target.closest("a,button,input,select,textarea,.product-card,.faq-question")){
+        document.body.classList.remove("v2-cursor-hover");
+      }
+    });
+  }
+
+  /* --- header depth --- */
+  const header=document.querySelector("header");
+  function headerState(){ if(header) header.classList.toggle("v2-scrolled",scrollY>40); }
+  addEventListener("scroll",headerState,{passive:true});headerState();
+
+  /* --- hero atmospheric elements --- */
+  const hero=document.querySelector(".hero");
+  if(hero){
+    addNode(`<div class="v2-hero-orb"></div>`,hero);
+    addNode(`<div class="v2-hero-side"><b>01</b> GLOBAL STREETWEAR / 2026</div>`,hero);
+    addNode(`<div class="v2-hero-corner">EST. 2026<span>GHANA → WORLDWIDE</span></div>`,hero);
+    const orb=hero.querySelector(".v2-hero-orb");
+    if(!reduced){
+      hero.addEventListener("pointermove",e=>{
+        const r=hero.getBoundingClientRect();
+        const px=(e.clientX-r.left)/r.width-.5;
+        const py=(e.clientY-r.top)/r.height-.5;
+        orb.style.transform=`translate3d(calc(-50% + ${px*70}px),calc(-50% + ${py*70}px),0)`;
+        const content=hero.querySelector(".hero-content");
+        if(content) content.style.transform=`translate3d(${px*-10}px,${py*-7}px,0)`;
+      },{passive:true});
+      hero.addEventListener("pointerleave",()=>{
+        orb.style.transform="translate3d(-50%,-50%,0)";
+        const content=hero.querySelector(".hero-content");
+        if(content) content.style.transform="";
+      });
+    }
+  }
+
+  /* --- kinetic marquee --- */
+  const trust=document.querySelector(".trust-strip");
+  if(trust){
+    const marquee=document.createElement("div");
+    marquee.className="v2-marquee";
+    marquee.innerHTML=`
+      <div class="v2-marquee-track">
+        <span>BUILT DIFFERENT.</span><i class="dot">✦</i><span class="acid">NO FEELINGS.</span><i class="dot">✦</i><span>ONLY FOCUS.</span><i class="dot">✦</i>
+        <span>BUILT DIFFERENT.</span><i class="dot">✦</i><span class="acid">NO FEELINGS.</span><i class="dot">✦</i><span>ONLY FOCUS.</span><i class="dot">✦</i>
+      </div>`;
+    trust.after(marquee);
+  }
+
+  /* --- statement section --- */
+  const about=document.querySelector("#about");
+  if(about){
+    const statement=document.createElement("section");
+    statement.className="v2-statement";
+    statement.innerHTML=`
+      <div class="v2-statement-inner v2-reveal">
+        <div class="v2-statement-kicker">THE MINDSET</div>
+        <h2>MOVE.<span>DIFFERENT.</span></h2>
+        <div class="v2-statement-foot">
+          <span>THUG SZN / <strong>BUILT FROM PRESSURE</strong></span>
+          <span>SCROLL TO EXPLORE ↓</span>
+        </div>
+      </div>`;
+    about.before(statement);
+  }
+
+  /* --- section numbering --- */
+  const sections=[...document.querySelectorAll("main > section")];
+  sections.forEach((sec,i)=>{
+    if(!sec.querySelector(".v2-section-number") && !sec.classList.contains("hero")){
+      const n=document.createElement("div");
+      n.className="v2-section-number";
+      n.innerHTML=`<b>${String(i).padStart(2,"0")}</b> / THUG SZN`;
+      sec.appendChild(n);
+    }
+  });
+
+  /* --- reveal engine --- */
+  const revealTargets=[
+    ...document.querySelectorAll(".section-heading,.products-grid,.about-section,.story-card,.business-grid,.policy-grid,.faq-list,.footer-inner"),
+    ...document.querySelectorAll(".v2-reveal")
+  ];
+  revealTargets.forEach(el=>{
+    if(!el.classList.contains("hero")) el.classList.add("v2-reveal");
+  });
+
+  if("IntersectionObserver" in window && !reduced){
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("v2-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+    revealTargets.forEach(el=>io.observe(el));
+  }else{
+    revealTargets.forEach(el=>el.classList.add("v2-visible"));
+  }
+
+  /* --- product card tilt --- */
+  function wireTilt(card){
+    if(reduced || !matchMedia("(pointer:fine)").matches) return;
+    card.addEventListener("pointermove",e=>{
+      const r=card.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-.5;
+      const py=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(900px) rotateX(${py*-4}deg) rotateY(${px*5}deg) translateY(-8px)`;
+      const img=card.querySelector("img");
+      if(img) img.style.transform=`scale(1.08) translate(${px*-6}px,${py*-6}px)`;
+    });
+    card.addEventListener("pointerleave",()=>{
+      card.style.transform="";
+      const img=card.querySelector("img");
+      if(img) img.style.transform="";
+    });
+  }
+  function wireCards(){document.querySelectorAll(".product-card").forEach(wireTilt);}
+  const productGrid=document.querySelector("#products-grid");
+  if(productGrid){
+    new MutationObserver(()=>wireCards()).observe(productGrid,{childList:true});
+    wireCards();
+  }
+
+  /* --- generic 3D cards --- */
+  document.querySelectorAll(".business-card,.policy-card").forEach(card=>{
+    if(reduced || !matchMedia("(pointer:fine)").matches) return;
+    card.addEventListener("pointermove",e=>{
+      const r=card.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-.5;
+      const py=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(800px) rotateX(${py*-2}deg) rotateY(${px*2}deg) translateY(-9px)`;
+    });
+    card.addEventListener("pointerleave",()=>card.style.transform="");
+  });
+
+  /* --- story light follows pointer --- */
+  const story=document.querySelector(".story-card");
+  if(story && !reduced){
+    story.addEventListener("pointermove",e=>{
+      const r=story.getBoundingClientRect();
+      story.style.setProperty("--mx",((e.clientX-r.left)/r.width*100)+"%");
+      story.style.setProperty("--my",((e.clientY-r.top)/r.height*100)+"%");
+    });
+  }
+
+  /* --- magnetic buttons --- */
+  if(!reduced && matchMedia("(pointer:fine)").matches){
+    document.querySelectorAll(".btn,.quick-add,.view-product,.cart-button").forEach(btn=>{
+      btn.addEventListener("pointermove",e=>{
+        const r=btn.getBoundingClientRect();
+        const x=(e.clientX-r.left-r.width/2)*.12;
+        const y=(e.clientY-r.top-r.height/2)*.12;
+        btn.style.transform=`translate(${x}px,${y}px)`;
+      });
+      btn.addEventListener("pointerleave",()=>btn.style.transform="");
+    });
+  }
+
+  /* --- smooth anchor navigation with offset awareness --- */
+  document.addEventListener("click",e=>{
+    const a=e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const id=a.getAttribute("href");
+    if(!id || id==="#") return;
+    const target=document.querySelector(id);
+    if(!target) return;
+    e.preventDefault();
+    target.scrollIntoView({behavior:reduced?"auto":"smooth",block:"start"});
+    history.replaceState(null,"",id);
+  });
+
+  /* --- add depth to modal image when open --- */
+  const modalImage=document.querySelector("#modal-product-image");
+  if(modalImage && !reduced){
+    modalImage.addEventListener("pointermove",e=>{
+      const box=modalImage.getBoundingClientRect();
+      const px=(e.clientX-box.left)/box.width-.5;
+      const py=(e.clientY-box.top)/box.height-.5;
+      modalImage.style.transform=`scale(1.015) translate(${px*-8}px,${py*-8}px)`;
+    });
+    modalImage.addEventListener("pointerleave",()=>modalImage.style.transform="");
+  }
+
+  /* --- section spotlight on scroll --- */
+  if(!reduced){
+    let ticking=false;
+    addEventListener("scroll",()=>{
+      if(ticking)return;
+      ticking=true;
+      requestAnimationFrame(()=>{
+        const vh=innerHeight;
+        document.querySelectorAll(".about-section").forEach(sec=>{
+          const r=sec.getBoundingClientRect();
+          const center=r.top+r.height/2;
+          const shift=Math.max(-18,Math.min(18,(center-vh/2)/30));
+          sec.style.setProperty("--v2-shift",shift+"px");
+          sec.classList.add("v2-parallax");
+        });
+        ticking=false;
+      });
+    },{passive:true});
+  }
+
+  /* --- keep dynamically-rendered product cards in reveal system --- */
+  if(productGrid){
+    const productObserver=new MutationObserver(()=>{
+      productGrid.classList.add("v2-stagger");
+      requestAnimationFrame(()=>productGrid.classList.add("v2-visible"));
+      wireCards();
+    });
+    productObserver.observe(productGrid,{childList:true});
+  }
+
+})();
 
   </script>
 
