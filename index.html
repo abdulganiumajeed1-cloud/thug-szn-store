@@ -1923,6 +1923,342 @@
       }
 
     }
+  
+
+    /* =========================
+       THUG SZN MOTION SYSTEM
+       Premium animation upgrade
+    ========================== */
+
+    .hero-content {
+      animation: none;
+    }
+
+    .hero-kicker,
+    .hero h1,
+    .hero p,
+    .hero-buttons,
+    .hero-stats {
+      opacity: 0;
+      transform: translateY(34px);
+      animation: thugHeroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-kicker { animation-delay: 0.10s; }
+    .hero h1 { animation-delay: 0.24s; }
+    .hero p { animation-delay: 0.40s; }
+    .hero-buttons { animation-delay: 0.56s; }
+    .hero-stats { animation-delay: 0.72s; }
+
+    @keyframes thugHeroReveal {
+      from {
+        opacity: 0;
+        transform: translateY(34px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-grid {
+      animation: thugGridDrift 18s ease-in-out infinite alternate;
+      transform-origin: center;
+    }
+
+    @keyframes thugGridDrift {
+      from { transform: scale(1) translate3d(0, 0, 0); }
+      to { transform: scale(1.035) translate3d(12px, -8px, 0); }
+    }
+
+    .hero h1 span {
+      display: inline-block;
+      animation: thugTextPulse 5s ease-in-out 1.2s infinite;
+    }
+
+    @keyframes thugTextPulse {
+      0%, 100% { text-shadow: 0 0 0 rgba(183,255,0,0); }
+      50% { text-shadow: 0 0 34px rgba(183,255,0,0.14); }
+    }
+
+    /* Scroll reveals */
+    .thug-reveal {
+      opacity: 0;
+      transform: translateY(45px);
+      transition:
+        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .thug-reveal.thug-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .thug-reveal-left {
+      opacity: 0;
+      transform: translateX(-45px);
+      transition:
+        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .thug-reveal-left.thug-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .thug-reveal-scale {
+      opacity: 0;
+      transform: scale(0.94) translateY(20px);
+      transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .thug-reveal-scale.thug-visible {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    /* Staggered children */
+    .thug-stagger > * {
+      opacity: 0;
+      transform: translateY(25px);
+      transition:
+        opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .thug-stagger.thug-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .thug-stagger.thug-visible > *:nth-child(1) { transition-delay: 0.04s; }
+    .thug-stagger.thug-visible > *:nth-child(2) { transition-delay: 0.10s; }
+    .thug-stagger.thug-visible > *:nth-child(3) { transition-delay: 0.16s; }
+    .thug-stagger.thug-visible > *:nth-child(4) { transition-delay: 0.22s; }
+    .thug-stagger.thug-visible > *:nth-child(5) { transition-delay: 0.28s; }
+    .thug-stagger.thug-visible > *:nth-child(6) { transition-delay: 0.34s; }
+
+    /* Premium section headings */
+    .section-heading h2 {
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  text-shadow 0.7s ease;
+    }
+
+    .section-heading:hover h2 {
+      transform: translateX(5px);
+      text-shadow: 0 0 28px rgba(183,255,0,0.08);
+    }
+
+    /* Product cards */
+    .product-card {
+      transition:
+        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.35s ease,
+        box-shadow 0.5s ease;
+    }
+
+    .product-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(
+        115deg,
+        transparent 25%,
+        rgba(255,255,255,0.06) 48%,
+        transparent 70%
+      );
+      transform: translateX(-120%);
+      transition: opacity 0.2s ease;
+    }
+
+    .product-card:hover::after {
+      opacity: 1;
+      animation: thugCardShine 0.9s ease forwards;
+    }
+
+    @keyframes thugCardShine {
+      to { transform: translateX(120%); }
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px) scale(1.012);
+    }
+
+    .product-image img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.09);
+      filter: saturate(1.08) contrast(1.03);
+    }
+
+    .product-view-overlay {
+      transition:
+        opacity 0.35s ease,
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Buttons */
+    .btn {
+      position: relative;
+      overflow: hidden;
+      transition:
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 70%;
+      height: 100%;
+      transform: skewX(-20deg);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.18),
+        transparent
+      );
+      transition: left 0.65s ease;
+      pointer-events: none;
+    }
+
+    .btn:hover::after {
+      left: 140%;
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.985);
+    }
+
+    /* Header depth on scroll */
+    header {
+      transition:
+        background 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease,
+        transform 0.35s ease;
+    }
+
+    header.thug-scrolled {
+      background: rgba(8,8,8,0.92);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+      border-bottom-color: rgba(183,255,0,0.10);
+    }
+
+    /* Story depth */
+    .story-card {
+      transition:
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s ease,
+        box-shadow 0.5s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(183,255,0,0.22);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.28);
+    }
+
+    /* FAQ / interactive panels */
+    .faq-item,
+    .about-card,
+    .trust-item {
+      transition:
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    .faq-item:hover,
+    .about-card:hover,
+    .trust-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(183,255,0,0.18);
+    }
+
+    /* Cart micro-interaction */
+    #cart-count {
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
+
+    #cart-count.thug-bump {
+      animation: thugCartBump 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes thugCartBump {
+      0% { transform: scale(1); }
+      45% { transform: scale(1.45); }
+      100% { transform: scale(1); }
+    }
+
+    /* Back-to-top button */
+    #scroll-top {
+      transition:
+        opacity 0.35s ease,
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    #scroll-top:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(183,255,0,0.12);
+    }
+
+    /* Smooth image depth for story/about imagery */
+    .story-card img,
+    .about-card img {
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .story-card:hover img,
+    .about-card:hover img {
+      transform: scale(1.025);
+    }
+
+    @media (max-width: 700px) {
+      .hero-grid {
+        animation-duration: 24s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .story-card:hover,
+      .faq-item:hover,
+      .about-card:hover,
+      .trust-item:hover {
+        transform: none;
+      }
+    }
+
+
+    @media (min-width: 701px) and (pointer: fine) {
+      .product-card:hover {
+        transform:
+          translateY(-10px)
+          perspective(900px)
+          rotateX(var(--tilt-x, 0deg))
+          rotateY(var(--tilt-y, 0deg))
+          scale(1.012);
+      }
+    }
+
   </style>
 </head>
 
@@ -4363,6 +4699,137 @@
 
       }
     );
+
+
+
+    /* =========================
+       THUG SZN MOTION ENGINE
+    ========================== */
+
+    (() => {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      const header = document.querySelector("header");
+
+      const bumpCart = () => {
+        const count = document.getElementById("cart-count");
+        if (!count || reduceMotion) return;
+        count.classList.remove("thug-bump");
+        void count.offsetWidth;
+        count.classList.add("thug-bump");
+      };
+
+      if (!reduceMotion) {
+        const revealObserver = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("thug-visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.12,
+            rootMargin: "0px 0px -50px 0px"
+          }
+        );
+
+        const prepareMotion = root => {
+          const sections = root.querySelectorAll(
+            "main > section:not(.hero), .trust-strip, footer"
+          );
+
+          sections.forEach(section => {
+            if (!section.classList.contains("thug-reveal")) {
+              section.classList.add("thug-reveal");
+              revealObserver.observe(section);
+            }
+          });
+
+          root.querySelectorAll(
+            ".section-heading, .story-card, .about-card, .faq-item"
+          ).forEach(element => {
+            if (!element.classList.contains("thug-reveal")) {
+              element.classList.add("thug-reveal");
+              revealObserver.observe(element);
+            }
+          });
+
+          root.querySelectorAll(".product-card").forEach((card, index) => {
+            if (!card.classList.contains("thug-reveal-scale")) {
+              card.classList.add("thug-reveal-scale");
+              card.style.transitionDelay = `${Math.min(index * 0.07, 0.42)}s`;
+              revealObserver.observe(card);
+            }
+          });
+        };
+
+        prepareMotion(document);
+
+        const motionObserver = new MutationObserver(mutations => {
+          let changed = false;
+          mutations.forEach(mutation => {
+            if (mutation.addedNodes.length) changed = true;
+          });
+          if (changed) prepareMotion(document);
+        });
+
+        motionObserver.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (header) {
+              header.classList.toggle("thug-scrolled", window.scrollY > 30);
+            }
+          },
+          { passive: true }
+        );
+
+        document.addEventListener("click", event => {
+          if (event.target.closest(".add-to-cart, [data-add-to-cart]")) {
+            bumpCart();
+          }
+        });
+
+        /* Subtle pointer depth on desktop product cards */
+        if (window.matchMedia("(pointer: fine)").matches) {
+          document.addEventListener("pointermove", event => {
+            const card = event.target.closest(".product-card");
+            if (!card) return;
+
+            const rect = card.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+            card.style.setProperty(
+              "--tilt-x",
+              `${(-y * 2.2).toFixed(2)}deg`
+            );
+            card.style.setProperty(
+              "--tilt-y",
+              `${(x * 2.2).toFixed(2)}deg`
+            );
+          });
+
+          document.addEventListener("pointerout", event => {
+            const card = event.target.closest(".product-card");
+            if (!card || card.contains(event.relatedTarget)) return;
+            card.style.setProperty("--tilt-x", "0deg");
+            card.style.setProperty("--tilt-y", "0deg");
+          });
+        }
+      } else if (header) {
+        header.classList.remove("thug-scrolled");
+      }
+    })();
+
 
     /* =========================
        INITIALIZE
